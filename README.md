@@ -6,33 +6,9 @@ DDD 10기 WEB 2팀 와블와블 웹 프론트엔드 레포지토리
 
 웹 기반 + PWA(구글 스토어, 앱 스토어까진 x...)
 
-### 프레임워크(라이브러리)
-
-React(Vite)
-
-### 언어
-
-TypeScript
-
-### 스타일링
-
-Emotion
-
-### 클라이언트 상태 관리
-
-Context API
-
-### 데이터 페칭
-
-Axios
-
-### 서버 상태 관리
-
-Tanstack Query
-
-### 패키지 매니저
-
-PNPM
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=flat-square&logo=pnpm&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=Vite&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black)  
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white) ![Emotion](https://img.shields.io/badge/👩‍🎤%20Emotion-hotpink?style=flat-square&)  
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white) ![Tanstack Query](https://img.shields.io/badge/Tanstack%20Query-FF4154?style=flat-square&logo=reactquery&logoColor=white)
 
 ---
 
