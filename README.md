@@ -6,8 +6,8 @@ DDD 10기 WEB 2팀 와블와블 웹 프론트엔드 레포지토리
 
 웹 기반 + PWA(구글 스토어, 앱 스토어까진 x...)
 
-![pnpm](https://img.shields.io/badge/pnpm-F69220?style=flat-square&logo=pnpm&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=Vite&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black)  
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white) ![Emotion](https://img.shields.io/badge/👩‍🎤%20Emotion-hotpink?style=flat-square&)  
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=flat-square&logo=pnpm&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white)  
+![Emotion](https://img.shields.io/badge/👩‍🎤%20Emotion-hotpink?style=flat-square&) ![Chakra UI](https://img.shields.io/badge/Chakra%20UI-319795?style=flat-square&logo=ChakraUI&logoColor=white)  
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white) ![Tanstack Query](https://img.shields.io/badge/Tanstack%20Query-FF4154?style=flat-square&logo=reactquery&logoColor=white)
 
 ---
@@ -17,25 +17,7 @@ DDD 10기 WEB 2팀 와블와블 웹 프론트엔드 레포지토리
 ### 폴더 구조
 
 ```
-📦src
- ┣ 📂assets
- ┃ ┣ 📂icons
- ┃ ┗ 📂images
- ┣ 📂components
- ┃ ┗ 📂common
- ┣ 📂constants
- ┣ 📂contexts
- ┣ 📂hooks
- ┃ ┣ 📂common
- ┃ ┣ 📂mutations
- ┃ ┣ 📂pages
- ┃ ┗ 📂queries
- ┣ 📂layout
- ┣ 📂services
- ┃ ┗ 📂instances
- ┣ 📂styles
- ┣ 📂types
- ┗ 📂utils
+
 ```
 
 ### 코드 컨벤션

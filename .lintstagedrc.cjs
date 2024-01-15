@@ -1,17 +1,19 @@
 const path = require('path');
 
 const buildEslintCommand = (filenames) =>
-  `eslint --fix ${filenames
+  `next lint --fix --file ${filenames
     .map((f) => path.relative(process.cwd(), f))
     .join(' --file ')}`;
 
 const buildPrettierCommand = (filenames) =>
   `prettier --write ${filenames
     .map((f) => path.relative(process.cwd(), f))
-    .join(' --file ')}`;
+    .join(' ')}`;
 
 const buildStylelintCommand = (filenames) =>
-  `stylelint --ignore-path .gitignore ${filenames.join(' ')}`;
+  `stylelint --ignore-path .gitignore ${filenames
+    .map((f) => path.relative(process.cwd(), f))
+    .join(' ')}`;
 
 module.exports = {
   '*.{js,jsx,ts,tsx}': [
