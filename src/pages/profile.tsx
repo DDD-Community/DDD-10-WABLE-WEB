@@ -26,18 +26,24 @@ export default function Profile() {
     resolver: zodResolver(profileSchema),
   });
 
+  function handleSubmit(profile: ProfileSchema) {
+    console.log(profile);
+  }
+
   return (
     <FormProvider {...methods}>
       <Container centerContent>
         <Center maxWidth="400px" w="100%">
-          <Funnel>
-            <Funnel.Step name="프로필 상세 정보 입력 - 기본 정보">
-              <ProfileBasicInformationForm
-                steps={STEPS}
-                activeStep={activeStep}
-              />
-            </Funnel.Step>
-          </Funnel>
+          <form onSubmit={methods.handleSubmit(handleSubmit)}>
+            <Funnel>
+              <Funnel.Step name="프로필 상세 정보 입력 - 기본 정보">
+                <ProfileBasicInformationForm
+                  steps={STEPS}
+                  activeStep={activeStep}
+                />
+              </Funnel.Step>
+            </Funnel>
+          </form>
         </Center>
       </Container>
     </FormProvider>
