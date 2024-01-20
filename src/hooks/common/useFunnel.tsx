@@ -34,7 +34,7 @@ export function useFunnel<Steps extends NonEmptyArray<string>>({
     [step],
   );
 
-  return [FunnelComponent, setStep] as const;
+  return [FunnelComponent, step, setStep] as const;
 }
 
 type FunnelProps<Steps extends NonEmptyArray<string>> = {
