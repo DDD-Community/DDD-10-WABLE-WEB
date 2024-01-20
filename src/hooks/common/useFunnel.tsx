@@ -8,20 +8,14 @@ import {
   useState,
 } from 'react';
 
-import { assert } from '@/utils/assert';
-
 type NonEmptyArray<T> = readonly [T, ...T[]];
 
 export function useFunnel<Steps extends NonEmptyArray<string>>({
   steps,
   initialStep = steps[0],
-  tracingExternalStep = false,
-  externalStep,
 }: {
   steps: Steps;
   initialStep?: Steps[number];
-  tracingExternalStep?: boolean;
-  externalStep?: Steps[number];
 }) {
   const [step, setStep] = useState<Steps[number]>(initialStep);
 
@@ -39,13 +33,6 @@ export function useFunnel<Steps extends NonEmptyArray<string>>({
       ),
     [step],
   );
-
-  useEffect(() => {
-    if (tracingExternalStep && externalStep) {
-      assert(steps.includes(externalStep), '올바른 externalStep이 아닙니다.');
-      setStep(externalStep ?? initialStep);
-    }
-  }, [tracingExternalStep, externalStep, steps, initialStep]);
 
   return [FunnelComponent, setStep] as const;
 }
