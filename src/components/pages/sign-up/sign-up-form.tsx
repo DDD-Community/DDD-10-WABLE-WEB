@@ -9,12 +9,7 @@ import {
 } from '@chakra-ui/react';
 import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
-
-interface FormValues {
-  email: string;
-  newPassword: string;
-  confirmPassword: string;
-}
+import { FormValues } from './types';
 
 export default function SignUpForm() {
   const defaultValues = {
