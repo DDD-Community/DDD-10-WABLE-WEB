@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 
-export default function ProfileBasicInformationForm({
+export function ProfileBasicInformationForm({
   steps,
   activeStep,
 }: {

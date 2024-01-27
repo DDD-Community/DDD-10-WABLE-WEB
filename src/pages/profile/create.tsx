@@ -1,9 +1,11 @@
-import ProfileBasicInformationForm from '@/components/pages/profile/ProfileBasicInformationForm';
+import { ProfileBasicInformationForm } from '@/components/pages/profile/components/ProfileBasicInformationForm';
 import { useFunnel } from '@/hooks/common/useFunnel';
 import { ProfileSchema, profileSchema } from '@/models/profile';
-import { Center, Container, useSteps } from '@chakra-ui/react';
+import { Center, Container, VStack, useSteps } from '@chakra-ui/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import * as C from '@/components/pages/profile/components';
 
 const STEPS = [
   '프로필 상세 정보 입력 - 기본 정보',
@@ -31,21 +33,24 @@ export default function Profile() {
   }
 
   return (
-    <FormProvider {...methods}>
-      <Container centerContent>
-        <Center maxWidth="400px" w="100%">
-          <form onSubmit={methods.handleSubmit(handleSubmit)}>
-            <Funnel>
-              <Funnel.Step name="프로필 상세 정보 입력 - 기본 정보">
-                <ProfileBasicInformationForm
-                  steps={STEPS}
-                  activeStep={activeStep}
-                />
-              </Funnel.Step>
-            </Funnel>
-          </form>
-        </Center>
-      </Container>
-    </FormProvider>
+    <VStack spacing="24px">
+      <C.Header />
+      <FormProvider {...methods}>
+        <Container centerContent>
+          <Center maxWidth="400px" w="100%">
+            <form onSubmit={methods.handleSubmit(handleSubmit)}>
+              <Funnel>
+                <Funnel.Step name="프로필 상세 정보 입력 - 기본 정보">
+                  <ProfileBasicInformationForm
+                    steps={STEPS}
+                    activeStep={activeStep}
+                  />
+                </Funnel.Step>
+              </Funnel>
+            </form>
+          </Center>
+        </Container>
+      </FormProvider>
+    </VStack>
   );
 }
