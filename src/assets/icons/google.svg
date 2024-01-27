@@ -1,14 +1,9 @@
-type IconProps = React.HTMLAttributes<SVGElement>;
-
-export const Icons = {
-  google: (props: IconProps) => (
-    <svg
+<svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"
       viewBox="0 0 20 20"
       fill="none"
-      {...props}
     >
       <g clipPath="url(#clip0_326_3402)">
         <path
@@ -34,5 +29,3 @@ export const Icons = {
         </clipPath>
       </defs>
     </svg>
-  ),
-};
