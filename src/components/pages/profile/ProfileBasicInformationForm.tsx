@@ -1,4 +1,4 @@
-import { ProfileSteps } from '@/pages/profile';
+import { ProfileSteps } from '@/pages/profile/create';
 import {
   Box,
   Button,

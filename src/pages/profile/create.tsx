@@ -1,4 +1,4 @@
-import ProfileBasicInformationForm from '@/components/profile/ProfileBasicInformationForm';
+import ProfileBasicInformationForm from '@/components/pages/profile/ProfileBasicInformationForm';
 import { useFunnel } from '@/hooks/common/useFunnel';
 import { ProfileSchema, profileSchema } from '@/models/profile';
 import { Center, Container, useSteps } from '@chakra-ui/react';
