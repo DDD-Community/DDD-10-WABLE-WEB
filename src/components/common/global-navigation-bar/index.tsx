@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { GNBWrapper, ItemWrapper } from './styles';
+import { GNBContainer, ItemWrapper } from './styles';
 import CardsIcon from '@/assets/icons/copy.svg';
 import HomeIcon from '@/assets/icons/home.svg';
 import UserIcon from '@/assets/icons/user.svg';
@@ -28,7 +28,7 @@ function NavItem({
 
 export default function GlobalNavigationBar() {
   return (
-    <GNBWrapper>
+    <GNBContainer>
       <NavItem href="" icon={<CardsIcon />} currentTab>
         내 카드
       </NavItem>
@@ -38,6 +38,6 @@ export default function GlobalNavigationBar() {
       <NavItem href="" icon={<UserIcon />}>
         팀원 목록
       </NavItem>
-    </GNBWrapper>
+    </GNBContainer>
   );
 }

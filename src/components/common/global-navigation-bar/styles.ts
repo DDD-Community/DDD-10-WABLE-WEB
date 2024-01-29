@@ -4,7 +4,7 @@ interface ItemWrapperProps {
   currentTab?: boolean;
 }
 
-const GNBWrapper = styled.div`
+const GNBContainer = styled.div`
   top: 0;
   left: 0;
   padding: 1.5rem;
@@ -46,4 +46,4 @@ const ItemWrapper = styled.div<ItemWrapperProps>`
   }
 `;
 
-export { GNBWrapper, ItemWrapper };
+export { GNBContainer, ItemWrapper };
