@@ -1,9 +1,10 @@
 import Link from 'next/link';
 
 import { GNBContainer, ItemWrapper } from './styles';
-import CardsIcon from '@/assets/icons/copy.svg';
+import CopyIcon from '@/assets/icons/copy.svg';
 import HomeIcon from '@/assets/icons/home.svg';
 import UserIcon from '@/assets/icons/user.svg';
+import SettingsIcon from '@/assets/icons/settings.svg';
 
 function NavItem({
   children,
@@ -29,7 +30,7 @@ function NavItem({
 export default function GlobalNavigationBar() {
   return (
     <GNBContainer>
-      <NavItem href="" icon={<CardsIcon />} currentTab>
+      <NavItem href="" icon={<CopyIcon />} currentTab>
         내 카드
       </NavItem>
       <NavItem href="" icon={<HomeIcon />}>
@@ -37,6 +38,9 @@ export default function GlobalNavigationBar() {
       </NavItem>
       <NavItem href="" icon={<UserIcon />}>
         팀원 목록
+      </NavItem>
+      <NavItem href="" icon={<SettingsIcon />}>
+        설정
       </NavItem>
     </GNBContainer>
   );
