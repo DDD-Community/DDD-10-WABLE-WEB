@@ -27,7 +27,7 @@ const ItemWrapper = styled.div<ItemWrapperProps>`
     currentTab
       ? `
       color: var(--chakra-colors-black);
-      background-color: white;`
+      background-color: var(--chakra-colors-white);`
       : `
       color: var(--chakra-colors-waggle-gray-600);
       background-color: transparent;
@@ -41,8 +41,13 @@ const ItemWrapper = styled.div<ItemWrapperProps>`
     align-items: center;
     border-radius: 0.75rem;
     background-color: ${({ currentTab }) =>
-      currentTab ? 'var(--chakra-colors-black)' : '#ffffff'};
+      currentTab ? 'var(--chakra-colors-black)' : 'var(--chakra-colors-white)'};
     color: var(--chakra-colors-black);
+  }
+
+  & path {
+    fill: ${({ currentTab }) =>
+      currentTab ? 'var(--chakra-colors-white)' : 'var(--chakra-colors-black)'};
   }
 `;
 
