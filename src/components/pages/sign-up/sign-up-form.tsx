@@ -118,7 +118,7 @@ export default function SignUpForm() {
             )}
           />
         </FormControl>
-        <Button w="100%" type="submit">
+        <Button size="lg" w="100%" type="submit" variant="primary">
           회원가입
         </Button>
       </VStack>
