@@ -1,19 +1,19 @@
 import styled from '@emotion/styled';
 
-const Container = styled.div`
+const SignUpContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 `;
 
-const Background = styled.section`
+const SignUpBackground = styled.section`
   padding: 24px;
   height: 100vh;
   width: 1440px;
 `;
 
-const Section = styled.section`
+const SignUpCardSection = styled.section`
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -36,4 +36,10 @@ const Form = styled.form`
   width: 100%;
 `;
 
-export { Container, Background, Section, ArrowIconWrapper, Form };
+export {
+  SignUpContainer,
+  SignUpBackground,
+  SignUpCardSection,
+  ArrowIconWrapper,
+  Form,
+};

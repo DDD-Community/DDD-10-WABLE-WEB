@@ -1,7 +1,12 @@
 import Image from 'next/image';
 import { Heading, VStack, Button } from '@chakra-ui/react';
 import SignUpForm from '@/components/pages/sign-up/sign-up-form';
-import { Container, Background, Section, ArrowIconWrapper } from './styles';
+import {
+  SignUpContainer,
+  SignUpBackground,
+  SignUpCardSection,
+  ArrowIconWrapper,
+} from './styles';
 import SignUpBackgroundImage from '@/assets/images/sign-up-background.png';
 import Google from '@/assets/icons/google.svg';
 import ArrowBack from '@/assets/icons/arrow-back.svg';
@@ -9,11 +14,11 @@ import { DividerWithContent } from '@/components/common/divider-with-content';
 
 export default function SignUp() {
   return (
-    <Container>
-      <Background>
+    <SignUpContainer>
+      <SignUpBackground>
         <Image src={SignUpBackgroundImage} alt="background" />
-      </Background>
-      <Section>
+      </SignUpBackground>
+      <SignUpCardSection>
         <ArrowIconWrapper>
           <ArrowBack />
         </ArrowIconWrapper>
@@ -25,7 +30,7 @@ export default function SignUp() {
           <DividerWithContent content="or" />
           <SignUpForm />
         </VStack>
-      </Section>
-    </Container>
+      </SignUpCardSection>
+    </SignUpContainer>
   );
 }
