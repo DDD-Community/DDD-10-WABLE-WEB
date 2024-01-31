@@ -11,6 +11,7 @@ const SignUpBackground = styled.section`
   padding: 24px;
   height: 100vh;
   width: 1440px;
+  flex-shrink: 0;
 `;
 
 const SignUpCardSection = styled.section`
