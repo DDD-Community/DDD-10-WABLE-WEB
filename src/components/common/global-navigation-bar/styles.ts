@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 
-interface ItemWrapperProps {
-  currentTab?: boolean;
-}
+import type { ItemWrapperProps } from './types';
 
 const GNBContainer = styled.div`
   display: flex;

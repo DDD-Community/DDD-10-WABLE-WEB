@@ -18,17 +18,9 @@ import UserIcon from '@/assets/icons/user.svg';
 import SettingsIcon from '@/assets/icons/settings.svg';
 import LogoutIcon from '@/assets/icons/logout.svg';
 
-function NavItem({
-  children,
-  href,
-  icon,
-  currentTab,
-}: {
-  children: React.ReactNode;
-  href: string;
-  icon: React.ReactNode;
-  currentTab?: boolean;
-}) {
+import { NavItemProps } from './types';
+
+function NavItem({ children, href, icon, currentTab }: NavItemProps) {
   return (
     <Link href={href}>
       <ItemContainer currentTab={currentTab}>
