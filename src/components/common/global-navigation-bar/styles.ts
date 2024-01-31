@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 
 import type { ItemWrapperProps } from './types';
 
-const dividerCss = css({
-  marginTop: '0.5rem',
-  marginBottom: '1.125rem',
-});
+const dividerCss = css`
+  margin-top: 0.5rem;
+  margin-bottom: 1.125rem;
+`;
 
 const GNBContainer = styled.div`
   display: flex;
