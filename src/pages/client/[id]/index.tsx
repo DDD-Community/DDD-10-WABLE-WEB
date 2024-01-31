@@ -1,5 +1,5 @@
-import GlobalNavigationBar from '@/components/common/global-navigation-bar';
+import GNBLayout from '@/layouts/gnb-layout';
 
 export default function Home() {
-  return <GlobalNavigationBar />;
+  return <GNBLayout>hi</GNBLayout>;
 }
