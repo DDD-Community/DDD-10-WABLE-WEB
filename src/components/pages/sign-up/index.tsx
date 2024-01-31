@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Heading, VStack, Button } from '@chakra-ui/react';
+import Link from 'next/link';
+import { Heading, VStack, Button, Text, HStack } from '@chakra-ui/react';
 import SignUpForm from '@/components/pages/sign-up/sign-up-form';
 import {
   SignUpContainer,
@@ -29,6 +30,12 @@ export default function SignUp() {
           </Button>
           <DividerWithContent content="or" />
           <SignUpForm />
+          <HStack justifyContent="flex-start" width="full">
+            <Text color="waggle.gray.700">계정이 있으신가요?</Text>
+            <Link href="/login">
+              <b>로그인하기</b>
+            </Link>
+          </HStack>
         </VStack>
       </SignUpCardSection>
     </SignUpContainer>
