@@ -1,21 +1,46 @@
 import styled from '@emotion/styled';
 
-const Container = styled.div`
+const SignUpContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
 `;
 
-const Section = styled.section`
-  width: 452.5px;
-  padding: 21px;
-  border-radius: 15px;
+const SignUpBackground = styled.section`
+  padding: 24px;
+  height: 100vh;
+  width: 1440px;
+  flex-shrink: 0;
+`;
+
+const SignUpCardSection = styled.section`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  width: 458px;
+  padding: 60px 24px 24px;
+  background-color: white;
+  border-radius: 16px;
   box-shadow: 0 7px 23px 0 #0000000d;
+`;
+
+const ArrowIconWrapper = styled.div`
+  position: absolute;
+  top: 22px;
+  left: 22px;
 `;
 
 const Form = styled.form`
   width: 100%;
 `;
 
-export { Container, Section, Form };
+export {
+  SignUpContainer,
+  SignUpBackground,
+  SignUpCardSection,
+  ArrowIconWrapper,
+  Form,
+};

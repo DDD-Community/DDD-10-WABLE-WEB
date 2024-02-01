@@ -12,6 +12,7 @@ const theme = extendTheme({
   },
   colors: {
     black: '#242529',
+    white: '#ffffff',
     point: '#ffe867',
     waggle: {
       gray: {
@@ -19,6 +20,20 @@ const theme = extendTheme({
         700: '#5c6873',
         800: '#4d4f57',
         900: '#36373f',
+      },
+    },
+  },
+  components: {
+    Button: {
+      variants: {
+        primary: {
+          bg: 'black',
+          color: 'white',
+        },
+        secondary: {
+          bg: 'waggle.gray.600',
+          color: 'waggle.gray.800',
+        },
       },
     },
   },
