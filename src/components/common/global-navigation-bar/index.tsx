@@ -9,7 +9,6 @@ import {
   ItemGroup,
   ItemGroupHeader,
   Logout,
-  dividerCss,
 } from './styles';
 import DividerIcon from '@/assets/icons/divider.svg';
 import LogoIcon from '@/assets/icons/logo.svg';
@@ -34,7 +33,12 @@ function NavItem({ children, href, icon, currentTab }: NavItemProps) {
 
 function Divider() {
   return (
-    <div css={dividerCss}>
+    <div
+      style={{
+        marginTop: '0.5rem',
+        marginBottom: '1.125rem',
+      }}
+    >
       <DividerIcon />
     </div>
   );
