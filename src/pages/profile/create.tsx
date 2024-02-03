@@ -1,11 +1,12 @@
 import { ProfileBasicInformationForm } from '@/components/pages/profile/components/ProfileBasicInformationForm';
 import { useFunnel } from '@/hooks/common/useFunnel';
 import { ProfileSchema, profileSchema } from '@/models/profile';
-import { Flex, VStack, useSteps, Heading } from '@chakra-ui/react';
+import { Flex, VStack, Heading } from '@chakra-ui/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import * as C from '@/components/pages/profile/components';
+import { Stepper } from '@/components/pages/profile/components/Stepper';
 
 const STEPS = [
   '프로필 상세 정보 입력 - 기본 정보',
@@ -20,10 +21,6 @@ export type ProfileSteps = typeof STEPS;
  */
 export default function Profile() {
   const [Funnel, step, setStep] = useFunnel({ steps: STEPS });
-  const { activeStep: activeStepIndex } = useSteps({
-    index: STEPS.indexOf(step),
-    count: STEPS.length,
-  });
   const methods = useForm<ProfileSchema>({
     resolver: zodResolver(profileSchema),
   });
@@ -47,12 +44,10 @@ export default function Profile() {
             onSubmit={methods.handleSubmit(handleSubmit)}
           >
             <Heading size="md">프로필 상세 정보 입력</Heading>
+            <Stepper steps={STEPS} activeStepIndex={0} />
             <Funnel>
               <Funnel.Step name="프로필 상세 정보 입력 - 기본 정보">
-                <ProfileBasicInformationForm
-                  steps={STEPS}
-                  activeStepIndex={activeStepIndex}
-                />
+                <ProfileBasicInformationForm />
               </Funnel.Step>
             </Funnel>
           </Flex>

@@ -6,40 +6,14 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Step,
-  StepIndicator,
-  StepNumber,
-  StepSeparator,
-  StepStatus,
-  Stepper,
 } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 
-export function ProfileBasicInformationForm({
-  steps,
-  activeStepIndex,
-}: {
-  steps: ProfileSteps;
-  activeStepIndex: number;
-}) {
+export function ProfileBasicInformationForm() {
   const { register } = useFormContext();
 
   return (
     <Flex w="100%" gap="32px" flexDirection="column" alignItems="center">
-      <Stepper index={1} w="264px">
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepIndicator>
-              <StepStatus
-                complete={<StepNumber />}
-                incomplete={<StepNumber />}
-                active={<StepNumber />}
-              />
-            </StepIndicator>
-            <StepSeparator />
-          </Step>
-        ))}
-      </Stepper>
       <Flex
         w="100%"
         bg="white"
