@@ -1,7 +1,7 @@
 import { ProfileBasicInformationForm } from '@/components/pages/profile/components/ProfileBasicInformationForm';
 import { useFunnel } from '@/hooks/common/useFunnel';
 import { ProfileSchema, profileSchema } from '@/models/profile';
-import { Center, Container, VStack, useSteps } from '@chakra-ui/react';
+import { Flex, VStack, useSteps, Heading } from '@chakra-ui/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -20,7 +20,7 @@ export type ProfileSteps = typeof STEPS;
  */
 export default function Profile() {
   const [Funnel, step, setStep] = useFunnel({ steps: STEPS });
-  const { activeStep } = useSteps({
+  const { activeStep: activeStepIndex } = useSteps({
     index: STEPS.indexOf(step),
     count: STEPS.length,
   });
@@ -33,23 +33,30 @@ export default function Profile() {
   }
 
   return (
-    <VStack spacing="24px">
+    <VStack backgroundColor="#f8f9fa" h="100vh">
       <C.Header />
       <FormProvider {...methods}>
-        <Container centerContent>
-          <Center maxWidth="400px" w="100%">
-            <form onSubmit={methods.handleSubmit(handleSubmit)}>
-              <Funnel>
-                <Funnel.Step name="프로필 상세 정보 입력 - 기본 정보">
-                  <ProfileBasicInformationForm
-                    steps={STEPS}
-                    activeStep={activeStep}
-                  />
-                </Funnel.Step>
-              </Funnel>
-            </form>
-          </Center>
-        </Container>
+        <Flex w="100%" justifyContent="center">
+          <Flex
+            as="form"
+            w="100%"
+            paddingX="24px"
+            flexDirection="column"
+            alignItems="center"
+            gap="32px"
+            onSubmit={methods.handleSubmit(handleSubmit)}
+          >
+            <Heading size="md">프로필 상세 정보 입력</Heading>
+            <Funnel>
+              <Funnel.Step name="프로필 상세 정보 입력 - 기본 정보">
+                <ProfileBasicInformationForm
+                  steps={STEPS}
+                  activeStepIndex={activeStepIndex}
+                />
+              </Funnel.Step>
+            </Funnel>
+          </Flex>
+        </Flex>
       </FormProvider>
     </VStack>
   );

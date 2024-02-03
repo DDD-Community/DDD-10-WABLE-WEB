@@ -1,37 +1,41 @@
-import { Box, Flex, Spacer } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 
 import WaggleWaggleLogo from '@/assets/images/waggle-waggle-logo.svg';
 import HomeIcon from '@/assets/icons/home.svg';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 
 export function Header() {
   return (
-    <Flex w="100%" paddingX="32px" paddingTop="35px" alignItems="center">
+    <Flex
+      w="100%"
+      padding="24px"
+      paddingBottom="0px"
+      alignItems="center"
+      justifyContent="space-between"
+    >
       <WaggleWaggleLogo />
-      <Spacer />
-      프로필 상세 정보 입력
-      <Spacer />
-      <Flex w="234px">
-        <Flex
-          padding="12px 16px"
-          alignItems="center"
-          gap="12px"
-          w="142px"
-          h="54px"
-          borderRadius="15px"
-          backgroundColor="white"
-          justifySelf="end"
-          marginLeft="auto"
-          boxShadow="0px 3.5px 5.5px 0px rgba(0, 0, 0, 0.02);"
-        >
-          <Box bg="black">
-            <HomeIcon />
-          </Box>
-          <Link href={ROUTES.HOME}>홈으로 가기</Link>
+      <Link href={ROUTES.HOME}>
+        <Flex>
+          <Flex
+            padding="12px 16px"
+            alignItems="center"
+            gap="12px"
+            w="142px"
+            h="54px"
+            borderRadius="15px"
+            bg="white"
+            justifySelf="end"
+            marginLeft="auto"
+            boxShadow="0px 3.5px 5.5px 0px rgba(0, 0, 0, 0.02);"
+          >
+            <Box padding="8px" bg="black" borderRadius="12px">
+              <HomeIcon />
+            </Box>
+            <Heading size="xs">홈으로 가기</Heading>
+          </Flex>
         </Flex>
-      </Flex>
+      </Link>
     </Flex>
   );
 }

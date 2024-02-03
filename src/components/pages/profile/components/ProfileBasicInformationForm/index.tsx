@@ -17,16 +17,16 @@ import { useFormContext } from 'react-hook-form';
 
 export function ProfileBasicInformationForm({
   steps,
-  activeStep,
+  activeStepIndex,
 }: {
   steps: ProfileSteps;
-  activeStep: number;
+  activeStepIndex: number;
 }) {
   const { register } = useFormContext();
 
   return (
-    <Flex w="100%" gap="60px" flexDirection="column" alignItems="center">
-      <Stepper index={activeStep} w="100%">
+    <Flex w="100%" gap="32px" flexDirection="column" alignItems="center">
+      <Stepper index={1} w="264px">
         {steps.map((step, index) => (
           <Step key={index}>
             <StepIndicator>
@@ -36,46 +36,56 @@ export function ProfileBasicInformationForm({
                 active={<StepNumber />}
               />
             </StepIndicator>
-            <StepSeparator style={{ color: 'black' }} />
+            <StepSeparator />
           </Step>
         ))}
       </Stepper>
-      <Box>이미지 업로드</Box>
-      <Flex flexDirection="column" gap="20px">
-        <FormControl>
-          <FormLabel htmlFor="name">이름*</FormLabel>
-          <Input
-            id="name"
-            placeholder="이름을 입력해주세요."
-            {...register('name')}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="name">닉네임</FormLabel>
-          <Input
-            id="name"
-            placeholder="이름을 입력해주세요."
-            {...register('name')}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="name">성별</FormLabel>
-          <Input
-            id="name"
-            placeholder="이름을 입력해주세요."
-            {...register('name')}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="name">생일</FormLabel>
-          <Input
-            id="name"
-            placeholder="이름을 입력해주세요."
-            {...register('name')}
-          />
-        </FormControl>
+      <Flex
+        w="100%"
+        bg="white"
+        padding="24px"
+        borderRadius="16px"
+        justifyContent="center"
+      >
+        <Flex maxW="412px" w="100%" flexDirection="column" gap="20px">
+          <Box>이미지 업로드</Box>
+          <FormControl>
+            <FormLabel htmlFor="name">이름*</FormLabel>
+            <Input
+              id="name"
+              placeholder="이름을 입력해주세요."
+              {...register('name')}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="name">닉네임</FormLabel>
+            <Input
+              id="name"
+              placeholder="이름을 입력해주세요."
+              {...register('name')}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="name">성별</FormLabel>
+            <Input
+              id="name"
+              placeholder="이름을 입력해주세요."
+              {...register('name')}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="name">생일</FormLabel>
+            <Input
+              id="name"
+              placeholder="이름을 입력해주세요."
+              {...register('name')}
+            />
+          </FormControl>
+          <Button type="submit" variant="primary">
+            다음으로
+          </Button>
+        </Flex>
       </Flex>
-      <Button>다음으로</Button>
     </Flex>
   );
 }
