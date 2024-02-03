@@ -1,7 +1,7 @@
 import { Box, Flex, Spacer } from '@chakra-ui/react';
 
-import WaggleWaggleLogo from '@/assets/images/waggle-waggle-logo.svg?url';
-import HomeIcon from '@/assets/icons/home.svg?url';
+import WaggleWaggleLogo from '@/assets/images/waggle-waggle-logo.svg';
+import HomeIcon from '@/assets/icons/home.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
@@ -9,7 +9,7 @@ import { ROUTES } from '@/constants/routes';
 export function Header() {
   return (
     <Flex w="100%" paddingX="32px" paddingTop="35px" alignItems="center">
-      <Image {...WaggleWaggleLogo} alt="와글와글 로고" />
+      <WaggleWaggleLogo />
       <Spacer />
       프로필 상세 정보 입력
       <Spacer />
@@ -27,7 +27,7 @@ export function Header() {
           boxShadow="0px 3.5px 5.5px 0px rgba(0, 0, 0, 0.02);"
         >
           <Box bg="black">
-            <Image {...HomeIcon} alt="홈 아이콘" />
+            <HomeIcon />
           </Box>
           <Link href={ROUTES.HOME}>홈으로 가기</Link>
         </Flex>
