@@ -30,9 +30,9 @@ export default function PasswordInput({
       />
       <InputRightElement width="4.5rem">
         {show ? (
-          <ViewIcon onClick={handleClick} />
+          <ViewIcon onClick={handleClick} cursor="pointer" />
         ) : (
-          <ViewOffIcon onClick={handleClick} />
+          <ViewOffIcon onClick={handleClick} cursor="pointer" />
         )}
       </InputRightElement>
     </InputGroup>
