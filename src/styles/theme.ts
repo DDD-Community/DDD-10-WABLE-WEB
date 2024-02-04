@@ -1,5 +1,6 @@
 import localFont from 'next/font/local';
 import { extendTheme } from '@chakra-ui/react';
+import { switchTheme } from './switch';
 
 const pretendard = localFont({
   src: '../assets/fonts/PretendardVariable.woff2',
@@ -11,18 +12,7 @@ const theme = extendTheme({
     heading: pretendard.style.fontFamily,
   },
   colors: {
-    black: {
-      50: '#242529',
-      100: '#242529',
-      200: '#242529',
-      300: '#242529',
-      400: '#242529',
-      500: '#242529',
-      600: '#242529',
-      700: '#242529',
-      800: '#242529',
-      900: '#242529',
-    },
+    black: '#242529',
     white: '#ffffff',
     point: '#ffe867',
     waggle: {
@@ -47,6 +37,7 @@ const theme = extendTheme({
         },
       },
     },
+    Switch: switchTheme,
   },
 });
 

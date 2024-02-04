@@ -34,7 +34,7 @@ export default function Login() {
         flex="1"
         position="relative"
         height="100vh"
-        bg="black.100"
+        bg="black"
         borderRadius="25px 0 0 25px"
       >
         <Image
