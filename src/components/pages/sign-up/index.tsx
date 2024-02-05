@@ -12,6 +12,7 @@ import SignUpBackgroundImage from '@/assets/images/sign-up-background.png';
 import GoogleIcon from '@/assets/icons/google.svg';
 import ArrowBackIcon from '@/assets/icons/arrow-back.svg';
 import { DividerWithContent } from '@/components/common/divider-with-content';
+import { ROUTES } from '@/constants/routes';
 
 export default function SignUp() {
   return (
@@ -32,7 +33,7 @@ export default function SignUp() {
           <SignUpForm />
           <HStack justifyContent="flex-start" width="full">
             <Text color="waggle.gray.700">계정이 있으신가요?</Text>
-            <Link href="/login">
+            <Link href={ROUTES.LOGIN}>
               <b>로그인하기</b>
             </Link>
           </HStack>

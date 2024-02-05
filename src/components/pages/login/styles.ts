@@ -1,10 +1,14 @@
 import styled from '@emotion/styled';
 
+const LoginContainer = styled.div`
+  display: flex;
+`;
+
 const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--chakra-space-5);
+  gap: 20px;
 `;
 
-export { Form };
+export { LoginContainer, Form };

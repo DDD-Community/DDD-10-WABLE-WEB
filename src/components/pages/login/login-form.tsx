@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   Button,
   Flex,
@@ -8,8 +10,9 @@ import {
   Spacer,
   Switch,
 } from '@chakra-ui/react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
+import { ROUTES } from '@/constants/routes';
 
 interface IFormValues {
   email: string;
@@ -18,8 +21,9 @@ interface IFormValues {
 
 export function LoginForm() {
   const {
-    register,
     handleSubmit,
+    control,
+    register,
     formState: { errors },
   } = useForm<IFormValues>();
 
@@ -56,22 +60,33 @@ export function LoginForm() {
             {errors.password?.message}
           </FormErrorMessage>
         </Flex>
-        <Input
-          type="password"
-          placeholder="Min. 8 characters"
-          size="lg"
-          {...register('password', { required: '비밀번호를 입력해 주세요.' })}
+        <Controller
+          name="password"
+          control={control}
+          rules={{
+            required: { value: true, message: '비밀번호를 입력해주세요.' },
+          }}
+          render={({ field: { onChange, value } }) => (
+            <PasswordInput
+              onChange={onChange}
+              value={value}
+              id="newPassword"
+              placeholder="비밀번호를 입력해주세요."
+            />
+          )}
         />
       </FormControl>
       <Flex align="center">
-        <Switch id="save-login-info" mr={3} />
+        <Switch id="save-login-info" mr={3} colorScheme="black" />
         <FormLabel htmlFor="save-login-info" mb={0}>
           로그인 정보 저장
         </FormLabel>
         <Spacer />
-        <Button variant="link">비밀번호를 잊으셨나요?</Button>
+        <Link href={ROUTES.HOME}>
+          <b>비밀번호를 잊으셨나요?</b>
+        </Link>
       </Flex>
-      <Button type="submit" colorScheme="blackAlpha" size="lg" width="full">
+      <Button type="submit" variant="primary" size="lg" width="full">
         로그인
       </Button>
     </Form>

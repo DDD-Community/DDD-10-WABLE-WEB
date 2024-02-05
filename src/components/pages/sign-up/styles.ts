@@ -31,6 +31,7 @@ const ArrowIconWrapper = styled.div`
   position: absolute;
   top: 22px;
   left: 22px;
+  cursor: pointer;
 `;
 
 const Form = styled.form`
