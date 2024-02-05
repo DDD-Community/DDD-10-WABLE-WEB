@@ -4,6 +4,7 @@ import GNBLayout from '@/layouts/gnb-layout';
 import DashboardItem from '@/components/common/dashboard-item';
 import Card from '@/components/pages/client/card';
 import Profile from '@/components/pages/client/profile';
+import Calendar from '@/components/pages/client/calendar';
 
 const MOCK_DATA = [
   {
@@ -58,7 +59,9 @@ export default function Home() {
             />
           ))}
         </DashboardItem>
-        <DashboardItem>Calendar Section</DashboardItem>
+        <DashboardItem>
+          <Calendar />
+        </DashboardItem>
       </Flex>
     </GNBLayout>
   );
