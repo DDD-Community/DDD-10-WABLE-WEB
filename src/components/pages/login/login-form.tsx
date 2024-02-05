@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
+import { ROUTES } from '@/constants/routes';
 
 interface IFormValues {
   email: string;
@@ -81,7 +82,7 @@ export function LoginForm() {
           로그인 정보 저장
         </FormLabel>
         <Spacer />
-        <Link href="/">
+        <Link href={ROUTES.HOME}>
           <b>비밀번호를 잊으셨나요?</b>
         </Link>
       </Flex>

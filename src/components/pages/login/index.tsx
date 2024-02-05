@@ -6,6 +6,7 @@ import { LoginForm } from '@/components/pages/login/login-form';
 import GoogleIcon from '@/assets/icons/google.svg';
 import LoginImage from '@/assets/images/login-image.png';
 import { LoginContainer } from './styles';
+import { ROUTES } from '@/constants/routes';
 
 export default function Login() {
   return (
@@ -24,7 +25,7 @@ export default function Login() {
           <LoginForm />
           <HStack width="full" alignItems="center" justifyContent="flex-start">
             <span>계정이 없으신가요? </span>
-            <Link href="/sign-up">
+            <Link href={ROUTES.SIGN_UP}>
               <b>회원가입하기</b>
             </Link>
           </HStack>
