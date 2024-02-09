@@ -76,7 +76,10 @@ export function ProfileBasicInformationForm() {
             </FormLabel>
             <Flex gap="32px">
               <Flex gap="8px" flex="1.25" alignItems="flex-end">
-                <Select icon={<ChevronDownIcon />}>
+                <Select icon={<ChevronDownIcon />} {...register('year')}>
+                  <option selected hidden disabled value="">
+                    2000
+                  </option>
                   <option>2021</option>
                 </Select>
                 <FormLabel m="0" color="gray.400">
@@ -84,12 +87,17 @@ export function ProfileBasicInformationForm() {
                 </FormLabel>
               </Flex>
               <Flex gap="8px" flex="1" alignItems="flex-end">
-                <Select icon={<ChevronDownIcon />}>
+                <Select icon={<ChevronDownIcon />} {...register('month')}>
                   {/**
                    * @todo generateOptions를 통해 조금 더 선언적으로 작성하기
                    */}
+                  <option selected hidden disabled value="">
+                    1
+                  </option>
                   {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                    <option key={month}>{month}</option>
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
                   ))}
                 </Select>
                 <FormLabel m="0" color="gray.400">
@@ -97,9 +105,14 @@ export function ProfileBasicInformationForm() {
                 </FormLabel>
               </Flex>
               <Flex gap="8px" flex="1" alignItems="flex-end">
-                <Select icon={<ChevronDownIcon />}>
+                <Select icon={<ChevronDownIcon />} {...register('day')}>
+                  <option selected hidden disabled value="">
+                    1
+                  </option>
                   {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
-                    <option key={day}>{day}</option>
+                    <option key={day} value={day}>
+                      {day}
+                    </option>
                   ))}
                 </Select>
                 <FormLabel m="0" color="gray.400">
