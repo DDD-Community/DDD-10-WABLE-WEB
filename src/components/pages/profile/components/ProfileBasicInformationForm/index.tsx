@@ -24,18 +24,6 @@ export function ProfileBasicInformationForm() {
   const [currentDate, setCurrentDate] = useState(
     new Date(new Date().getFullYear(), 0, 1),
   );
-  console.log(
-    Array.from(
-      {
-        length: new Date(
-          currentDate.getFullYear(),
-          currentDate.getMonth() + 1,
-          0,
-        ).getDate(),
-      },
-      (_, i) => i + 1,
-    ),
-  );
 
   function handleChangeYear(event: ChangeEvent<HTMLSelectElement>) {
     setCurrentDate(
