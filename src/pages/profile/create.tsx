@@ -16,9 +16,6 @@ const STEPS = [
 
 export type ProfileSteps = typeof STEPS;
 
-/**
- * @todo localStorage에 프로필 정보 저장 필요.
- */
 export default function Profile() {
   const [Funnel, step, setStep] = useFunnel({ steps: STEPS });
   const methods = useForm<ProfileSchema>({

@@ -3,32 +3,21 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
-  HStack,
   Heading,
   Input,
-  InputGroup,
-  InputRightElement,
   Select,
   Text,
-  UseRadioProps,
-  useRadio,
-  useRadioGroup,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import * as C from './components';
 
-const GENDER_OPTIONS = ['남성', '여성'];
+const GENDER_OPTIONS = ['남성', '여성'] as const;
 
 export function ProfileBasicInformationForm() {
-  const { register } = useFormContext();
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: 'gender',
-    defaultValue: '남성',
-    onChange: console.log,
-  });
-  const group = getRootProps();
+  const { register, control } = useFormContext();
 
   return (
     <Flex w="100%" gap="32px" flexDirection="column" alignItems="center">
@@ -45,8 +34,12 @@ export function ProfileBasicInformationForm() {
         <Flex maxW="412px" w="100%" flexDirection="column" gap="16px">
           <Box>이미지 업로드</Box>
           <FormControl>
+            {/**
+             * @todo focus 시키기
+             */}
             <FormLabel htmlFor="name">
               <Heading size="sm">이름*</Heading>
+              <FormErrorMessage>이름을 입력해주세요.</FormErrorMessage>
             </FormLabel>
             <Input
               id="name"
@@ -63,28 +56,24 @@ export function ProfileBasicInformationForm() {
               id="nickname"
               size="lg"
               placeholder="이름을 입력해주세요."
-              {...register('name')}
+              {...register('nickname')}
             />
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="gender">
               <Heading size="sm">성별*</Heading>
+              <FormErrorMessage>성별을 선택해주세요.</FormErrorMessage>
             </FormLabel>
-            <HStack {...group} gap="18px">
-              {GENDER_OPTIONS.map((option) => {
-                const radio = getRadioProps({ value: option });
-
-                return (
-                  <Radio key={option} {...radio}>
-                    {option}
-                  </Radio>
-                );
-              })}
-            </HStack>
+            <C.RadioGroup
+              name="gender"
+              control={control}
+              options={GENDER_OPTIONS}
+            />
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="birthday">
               <Heading size="sm">생일*</Heading>
+              <FormErrorMessage>생일을 입력해주세요.</FormErrorMessage>
             </FormLabel>
             <Flex gap="32px">
               <Flex gap="8px" flex="1.25" alignItems="flex-end">
@@ -97,6 +86,9 @@ export function ProfileBasicInformationForm() {
               </Flex>
               <Flex gap="8px" flex="1" alignItems="flex-end">
                 <Select icon={<ChevronDownIcon />}>
+                  {/**
+                   * @todo generateOptions를 통해 조금 더 선언적으로 작성하기
+                   */}
                   {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
                     <option key={month}>{month}</option>
                   ))}
@@ -123,32 +115,5 @@ export function ProfileBasicInformationForm() {
         </Button>
       </Flex>
     </Flex>
-  );
-}
-
-function Radio(props: UseRadioProps & { children: ReactNode }) {
-  const { getInputProps, getRadioProps } = useRadio(props);
-  const input = getInputProps();
-  const radio = getRadioProps();
-
-  return (
-    <Box as="label" flex="1 0 0">
-      <input {...input} />
-      <Flex
-        {...radio}
-        cursor="pointer"
-        alignItems="center"
-        justifyContent="center"
-        borderRadius="6px"
-        paddingY="16px"
-        bg="gray.100"
-        _checked={{
-          bg: 'black',
-          color: 'white',
-        }}
-      >
-        <Heading size="sm">{props.children}</Heading>
-      </Flex>
-    </Box>
   );
 }
