@@ -14,9 +14,58 @@ import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import * as C from './components';
 import { GENDER_OPTIONS } from '@/models/profile';
+import { ChangeEvent, useState } from 'react';
 
+/**
+ * @todo year, month, day 모두 하나의 에러 메세지로 출력하기
+ */
 export function ProfileBasicInformationForm() {
   const { register, control } = useFormContext();
+  const [currentDate, setCurrentDate] = useState(
+    new Date(new Date().getFullYear(), 0, 1),
+  );
+  console.log(
+    Array.from(
+      {
+        length: new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth() + 1,
+          0,
+        ).getDate(),
+      },
+      (_, i) => i + 1,
+    ),
+  );
+
+  function handleChangeYear(event: ChangeEvent<HTMLSelectElement>) {
+    setCurrentDate(
+      new Date(
+        Number(event.target.value),
+        currentDate.getMonth(),
+        currentDate.getDate(),
+      ),
+    );
+  }
+
+  function handleChangeMonth(event: ChangeEvent<HTMLSelectElement>) {
+    setCurrentDate(
+      new Date(
+        currentDate.getFullYear(),
+        Number(event.target.value) - 1,
+        currentDate.getDate(),
+      ),
+    );
+  }
+
+  function handleChangeDay(event: ChangeEvent<HTMLSelectElement>) {
+    setCurrentDate(
+      new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        Number(event.target.value),
+      ),
+    );
+  }
 
   return (
     <Flex w="100%" gap="32px" flexDirection="column" alignItems="center">
@@ -76,22 +125,38 @@ export function ProfileBasicInformationForm() {
             </FormLabel>
             <Flex gap="32px">
               <Flex gap="8px" flex="1.25" alignItems="flex-end">
-                <Select icon={<ChevronDownIcon />} {...register('year')}>
-                  <option selected hidden disabled value="">
-                    2000
+                <Select
+                  icon={<ChevronDownIcon />}
+                  {...register('year', {
+                    onChange: handleChangeYear,
+                  })}
+                  defaultValue=""
+                >
+                  <option hidden disabled value="">
+                    {currentDate.getFullYear()}
                   </option>
-                  <option>2021</option>
+                  {Array.from(
+                    { length: 100 },
+                    (_, i) => new Date().getFullYear() - i,
+                  ).map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
                 </Select>
                 <FormLabel m="0" color="gray.400">
                   <Text>년</Text>
                 </FormLabel>
               </Flex>
               <Flex gap="8px" flex="1" alignItems="flex-end">
-                <Select icon={<ChevronDownIcon />} {...register('month')}>
-                  {/**
-                   * @todo generateOptions를 통해 조금 더 선언적으로 작성하기
-                   */}
-                  <option selected hidden disabled value="">
+                <Select
+                  icon={<ChevronDownIcon />}
+                  {...register('month', {
+                    onChange: handleChangeMonth,
+                  })}
+                  defaultValue=""
+                >
+                  <option hidden disabled value="">
                     1
                   </option>
                   {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
@@ -105,11 +170,26 @@ export function ProfileBasicInformationForm() {
                 </FormLabel>
               </Flex>
               <Flex gap="8px" flex="1" alignItems="flex-end">
-                <Select icon={<ChevronDownIcon />} {...register('day')}>
-                  <option selected hidden disabled value="">
+                <Select
+                  icon={<ChevronDownIcon />}
+                  {...register('day', {
+                    onChange: handleChangeDay,
+                  })}
+                  defaultValue=""
+                >
+                  <option hidden disabled value="">
                     1
                   </option>
-                  {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+                  {Array.from(
+                    {
+                      length: new Date(
+                        currentDate.getFullYear(),
+                        currentDate.getMonth() + 1,
+                        0,
+                      ).getDate(),
+                    },
+                    (_, i) => i + 1,
+                  ).map((day) => (
                     <option key={day} value={day}>
                       {day}
                     </option>
