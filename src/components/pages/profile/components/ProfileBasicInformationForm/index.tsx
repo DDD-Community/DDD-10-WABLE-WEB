@@ -13,8 +13,7 @@ import {
 import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import * as C from './components';
-
-const GENDER_OPTIONS = ['남성', '여성'] as const;
+import { GENDER_OPTIONS } from '@/models/profile';
 
 export function ProfileBasicInformationForm() {
   const { register, control } = useFormContext();

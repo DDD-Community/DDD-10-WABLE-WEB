@@ -26,6 +26,8 @@ export default function Profile() {
     console.log(profile);
   }
 
+  console.log(methods.formState.errors);
+
   return (
     <VStack backgroundColor="#f8f9fa" h="100vh">
       <C.Header />
