@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Flex,
   FormControl,
@@ -25,6 +24,9 @@ export function ProfileBasicInformationForm() {
     control,
     formState: { errors },
   } = useFormContext<ProfileSchema>();
+  /**
+   * @todo hook으로 분리하기
+   */
   const [currentDate, setCurrentDate] = useState(
     new Date(new Date().getFullYear(), 0, 1),
   );
@@ -60,19 +62,24 @@ export function ProfileBasicInformationForm() {
   }
 
   return (
-    <Flex w="100%" gap="32px" flexDirection="column" alignItems="center">
+    <Flex
+      w="100%"
+      flexDirection="column"
+      alignItems="center"
+      gap="24px"
+      bg="white"
+      borderRadius="16px"
+      padding="24px"
+    >
       <Flex
         w="100%"
-        bg="white"
-        padding="24px"
-        borderRadius="16px"
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
-        gap="24px"
+        gap="44px"
       >
+        <C.ImageUpload />
         <Flex maxW="412px" w="100%" flexDirection="column" gap="16px">
-          <Box>이미지 업로드</Box>
           <FormControl isInvalid={!!errors.name}>
             <FormLabel htmlFor="name">
               <Flex gap="12px" alignItems="flex-end">
@@ -212,10 +219,10 @@ export function ProfileBasicInformationForm() {
             </Flex>
           </FormControl>
         </Flex>
-        <Button type="submit" variant="primary" maxW="412px" w="100%" h="48px">
-          다음으로
-        </Button>
       </Flex>
+      <Button type="submit" variant="primary" maxW="412px" w="100%" h="48px">
+        다음으로
+      </Button>
     </Flex>
   );
 }
