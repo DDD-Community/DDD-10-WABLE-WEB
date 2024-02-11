@@ -13,14 +13,18 @@ import {
 import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import * as C from './components';
-import { GENDER_OPTIONS } from '@/models/profile';
+import { GENDER_OPTIONS, ProfileSchema } from '@/models/profile';
 import { ChangeEvent, useState } from 'react';
 
 /**
  * @todo year, month, day 모두 하나의 에러 메세지로 출력하기
  */
 export function ProfileBasicInformationForm() {
-  const { register, control } = useFormContext();
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext<ProfileSchema>();
   const [currentDate, setCurrentDate] = useState(
     new Date(new Date().getFullYear(), 0, 1),
   );
@@ -69,13 +73,14 @@ export function ProfileBasicInformationForm() {
       >
         <Flex maxW="412px" w="100%" flexDirection="column" gap="16px">
           <Box>이미지 업로드</Box>
-          <FormControl>
-            {/**
-             * @todo focus 시키기
-             */}
+          <FormControl isInvalid={!!errors.name}>
             <FormLabel htmlFor="name">
-              <Heading size="sm">이름*</Heading>
-              <FormErrorMessage>이름을 입력해주세요.</FormErrorMessage>
+              <Flex gap="12px" alignItems="flex-end">
+                <Heading size="sm">이름*</Heading>
+                <FormErrorMessage m="0">
+                  {errors.name?.message}
+                </FormErrorMessage>
+              </Flex>
             </FormLabel>
             <Input
               id="name"
@@ -84,9 +89,14 @@ export function ProfileBasicInformationForm() {
               {...register('name')}
             />
           </FormControl>
-          <FormControl>
+          <FormControl isInvalid={!!errors.nickname}>
             <FormLabel htmlFor="nickname">
-              <Heading size="sm">닉네임</Heading>
+              <Flex gap="12px" alignItems="flex-end">
+                <Heading size="sm">닉네임</Heading>
+                <FormErrorMessage m="0">
+                  {errors.nickname?.message}
+                </FormErrorMessage>
+              </Flex>
             </FormLabel>
             <Input
               id="nickname"
@@ -95,10 +105,14 @@ export function ProfileBasicInformationForm() {
               {...register('nickname')}
             />
           </FormControl>
-          <FormControl>
+          <FormControl isInvalid={!!errors.gender}>
             <FormLabel htmlFor="gender">
-              <Heading size="sm">성별*</Heading>
-              <FormErrorMessage>성별을 선택해주세요.</FormErrorMessage>
+              <Flex gap="12px" alignItems="flex-end">
+                <Heading size="sm">성별*</Heading>
+                <FormErrorMessage m="0">
+                  {errors.gender?.message}
+                </FormErrorMessage>
+              </Flex>
             </FormLabel>
             <C.RadioGroup
               name="gender"
@@ -106,10 +120,18 @@ export function ProfileBasicInformationForm() {
               options={GENDER_OPTIONS}
             />
           </FormControl>
-          <FormControl>
+          <FormControl
+            isInvalid={!!errors.year || !!errors.month || !!errors.day}
+          >
             <FormLabel htmlFor="birthday">
-              <Heading size="sm">생일*</Heading>
-              <FormErrorMessage>생일을 입력해주세요.</FormErrorMessage>
+              <Flex gap="12px" alignItems="flex-end">
+                <Heading size="sm">생일*</Heading>
+                <FormErrorMessage m="0">
+                  {errors.year?.message ||
+                    errors.month?.message ||
+                    errors.day?.message}
+                </FormErrorMessage>
+              </Flex>
             </FormLabel>
             <Flex gap="32px">
               <Flex gap="8px" flex="1.25" alignItems="flex-end">

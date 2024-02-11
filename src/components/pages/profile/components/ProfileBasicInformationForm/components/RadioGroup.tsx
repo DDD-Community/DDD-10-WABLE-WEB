@@ -1,3 +1,4 @@
+import { ProfileSchema } from '@/models/profile';
 import {
   HStack,
   useRadioGroup,
@@ -8,15 +9,15 @@ import {
   UseRadioProps,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { Control, FieldValues, useController } from 'react-hook-form';
+import { Control, useController } from 'react-hook-form';
 
 export function RadioGroup({
   name,
   control,
   options,
 }: {
-  name: string;
-  control: Control<FieldValues, any>;
+  name: keyof ProfileSchema;
+  control: Control<ProfileSchema, any>;
   options: readonly string[];
 }) {
   const { field } = useController({
