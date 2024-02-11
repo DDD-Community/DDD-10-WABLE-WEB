@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Controller, useForm } from 'react-hook-form';
 import {
   VStack,
@@ -10,9 +11,12 @@ import {
 } from '@chakra-ui/react';
 import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
-import { FormValues } from './types';
+import { SignUpFormValues } from './types';
+import userPool from '@/lib/user-pool';
 
 export default function SignUpForm() {
+  const router = useRouter();
+
   const defaultValues = {
     email: '',
     newPassword: '',
@@ -25,14 +29,20 @@ export default function SignUpForm() {
     register,
     formState: { errors },
     getValues,
-  } = useForm<FormValues>({ defaultValues });
+  } = useForm<SignUpFormValues>({ defaultValues });
 
-  function onSubmit(values: FormValues) {
-    console.log('submit', values);
+  function handleSignUp({ email, newPassword }: SignUpFormValues) {
+    userPool.signUp(email, newPassword, [], [], (error, data) => {
+      if (error) {
+        return console.error(error);
+      }
+      alert('회원가입 완료! 이메일을 확인하여 인증 바랍니다.');
+      router.push('/login');
+    });
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(handleSignUp)}>
       <VStack w="100%" spacing="24px">
         <FormControl isInvalid={!!errors.email}>
           <HStack marginBottom="12px">
@@ -87,6 +97,10 @@ export default function SignUpForm() {
             )}
           />
         </FormControl>
+        <VStack width="full" alignItems="flex-start" gap={0}>
+          <p>* 비밀번호는 8~16자 이내로 입력해주세요.</p>
+          <p>* 비밀번호는 영어, 숫자, 특수문자를 포함해야 합니다.</p>
+        </VStack>
         <FormControl isInvalid={!!errors.confirmPassword}>
           <HStack marginBottom="12px">
             <FormLabel htmlFor="confirmPassword" margin="0px">
