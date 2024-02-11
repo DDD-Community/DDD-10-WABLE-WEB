@@ -75,7 +75,7 @@ export default function GlobalNavigationBar() {
 
       <GNBFooter>
         <Logout onClick={() => {}}>
-          <LogoutIcon />
+          <LogoutIcon color="#F8F9FA" />
           <span>로그아웃</span>
         </Logout>
       </GNBFooter>
