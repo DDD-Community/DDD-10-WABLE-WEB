@@ -15,9 +15,6 @@ import * as C from './components';
 import { GENDER_OPTIONS, ProfileSchema } from '@/models/profile';
 import { ChangeEvent, useState } from 'react';
 
-/**
- * @todo year, month, day 모두 하나의 에러 메세지로 출력하기
- */
 export function ProfileBasicInformationForm() {
   const {
     register,

@@ -1,11 +1,12 @@
-import { Box, Flex, Input } from '@chakra-ui/react';
+import { Flex, Input } from '@chakra-ui/react';
 
 import EditIcon from '@/assets/icons/edit.svg';
 import { DragEvent, useRef } from 'react';
 import Image from 'next/image';
 
 /**
- * @todo 백엔드의 이미지 업로드 api와 연결 후 미리 보여주기 필요
+ * @todo upload 후 이미지 미리 보여주기
+ * @todo 백엔드 이미지 업로드 API 연동하기
  */
 export function ImageUpload() {
   const inputRef = useRef<HTMLInputElement>(null);

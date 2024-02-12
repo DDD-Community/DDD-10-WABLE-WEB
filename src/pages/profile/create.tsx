@@ -24,11 +24,15 @@ export default function Profile() {
   });
 
   function handleSubmit(profile: ProfileSchema) {
+    /**
+     * @todo year, month, day 뽑아서 birthday로 만들기
+     * @todo API 연결하기
+     */
     console.log(profile);
   }
 
   return (
-    <VStack bg="#f8f9fa">
+    <VStack w="100%" bg="#f8f9fa">
       <C.Header />
       <FormProvider {...methods}>
         <Flex
