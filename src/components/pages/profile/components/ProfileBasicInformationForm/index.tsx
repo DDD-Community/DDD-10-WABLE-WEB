@@ -12,8 +12,8 @@ import {
 import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import * as C from './components';
+import * as L from './logic';
 import { GENDER_OPTIONS, ProfileSchema } from '@/models/profile';
-import { ChangeEvent, useState } from 'react';
 
 export function ProfileBasicInformationForm() {
   const {
@@ -21,42 +21,8 @@ export function ProfileBasicInformationForm() {
     control,
     formState: { errors },
   } = useFormContext<ProfileSchema>();
-  /**
-   * @todo hook으로 분리하기
-   */
-  const [currentDate, setCurrentDate] = useState(
-    new Date(new Date().getFullYear(), 0, 1),
-  );
-
-  function handleChangeYear(event: ChangeEvent<HTMLSelectElement>) {
-    setCurrentDate(
-      new Date(
-        Number(event.target.value),
-        currentDate.getMonth(),
-        currentDate.getDate(),
-      ),
-    );
-  }
-
-  function handleChangeMonth(event: ChangeEvent<HTMLSelectElement>) {
-    setCurrentDate(
-      new Date(
-        currentDate.getFullYear(),
-        Number(event.target.value) - 1,
-        currentDate.getDate(),
-      ),
-    );
-  }
-
-  function handleChangeDay(event: ChangeEvent<HTMLSelectElement>) {
-    setCurrentDate(
-      new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        Number(event.target.value),
-      ),
-    );
-  }
+  const { currentDate, years, months, days, handleChangeDate } =
+    L.useHandleBirthDate();
 
   return (
     <Flex
@@ -142,17 +108,16 @@ export function ProfileBasicInformationForm() {
                 <Select
                   icon={<ChevronDownIcon />}
                   {...register('year', {
-                    onChange: handleChangeYear,
+                    onChange: (event) => {
+                      handleChangeDate({ year: +event.target.value });
+                    },
                   })}
                   defaultValue=""
                 >
                   <option hidden disabled value="">
                     {currentDate.getFullYear()}
                   </option>
-                  {Array.from(
-                    { length: 100 },
-                    (_, i) => new Date().getFullYear() - i,
-                  ).map((year) => (
+                  {years.map((year) => (
                     <option key={year} value={year}>
                       {year}
                     </option>
@@ -166,14 +131,16 @@ export function ProfileBasicInformationForm() {
                 <Select
                   icon={<ChevronDownIcon />}
                   {...register('month', {
-                    onChange: handleChangeMonth,
+                    onChange: (event) => {
+                      handleChangeDate({ month: +event.target.value });
+                    },
                   })}
                   defaultValue=""
                 >
                   <option hidden disabled value="">
                     1
                   </option>
-                  {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                  {months.map((month) => (
                     <option key={month} value={month}>
                       {month}
                     </option>
@@ -187,23 +154,16 @@ export function ProfileBasicInformationForm() {
                 <Select
                   icon={<ChevronDownIcon />}
                   {...register('day', {
-                    onChange: handleChangeDay,
+                    onChange: (event) => {
+                      handleChangeDate({ day: +event.target.value });
+                    },
                   })}
                   defaultValue=""
                 >
                   <option hidden disabled value="">
                     1
                   </option>
-                  {Array.from(
-                    {
-                      length: new Date(
-                        currentDate.getFullYear(),
-                        currentDate.getMonth() + 1,
-                        0,
-                      ).getDate(),
-                    },
-                    (_, i) => i + 1,
-                  ).map((day) => (
+                  {days.map((day) => (
                     <option key={day} value={day}>
                       {day}
                     </option>
