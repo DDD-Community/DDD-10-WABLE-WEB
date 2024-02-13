@@ -5,9 +5,9 @@ import { Flex, VStack, Heading, Text } from '@chakra-ui/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import * as C from '@/components/pages/profile/components';
 import { Stepper } from '@/components/pages/profile/components/Stepper';
 import LogoutIcon from '@/assets/icons/logout.svg';
+import { Header } from '@/components/pages/profile/components';
 
 const STEPS = [
   '프로필 상세 정보 입력 - 기본 정보',
@@ -33,7 +33,7 @@ export default function Profile() {
 
   return (
     <VStack w="100%" bg="#f8f9fa">
-      <C.Header />
+      <Header />
       <FormProvider {...methods}>
         <Flex
           w="100%"

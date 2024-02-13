@@ -11,9 +11,10 @@ import {
 } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import * as C from './components';
-import * as L from './logic';
+
 import { GENDER_OPTIONS, ProfileSchema } from '@/models/profile';
+import { ImageUpload, RadioGroup } from './components';
+import { useHandleBirthDate } from './logic';
 
 export function ProfileBasicInformationForm() {
   const {
@@ -22,7 +23,7 @@ export function ProfileBasicInformationForm() {
     formState: { errors },
   } = useFormContext<ProfileSchema>();
   const { currentDate, years, months, days, handleChangeDate } =
-    L.useHandleBirthDate();
+    useHandleBirthDate();
 
   return (
     <Flex
@@ -41,7 +42,7 @@ export function ProfileBasicInformationForm() {
         flexDirection="column"
         gap="44px"
       >
-        <C.ImageUpload />
+        <ImageUpload />
         <Flex maxW="412px" w="100%" flexDirection="column" gap="16px">
           <FormControl isInvalid={!!errors.name}>
             <FormLabel htmlFor="name">
@@ -84,7 +85,7 @@ export function ProfileBasicInformationForm() {
                 </FormErrorMessage>
               </Flex>
             </FormLabel>
-            <C.RadioGroup
+            <RadioGroup
               name="gender"
               control={control}
               options={GENDER_OPTIONS}
