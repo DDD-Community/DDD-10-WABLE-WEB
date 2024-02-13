@@ -35,7 +35,7 @@ export default function Card({
         <Avatar
           width="58px"
           height="58px"
-          src={imgSrc ?? ProfileImageUrl.src.toString()}
+          src={imgSrc ?? (ProfileImageUrl.src as string)}
         />
         <Text
           size="12px"
