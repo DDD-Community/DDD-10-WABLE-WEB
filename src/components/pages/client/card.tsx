@@ -2,12 +2,21 @@ import { Avatar, Flex, Heading, Text, VStack } from '@chakra-ui/react';
 
 import ProfileImageUrl from '@/assets/icons/profile.svg?url';
 
+const CardMessage = {
+  인사: '안녕하세요!😊',
+  축하: '축하해요!🥳',
+  응원: '응원해요!😇',
+  감사: '감사해요!🤩',
+};
+
 export default function Card({
+  type,
   imgSrc,
   sender,
   receiver,
   preview,
 }: {
+  type: string;
   imgSrc?: string;
   sender: string;
   receiver: string;
@@ -38,7 +47,7 @@ export default function Card({
       </VStack>
       <Flex flexDir="column" minWidth="448px">
         <Heading size="18px" fontWeight="bold">
-          {receiver}님 감사해요!😊
+          {receiver}님 {CardMessage[type as keyof typeof CardMessage]}
         </Heading>
         <Text
           size="12px"
@@ -46,7 +55,7 @@ export default function Card({
           mt="4px"
           color="var(--chakra-colors-gray-500)"
         >
-          {sender}님이 감사카드를 보냈어요.
+          {sender}님이 {type}카드를 보냈어요.
         </Text>
         <Text size="12px" fontWeight="medium" mt="12px" noOfLines={2}>
           {preview}
