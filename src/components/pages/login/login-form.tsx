@@ -55,12 +55,12 @@ export function LoginForm() {
         console.log('accessToken', accessToken);
       },
       onFailure: function (err) {
-        if (err.message == 'User is not confirmed.') {
+        if (err.code === USER_NOT_CONFIRMED_EXCEPTION) {
           setError('root.serverError', {
             type: USER_NOT_CONFIRMED_EXCEPTION,
             message: '가입한 이메일을 인증해주세요.',
           });
-        } else if (err.message == 'Incorrect username or password.') {
+        } else if (err.code === NOT_AUTHORIZED_EXCEPTION) {
           setError('root.serverError', {
             type: NOT_AUTHORIZED_EXCEPTION,
             message: '이메일 또는 비밀번호가 잘못되었습니다.',
