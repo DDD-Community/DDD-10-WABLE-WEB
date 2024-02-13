@@ -8,30 +8,34 @@ import Calendar from '@/components/pages/client/calendar';
 
 const MOCK_DATA = [
   {
-    sender: '조성원',
-    receiver: '김도경',
+    from: '조성원',
+    to: '김도경',
     type: '감사',
+    time: new Date(),
     preview:
       '편지 내용이 미리보기로 나타납니다. 편지 내용이 미리보기로 나타납니다. 편지 내용이 미리보기로 나타납니다.',
   },
   {
-    sender: '신승준',
-    receiver: '김도경',
+    from: '신승준',
+    to: '김도경',
     type: '인사',
+    time: new Date(),
     preview:
       '편지 내용이 미리보기로 나타납니다. 편지 내용이 미리보기로 나타납니다. 편지 내용이 미리보기로 나타납니다.',
   },
   {
-    sender: '조성원',
-    receiver: '신승준',
+    from: '조성원',
+    to: '신승준',
     type: '응원',
+    time: new Date(),
     preview:
       '편지 내용이 미리보기로 나타납니다. 편지 내용이 미리보기로 나타납니다. 편지 내용이 미리보기로 나타납니다.',
   },
   {
-    sender: '김도경',
-    receiver: '신승준',
+    from: '김도경',
+    to: '신승준',
     type: '축하',
+    time: new Date(),
     preview:
       '편지 내용이 미리보기로 나타납니다. 편지 내용이 미리보기로 나타납니다. 편지 내용이 미리보기로 나타납니다.',
   },
@@ -48,15 +52,17 @@ export default function Home() {
         name="홍길동"
         email="esthera@simmmple.com"
       />
-      <Flex height="full" gap="16px">
-        <DashboardItem flexDir="column" gap="18px" overflow="auto" h="full">
+      <Flex height="full" gap="16px" w="full">
+        <DashboardItem
+          flexDir="column"
+          gap="18px"
+          overflow="auto"
+          minWidth="653px"
+          w="full"
+          h="full"
+        >
           {MOCK_DATA.map((data, index) => (
-            <Card
-              key={index}
-              sender={data.sender}
-              receiver={data.receiver}
-              preview={data.preview}
-            />
+            <Card key={index} data={data} />
           ))}
         </DashboardItem>
         <DashboardItem>
