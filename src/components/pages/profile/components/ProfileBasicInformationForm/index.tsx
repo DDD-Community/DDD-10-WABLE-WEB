@@ -21,6 +21,7 @@ export function ProfileBasicInformationForm() {
     register,
     control,
     formState: { errors },
+    getValues,
   } = useFormContext<ProfileSchema>();
   const { currentDate, years, months, days, handleChangeDate } =
     useHandleBirthDate();
@@ -114,6 +115,7 @@ export function ProfileBasicInformationForm() {
                     },
                   })}
                   defaultValue=""
+                  color={getValues('year') ? 'black' : 'waggle.gray.600'}
                 >
                   <option hidden disabled value="">
                     {currentDate.getFullYear()}
@@ -137,6 +139,7 @@ export function ProfileBasicInformationForm() {
                     },
                   })}
                   defaultValue=""
+                  color={getValues('month') ? 'black' : 'waggle.gray.600'}
                 >
                   <option hidden disabled value="">
                     1
@@ -160,6 +163,7 @@ export function ProfileBasicInformationForm() {
                     },
                   })}
                   defaultValue=""
+                  color={getValues('day') ? 'black' : 'waggle.gray.600'}
                 >
                   <option hidden disabled value="">
                     1
