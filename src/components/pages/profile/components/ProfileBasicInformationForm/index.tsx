@@ -14,7 +14,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 
 import { GENDER_OPTIONS, ProfileSchema } from '@/models/profile';
 import { ImageUpload, RadioGroup } from './components';
-import { useHandleBirthDate } from './logic';
+import { useHandleDateInput } from './logic';
 
 export function ProfileBasicInformationForm() {
   const {
@@ -24,7 +24,7 @@ export function ProfileBasicInformationForm() {
     getValues,
   } = useFormContext<ProfileSchema>();
   const { currentDate, years, months, days, handleChangeDate } =
-    useHandleBirthDate();
+    useHandleDateInput();
 
   return (
     <Flex
