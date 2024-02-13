@@ -13,6 +13,7 @@ import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
 import { SignUpFormValues } from './types';
 import userPool from '@/lib/user-pool';
+import { ROUTES } from '@/constants/routes';
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -34,10 +35,11 @@ export default function SignUpForm() {
   function handleSignUp({ email, newPassword }: SignUpFormValues) {
     userPool.signUp(email, newPassword, [], [], (error, data) => {
       if (error) {
-        return console.error(error);
+        console.error(error);
+        return;
       }
       alert('회원가입 완료! 이메일을 확인하여 인증 바랍니다.');
-      router.push('/login');
+      router.push(ROUTES.LOGIN);
     });
   }
 
