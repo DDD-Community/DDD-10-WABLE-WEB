@@ -11,15 +11,13 @@ import {
 import { ReactNode } from 'react';
 import { Control, useController } from 'react-hook-form';
 
-export function RadioGroup({
-  name,
-  control,
-  options,
-}: {
+type RadioGroupProps = {
   name: keyof ProfileSchema;
   control: Control<ProfileSchema, any>;
   options: readonly string[];
-}) {
+};
+
+export function RadioGroup({ name, control, options }: RadioGroupProps) {
   const { field } = useController({
     name,
     control,

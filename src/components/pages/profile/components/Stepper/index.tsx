@@ -3,13 +3,12 @@ import { isLessOrEqual } from '@/utils/number';
 import { Flex, Divider, Heading } from '@chakra-ui/react';
 import { Fragment } from 'react';
 
-export function Stepper<T>({
-  steps,
-  activeStepIndex,
-}: {
+type StepperProps<T> = {
   steps: readonly T[];
   activeStepIndex: number;
-}) {
+};
+
+export function Stepper<T>({ steps, activeStepIndex }: StepperProps<T>) {
   return (
     <Flex gap="12px">
       {steps.map((_, index) => {
