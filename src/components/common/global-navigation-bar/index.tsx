@@ -35,8 +35,7 @@ function Divider() {
   return (
     <div
       style={{
-        marginTop: '0.5rem',
-        marginBottom: '1.125rem',
+        margin: '14px 0',
       }}
     >
       <DividerIcon />
