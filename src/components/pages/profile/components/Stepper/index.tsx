@@ -1,5 +1,5 @@
 import { isLastIndex } from '@/utils/array';
-import { isLessThanEqual } from '@/utils/number';
+import { isLessOrEqual } from '@/utils/number';
 import { Flex, Divider, Heading } from '@chakra-ui/react';
 import { Fragment } from 'react';
 
@@ -20,13 +20,11 @@ export function Stepper<T>({
               h="36px"
               borderRadius="50%"
               bg={
-                isLessThanEqual(index, activeStepIndex)
-                  ? 'black'
-                  : 'transparent'
+                isLessOrEqual(index, activeStepIndex) ? 'black' : 'transparent'
               }
               border="1px"
               borderColor={
-                isLessThanEqual(index, activeStepIndex) ? 'black' : '#d9d9d9'
+                isLessOrEqual(index, activeStepIndex) ? 'black' : '#d9d9d9'
               }
               justifyContent="center"
               alignItems="center"
@@ -34,7 +32,7 @@ export function Stepper<T>({
               <Heading
                 size="xs"
                 color={
-                  isLessThanEqual(index, activeStepIndex) ? 'point' : 'black'
+                  isLessOrEqual(index, activeStepIndex) ? 'point' : 'black'
                 }
               >
                 {index + 1}
@@ -44,7 +42,7 @@ export function Stepper<T>({
               <Flex w="56px" alignItems="center">
                 <Divider
                   borderColor={
-                    isLessThanEqual(index + 1, activeStepIndex)
+                    isLessOrEqual(index + 1, activeStepIndex)
                       ? 'black'
                       : '#d9d9d9'
                   }

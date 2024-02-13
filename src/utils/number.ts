@@ -1,3 +1,3 @@
-export function isLessThanEqual(value: number, compare: number) {
+export function isLessOrEqual(value: number, compare: number) {
   return value <= compare;
 }
