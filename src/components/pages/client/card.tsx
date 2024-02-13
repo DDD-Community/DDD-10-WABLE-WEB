@@ -1,10 +1,14 @@
 import { Avatar, Flex, Heading, Text, VStack } from '@chakra-ui/react';
 
+import ProfileImageUrl from '@/assets/icons/profile.svg?url';
+
 export default function Card({
+  imgSrc,
   sender,
   receiver,
   preview,
 }: {
+  imgSrc?: string;
   sender: string;
   receiver: string;
   preview: string;
@@ -19,7 +23,11 @@ export default function Card({
       borderRadius="12px"
     >
       <VStack gap="6px" width="80px">
-        <Avatar width="58px" height="58px" />
+        <Avatar
+          width="58px"
+          height="58px"
+          src={imgSrc ?? ProfileImageUrl.src.toString()}
+        />
         <Text
           size="12px"
           color="var(--chakra-colors-gray-500)"
@@ -28,7 +36,7 @@ export default function Card({
           {sender}
         </Text>
       </VStack>
-      <Flex flexDir="column" width="448px">
+      <Flex flexDir="column" minWidth="448px">
         <Heading size="18px" fontWeight="bold">
           {receiver}님 감사해요!😊
         </Heading>
