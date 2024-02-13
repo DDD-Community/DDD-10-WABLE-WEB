@@ -1,4 +1,4 @@
-import { Flex, Input } from '@chakra-ui/react';
+import { Center, Flex, Input } from '@chakra-ui/react';
 
 import EditIcon from '@/assets/icons/edit.svg';
 import { DragEvent, useRef } from 'react';
@@ -28,13 +28,7 @@ export function ImageUpload() {
   }
 
   return (
-    <Flex
-      maxW="412px"
-      w="100%"
-      h="168px"
-      alignItems="center"
-      justifyContent="center"
-    >
+    <Center maxW="412px" w="100%" h="168px">
       <Flex
         alignItems="center"
         justifyContent="center"
@@ -70,6 +64,6 @@ export function ImageUpload() {
           <EditIcon />
         </Flex>
       </Flex>
-    </Flex>
+    </Center>
   );
 }
