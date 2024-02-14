@@ -6,7 +6,7 @@ import { useState } from 'react';
  *
  * @example 생일 입력에 사용될 수 있습니다.
  */
-export function useHandleDateInput() {
+export function useDateInput() {
   const [currentDate, setCurrentDate] = useState(
     new Date(new Date().getFullYear(), 0, 1),
   );
