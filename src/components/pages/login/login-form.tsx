@@ -19,11 +19,17 @@ import { LoginFormValues } from './types';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import userPool from '@/lib/user-pool';
 import { useFormRootError } from '@/hooks/common/useFormRootError';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const USER_NOT_CONFIRMED_EXCEPTION = 'UserNotConfirmedException';
 const NOT_AUTHORIZED_EXCEPTION = 'NotAuthorizedException';
 
+const LOGIN_EMAIL_KEY = 'loginEmail';
+
 export function LoginForm() {
+  const router = useRouter();
+
   const defaultValues = {
     email: '',
     password: '',
@@ -34,8 +40,19 @@ export function LoginForm() {
     control,
     register,
     formState: { errors, isValid },
+    setValue,
     setError,
   } = useForm<LoginFormValues>({ defaultValues });
+
+  const [isLoginInfoSaved, setIsLoginInfoSaved] = useState(false);
+  useEffect(() => {
+    const loginEmail = localStorage.getItem(LOGIN_EMAIL_KEY);
+
+    if (loginEmail !== null) {
+      setValue('email', loginEmail);
+      setIsLoginInfoSaved(true);
+    }
+  }, []);
 
   function handleLogin({ email, password }: LoginFormValues) {
     if (email.length === 0 || password.length === 0) {
@@ -54,7 +71,17 @@ export function LoginForm() {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
         const accessToken = result.getAccessToken().getJwtToken();
-        console.log('accessToken', accessToken);
+
+        if (isLoginInfoSaved) {
+          const loginEmail = localStorage.getItem(LOGIN_EMAIL_KEY);
+          if (loginEmail === null) {
+            localStorage.setItem(LOGIN_EMAIL_KEY, email);
+          }
+        } else {
+          localStorage.removeItem(LOGIN_EMAIL_KEY);
+        }
+
+        router.push(ROUTES.HOME);
       },
       onFailure: function (err) {
         if (err.code === USER_NOT_CONFIRMED_EXCEPTION) {
@@ -123,7 +150,13 @@ export function LoginForm() {
         />
       </FormControl>
       <Flex align="center">
-        <Switch id="save-login-info" mr={3} colorScheme="black" />
+        <Switch
+          id="save-login-info"
+          mr={3}
+          colorScheme="black"
+          isChecked={isLoginInfoSaved}
+          onChange={(e) => setIsLoginInfoSaved(e.target.checked)}
+        />
         <FormLabel htmlFor="save-login-info" mb={0}>
           로그인 정보 저장
         </FormLabel>
