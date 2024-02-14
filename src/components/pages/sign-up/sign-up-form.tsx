@@ -14,6 +14,9 @@ import { Form } from './styles';
 import { SignUpFormValues } from './types';
 import userPool from '@/lib/user-pool';
 import { ROUTES } from '@/constants/routes';
+import { useFormRootError } from '@/hooks/common/useFormRootError';
+
+const USERNAME_EXISTS_EXCEPTION = 'UsernameExistsException';
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -28,14 +31,20 @@ export default function SignUpForm() {
     handleSubmit,
     control,
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     getValues,
+    setError,
   } = useForm<SignUpFormValues>({ defaultValues });
 
   function handleSignUp({ email, newPassword }: SignUpFormValues) {
     userPool.signUp(email, newPassword, [], [], (error, data) => {
       if (error) {
-        console.error(error);
+        if (error.name === USERNAME_EXISTS_EXCEPTION) {
+          setError('root.serverError', {
+            type: USERNAME_EXISTS_EXCEPTION,
+            message: '이미 가입된 계정입니다.',
+          });
+        }
         return;
       }
       alert('회원가입 완료! 이메일을 확인하여 인증 바랍니다.');
@@ -43,10 +52,19 @@ export default function SignUpForm() {
     });
   }
 
+  const rootErrorMessages = [
+    {
+      condition: errors.root?.serverError,
+      message: errors.root?.serverError?.message,
+    },
+  ];
+
+  const isFormError = useFormRootError(errors);
+
   return (
     <Form onSubmit={handleSubmit(handleSignUp)}>
       <VStack w="100%" spacing="24px">
-        <FormControl isInvalid={!!errors.email}>
+        <FormControl isInvalid={!!errors.email || isFormError}>
           <HStack marginBottom="12px">
             <FormLabel htmlFor="email" margin="0px">
               <b>이메일</b>
@@ -68,7 +86,7 @@ export default function SignUpForm() {
             })}
           />
         </FormControl>
-        <FormControl isInvalid={!!errors.newPassword}>
+        <FormControl isInvalid={!!errors.newPassword || isFormError}>
           <HStack marginBottom="12px">
             <FormLabel htmlFor="newPassword" margin="0px">
               <b>비밀번호</b>
@@ -103,7 +121,7 @@ export default function SignUpForm() {
           <p>* 비밀번호는 8~16자 이내로 입력해주세요.</p>
           <p>* 비밀번호는 영어, 숫자, 특수문자를 포함해야 합니다.</p>
         </VStack>
-        <FormControl isInvalid={!!errors.confirmPassword}>
+        <FormControl isInvalid={!!errors.confirmPassword || isFormError}>
           <HStack marginBottom="12px">
             <FormLabel htmlFor="confirmPassword" margin="0px">
               <b>비밀번호 확인</b>
@@ -133,6 +151,13 @@ export default function SignUpForm() {
               />
             )}
           />
+        </FormControl>
+        <FormControl isInvalid={!isValid}>
+          {rootErrorMessages.find((error) => error.condition) && (
+            <FormErrorMessage>
+              {rootErrorMessages.find((error) => error.condition)?.message}
+            </FormErrorMessage>
+          )}
         </FormControl>
         <Button size="lg" w="100%" type="submit" variant="primary">
           회원가입

@@ -17,6 +17,7 @@ import { ROUTES } from '@/constants/routes';
 import { LoginFormValues } from './types';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import userPool from '@/lib/user-pool';
+import { useFormRootError } from '@/hooks/common/useFormRootError';
 
 const USER_NOT_CONFIRMED_EXCEPTION = 'UserNotConfirmedException';
 const NOT_AUTHORIZED_EXCEPTION = 'NotAuthorizedException';
@@ -70,7 +71,7 @@ export function LoginForm() {
     });
   }
 
-  const errorMessages = [
+  const rootErrorMessages = [
     {
       condition: errors.root?.formError,
       message: errors.root?.formError?.message,
@@ -83,11 +84,7 @@ export function LoginForm() {
     },
   ];
 
-  const [isFormError, setIsFormError] = useState(false);
-  useEffect(() => {
-    const isError = !!errors?.root && Object.keys(errors.root).length > 0;
-    setIsFormError(isError);
-  }, [errors.root]);
+  const isFormError = useFormRootError(errors);
 
   return (
     <Form autoComplete="off" onSubmit={handleSubmit(handleLogin)}>
@@ -135,9 +132,9 @@ export function LoginForm() {
         </Link>
       </Flex>
       <FormControl isInvalid={!isValid}>
-        {errorMessages.find((error) => error.condition) && (
+        {rootErrorMessages.find((error) => error.condition) && (
           <FormErrorMessage>
-            {errorMessages.find((error) => error.condition)?.message}
+            {rootErrorMessages.find((error) => error.condition)?.message}
           </FormErrorMessage>
         )}
       </FormControl>
