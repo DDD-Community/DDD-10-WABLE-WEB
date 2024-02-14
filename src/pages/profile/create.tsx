@@ -1,13 +1,13 @@
-import { ProfileBasicInformationForm } from '@/components/pages/profile/components/ProfileBasicInformationForm';
 import { useFunnel } from '@/hooks/common/useFunnel';
 import { ProfileSchema, profileSchema } from '@/models/profile';
 import { Flex, VStack, Heading, Text } from '@chakra-ui/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Stepper } from '@/components/pages/profile/components/Stepper';
+import { ProfileBasicInformationForm } from '@/components/pages/profile';
+import { Stepper } from '@/components/pages/profile';
+import { Header } from '@/components/pages/profile';
 import LogoutIcon from '@/assets/icons/logout.svg';
-import { Header } from '@/components/pages/profile/components';
 
 const STEPS = [
   '프로필 상세 정보 입력 - 기본 정보',
