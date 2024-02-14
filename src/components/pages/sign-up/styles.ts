@@ -21,7 +21,7 @@ const SignUpCardSection = styled.section`
   gap: 40px;
   align-items: center;
   width: 458px;
-  padding: 60px 24px 24px;
+  padding: 45px 50px;
   background-color: white;
   border-radius: 16px;
   box-shadow: 0 7px 23px 0 #0000000d;

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
   Button,
@@ -10,6 +9,8 @@ import {
   Input,
   Spacer,
   Switch,
+  HStack,
+  Text,
 } from '@chakra-ui/react';
 import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
@@ -131,16 +132,31 @@ export function LoginForm() {
           <b>비밀번호를 잊으셨나요?</b>
         </Link>
       </Flex>
-      <FormControl isInvalid={!isValid}>
-        {rootErrorMessages.find((error) => error.condition) && (
-          <FormErrorMessage>
-            {rootErrorMessages.find((error) => error.condition)?.message}
-          </FormErrorMessage>
-        )}
-      </FormControl>
-      <Button type="submit" variant="primary" size="lg" width="full">
-        로그인
-      </Button>
+      <footer>
+        <FormControl isInvalid={!isValid}>
+          {rootErrorMessages.find((error) => error.condition) && (
+            <FormErrorMessage>
+              {rootErrorMessages.find((error) => error.condition)?.message}
+            </FormErrorMessage>
+          )}
+        </FormControl>
+        <Button
+          type="submit"
+          variant="primary"
+          size="lg"
+          width="full"
+          marginTop="16px"
+          marginBottom="12px"
+        >
+          로그인
+        </Button>
+        <HStack width="full" alignItems="center" justifyContent="flex-start">
+          <Text color="waggle.gray.700">계정이 없으신가요?</Text>
+          <Link href={ROUTES.SIGN_UP}>
+            <b>회원가입하기</b>
+          </Link>
+        </HStack>
+      </footer>
     </Form>
   );
 }

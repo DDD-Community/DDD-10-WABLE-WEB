@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Controller, useForm } from 'react-hook-form';
 import {
   VStack,
@@ -8,6 +9,7 @@ import {
   Button,
   FormErrorMessage,
   HStack,
+  Text,
 } from '@chakra-ui/react';
 import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
@@ -31,7 +33,7 @@ export default function SignUpForm() {
     handleSubmit,
     control,
     register,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitted },
     getValues,
     setError,
   } = useForm<SignUpFormValues>({ defaultValues });
@@ -63,7 +65,7 @@ export default function SignUpForm() {
 
   return (
     <Form onSubmit={handleSubmit(handleSignUp)}>
-      <VStack w="100%" spacing="24px">
+      <VStack w="100%" spacing="16px">
         <FormControl isInvalid={!!errors.email || isFormError}>
           <HStack marginBottom="12px">
             <FormLabel htmlFor="email" margin="0px">
@@ -152,9 +154,11 @@ export default function SignUpForm() {
             )}
           />
         </FormControl>
-        <FormControl isInvalid={!isValid}>
+      </VStack>
+      <VStack gap="12px">
+        <FormControl isInvalid={!isValid} marginTop="12px">
           {rootErrorMessages.find((error) => error.condition) && (
-            <FormErrorMessage>
+            <FormErrorMessage margin={0}>
               {rootErrorMessages.find((error) => error.condition)?.message}
             </FormErrorMessage>
           )}
@@ -162,6 +166,12 @@ export default function SignUpForm() {
         <Button size="lg" w="100%" type="submit" variant="primary">
           회원가입
         </Button>
+        <HStack justifyContent="flex-start" width="full">
+          <Text color="waggle.gray.700">계정이 있으신가요?</Text>
+          <Link href={ROUTES.LOGIN}>
+            <b>로그인하기</b>
+          </Link>
+        </HStack>
       </VStack>
     </Form>
   );
