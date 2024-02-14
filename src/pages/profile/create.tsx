@@ -32,7 +32,7 @@ export default function Profile() {
   }
 
   return (
-    <VStack w="100%" bg="#f8f9fa">
+    <VStack w="100%" bg="waggle.gray.100">
       <Header />
       <FormProvider {...methods}>
         <Flex
