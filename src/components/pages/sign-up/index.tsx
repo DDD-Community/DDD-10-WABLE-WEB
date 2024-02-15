@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import { Heading, VStack, Button, Text, HStack } from '@chakra-ui/react';
+import { Heading, VStack, Button, Center, Flex } from '@chakra-ui/react';
+import Logo from '@/assets/images/logo-white.svg';
 import SignUpForm from '@/components/pages/sign-up/sign-up-form';
 import {
   SignUpContainer,
-  SignUpBackground,
   SignUpCardSection,
   ArrowIconWrapper,
+  LogoWrapper,
 } from './styles';
 import SignUpBackgroundImage from '@/assets/images/sign-up-background.png';
 import GoogleIcon from '@/assets/icons/google.svg';
@@ -15,9 +16,20 @@ import { DividerWithContent } from '@/components/common/divider-with-content';
 export default function SignUp() {
   return (
     <SignUpContainer>
-      <SignUpBackground>
-        <Image src={SignUpBackgroundImage} alt="background" />
-      </SignUpBackground>
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
+      <Flex
+        justifyContent="center"
+        alignItems="flex-end"
+        height="50%"
+        bg="black"
+        borderRadius="0 0 22px 22px"
+      >
+        <Center width="1440px" paddingBottom="15px">
+          <Image src={SignUpBackgroundImage} alt="background" width="1270" />
+        </Center>
+      </Flex>
       <SignUpCardSection>
         <ArrowIconWrapper>
           <ArrowBackIcon />
