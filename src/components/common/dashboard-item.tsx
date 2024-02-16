@@ -11,7 +11,7 @@ export default function DashboardItem({
     <Flex
       py="16px"
       px="24px"
-      backgroundColor="#F8F9FA"
+      backgroundColor="var(--chakra-colors-waggle-gray-100)"
       borderRadius="16px"
       {...props}
     >
