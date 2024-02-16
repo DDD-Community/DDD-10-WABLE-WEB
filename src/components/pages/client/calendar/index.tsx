@@ -1,5 +1,5 @@
 import { DayPicker } from 'react-day-picker';
-import { StyleWrapper } from './calendar.style';
+import { StyleWrapper } from './style';
 import 'react-day-picker/dist/style.css';
 
 export default function Calendar({

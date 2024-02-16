@@ -1,12 +1,8 @@
 import React from 'react';
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
-import { DotButton, useDotButton } from './carousel-dot-button';
-import {
-  PrevButton,
-  NextButton,
-  usePrevNextButtons,
-} from './carousel-arrow-buttons';
+import { DotButton, useDotButton } from './dot-button';
+import { PrevButton, NextButton, usePrevNextButtons } from './arrow-buttons';
 
 type PropType = {
   children: React.ReactNode;
