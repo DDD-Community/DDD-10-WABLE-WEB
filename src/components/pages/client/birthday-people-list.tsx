@@ -10,9 +10,18 @@ import {
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { format } from 'date-fns';
 
-import { Carousel, Slide } from '@/components/common/carousel';
-import CarouselStyleWrapper from '@/components/common/carousel/style';
+import { Carousel, Slide } from '@/components/pages/client/carousel';
+import CarouselStyleWrapper from '@/components/pages/client/carousel/style';
 import BirthdayCakeIcon from '@/assets/icons/birthday-line.svg';
+import { chunk } from '@/utils/array';
+
+const MOCK_BIRTHDAY_PEOPLE = [
+  { name: '김도경' },
+  { name: '신승준' },
+  { name: '조성원' },
+  { name: '한나리' },
+  { name: '조서현' },
+];
 
 function BirthdayPersonCard({ name, date }: { name: string; date: string }) {
   return (
@@ -62,15 +71,19 @@ export default function BirthdayPeopleList({
       </Flex>
       <CarouselStyleWrapper>
         <Carousel options={{ loop: true }}>
-          <Slide>
-            <BirthdayPersonCard name="김도경" date={formattedDate} />
-            <BirthdayPersonCard name="김도경" date={formattedDate} />
-            <BirthdayPersonCard name="김도경" date={formattedDate} />
-          </Slide>
-          <Slide>
-            <BirthdayPersonCard name="신승준" date={formattedDate} />
-            <BirthdayPersonCard name="신승준" date={formattedDate} />
-          </Slide>
+          {chunk(MOCK_BIRTHDAY_PEOPLE, 3).map((group, index) => (
+            <Slide key={`group-${index}`}>
+              {group[0] && (
+                <BirthdayPersonCard name={group[0].name} date={formattedDate} />
+              )}
+              {group[1] && (
+                <BirthdayPersonCard name={group[1].name} date={formattedDate} />
+              )}
+              {group[2] && (
+                <BirthdayPersonCard name={group[2].name} date={formattedDate} />
+              )}
+            </Slide>
+          ))}
         </Carousel>
       </CarouselStyleWrapper>
     </>
