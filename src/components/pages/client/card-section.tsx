@@ -42,6 +42,7 @@ export default function CardSection() {
       <DividerWithContent
         content="12월 20일"
         bg="waggle.gray.100"
+        variant="dashboard"
         fontSize={12}
       />
       {MOCK_DATA.map((data, index) => (

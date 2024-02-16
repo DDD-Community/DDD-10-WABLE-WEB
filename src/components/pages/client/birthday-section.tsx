@@ -13,7 +13,7 @@ export default function BirthdaySection() {
   return (
     <>
       <Calendar date={selectedDate} onChange={setSelectedDate} />
-      <Divider my={18} />
+      <Divider my={18} variant="dashboard" />
     </>
   );
 }
