@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import {
   Button,
   Flex,
@@ -8,40 +11,95 @@ import {
   Spacer,
   Switch,
 } from '@chakra-ui/react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
+import { ROUTES } from '@/constants/routes';
+import { LoginFormValues } from './types';
+import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
+import userPool from '@/lib/user-pool';
 
-interface IFormValues {
-  email: string;
-  password: string;
-}
+const USER_NOT_CONFIRMED_EXCEPTION = 'UserNotConfirmedException';
+const NOT_AUTHORIZED_EXCEPTION = 'NotAuthorizedException';
 
 export function LoginForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormValues>();
-
-  const onSubmit: SubmitHandler<IFormValues> = (data) => {
-    alert(JSON.stringify(data));
+  const defaultValues = {
+    email: '',
+    password: '',
   };
 
+  const {
+    handleSubmit,
+    control,
+    register,
+    formState: { errors, isValid },
+    setError,
+  } = useForm<LoginFormValues>({ defaultValues });
+
+  function handleLogin({ email, password }: LoginFormValues) {
+    if (email.length === 0 || password.length === 0) {
+      setError('root.formError', {
+        message: '이메일 혹은 비밀번호를 입력해주세요.',
+      });
+      return;
+    }
+
+    const cognitoUser = new CognitoUser({ Username: email, Pool: userPool });
+    const authenticationDetails = new AuthenticationDetails({
+      Username: email,
+      Password: password,
+    });
+
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: function (result) {
+        const accessToken = result.getAccessToken().getJwtToken();
+        console.log('accessToken', accessToken);
+      },
+      onFailure: function (err) {
+        if (err.code === USER_NOT_CONFIRMED_EXCEPTION) {
+          setError('root.serverError', {
+            type: USER_NOT_CONFIRMED_EXCEPTION,
+            message: '가입한 이메일을 인증해주세요.',
+          });
+        } else if (err.code === NOT_AUTHORIZED_EXCEPTION) {
+          setError('root.serverError', {
+            type: NOT_AUTHORIZED_EXCEPTION,
+            message: '이메일 또는 비밀번호가 잘못되었습니다.',
+          });
+        }
+      },
+    });
+  }
+
+  const errorMessages = [
+    {
+      condition: errors.root?.formError,
+      message: errors.root?.formError?.message,
+    },
+    { condition: errors.email, message: errors.email?.message },
+    { condition: errors.password, message: errors.password?.message },
+    {
+      condition: errors.root?.serverError,
+      message: errors.root?.serverError?.message,
+    },
+  ];
+
+  const [isFormError, setIsFormError] = useState(false);
+  useEffect(() => {
+    const isError = !!errors?.root && Object.keys(errors.root).length > 0;
+    setIsFormError(isError);
+  }, [errors.root]);
+
   return (
-    <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={!!errors.email}>
+    <Form autoComplete="off" onSubmit={handleSubmit(handleLogin)}>
+      <FormControl isInvalid={!!errors.email || isFormError}>
         <Flex align="center">
           <FormLabel>이메일</FormLabel>
-          <FormErrorMessage mt={0} marginInlineEnd={3} marginBottom={2}>
-            {errors.email?.message}
-          </FormErrorMessage>
         </Flex>
         <Input
           type="email"
           placeholder="mail@simmmple.com"
           size="lg"
           {...register('email', {
-            required: '이메일을 입력해 주세요.',
             pattern: {
               value: /\S+@\S+\.\S+/,
               message: '이메일 형식이 올바르지 않습니다.',
@@ -49,29 +107,41 @@ export function LoginForm() {
           })}
         />
       </FormControl>
-      <FormControl isInvalid={!!errors.password}>
+      <FormControl isInvalid={!!errors.password || isFormError}>
         <Flex align="center">
           <FormLabel>비밀번호</FormLabel>
-          <FormErrorMessage mt={0} marginInlineEnd={3} marginBottom={2}>
-            {errors.password?.message}
-          </FormErrorMessage>
         </Flex>
-        <Input
-          type="password"
-          placeholder="Min. 8 characters"
-          size="lg"
-          {...register('password', { required: '비밀번호를 입력해 주세요.' })}
+        <Controller
+          name="password"
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <PasswordInput
+              onChange={onChange}
+              value={value}
+              id="newPassword"
+              placeholder="비밀번호를 입력해주세요."
+            />
+          )}
         />
       </FormControl>
       <Flex align="center">
-        <Switch id="save-login-info" mr={3} />
+        <Switch id="save-login-info" mr={3} colorScheme="black" />
         <FormLabel htmlFor="save-login-info" mb={0}>
           로그인 정보 저장
         </FormLabel>
         <Spacer />
-        <Button variant="link">비밀번호를 잊으셨나요?</Button>
+        <Link href={ROUTES.HOME}>
+          <b>비밀번호를 잊으셨나요?</b>
+        </Link>
       </Flex>
-      <Button type="submit" colorScheme="blackAlpha" size="lg" width="full">
+      <FormControl isInvalid={!isValid}>
+        {errorMessages.find((error) => error.condition) && (
+          <FormErrorMessage>
+            {errorMessages.find((error) => error.condition)?.message}
+          </FormErrorMessage>
+        )}
+      </FormControl>
+      <Button type="submit" variant="primary" size="lg" width="full">
         로그인
       </Button>
     </Form>

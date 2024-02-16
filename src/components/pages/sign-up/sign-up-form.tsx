@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Controller, useForm } from 'react-hook-form';
 import {
   VStack,
@@ -6,12 +7,17 @@ import {
   FormLabel,
   Button,
   FormErrorMessage,
+  HStack,
 } from '@chakra-ui/react';
 import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
-import { FormValues } from './types';
+import { SignUpFormValues } from './types';
+import userPool from '@/lib/user-pool';
+import { ROUTES } from '@/constants/routes';
 
 export default function SignUpForm() {
+  const router = useRouter();
+
   const defaultValues = {
     email: '',
     newPassword: '',
@@ -24,70 +30,111 @@ export default function SignUpForm() {
     register,
     formState: { errors },
     getValues,
-  } = useForm<FormValues>({ defaultValues });
+  } = useForm<SignUpFormValues>({ defaultValues });
 
-  function onSubmit(values: FormValues) {
-    console.log('submit', values);
+  function handleSignUp({ email, newPassword }: SignUpFormValues) {
+    userPool.signUp(email, newPassword, [], [], (error, data) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+      alert('회원가입 완료! 이메일을 확인하여 인증 바랍니다.');
+      router.push(ROUTES.LOGIN);
+    });
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(handleSignUp)}>
       <VStack w="100%" spacing="24px">
         <FormControl isInvalid={!!errors.email}>
-          <FormLabel htmlFor="email">이메일</FormLabel>
+          <HStack marginBottom="12px">
+            <FormLabel htmlFor="email" margin="0px">
+              <b>이메일</b>
+            </FormLabel>
+            <FormErrorMessage margin="0px">
+              * {errors.email?.message}
+            </FormErrorMessage>
+          </HStack>
           <Input
             id="email"
             placeholder="mail@simmmple.com"
             size="lg"
             {...register('email', {
-              required: { value: true, message: 'Required Field' },
+              required: { value: true, message: '이메일을 입력해주세요.' },
+              pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: '이메일 형식이 올바르지 않습니다.',
+              },
             })}
           />
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.newPassword}>
-          <FormLabel htmlFor="newPassword">비밀번호</FormLabel>
+          <HStack marginBottom="12px">
+            <FormLabel htmlFor="newPassword" margin="0px">
+              <b>비밀번호</b>
+            </FormLabel>
+            <FormErrorMessage margin="0px">
+              * {errors.newPassword?.message}
+            </FormErrorMessage>
+          </HStack>
           <Controller
             name="newPassword"
             control={control}
             rules={{
-              required: { value: true, message: 'Required Field' },
-              minLength: { value: 8, message: 'Min 8 length' },
+              required: { value: true, message: '비밀번호를 입력해주세요.' },
+              minLength: { value: 8, message: '최소 8자를 입력해주세요.' },
+              maxLength: { value: 16, message: '최대 16자를 입력해주세요.' },
+              pattern: {
+                value: /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+                message: '비밀번호는 영어, 숫자, 특수문자를 포함해야 합니다.',
+              },
             }}
             render={({ field: { onChange, value } }) => (
               <PasswordInput
                 onChange={onChange}
                 value={value}
                 id="newPassword"
-                placeholder="Min. 8 characters"
+                placeholder="비밀번호를 입력해주세요."
               />
             )}
           />
-          <FormErrorMessage>{errors.newPassword?.message}</FormErrorMessage>
         </FormControl>
+        <VStack width="full" alignItems="flex-start" gap={0}>
+          <p>* 비밀번호는 8~16자 이내로 입력해주세요.</p>
+          <p>* 비밀번호는 영어, 숫자, 특수문자를 포함해야 합니다.</p>
+        </VStack>
         <FormControl isInvalid={!!errors.confirmPassword}>
-          <FormLabel htmlFor="confirmPassword">비밀번호 확인</FormLabel>
+          <HStack marginBottom="12px">
+            <FormLabel htmlFor="confirmPassword" margin="0px">
+              <b>비밀번호 확인</b>
+            </FormLabel>
+            <FormErrorMessage margin="0px">
+              * {errors.confirmPassword?.message}
+            </FormErrorMessage>
+          </HStack>
           <Controller
             name="confirmPassword"
             control={control}
             rules={{
-              required: { value: true, message: 'Required Field' },
-              minLength: { value: 8, message: 'Min 8 length' },
+              required: {
+                value: true,
+                message: '확인 비밀번호를 입력해주세요.',
+              },
               validate: (value) =>
-                value === getValues('newPassword') || 'Password do not match',
+                value === getValues('newPassword') ||
+                '비밀번호가 일치하지 않습니다.',
             }}
             render={({ field: { onChange, value } }) => (
               <PasswordInput
                 onChange={onChange}
                 value={value}
                 id="confirmPassword"
-                placeholder="Min. 8 characters"
+                placeholder="비밀번호를 입력해주세요."
               />
             )}
           />
-          <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
         </FormControl>
-        <Button w="100%" type="submit">
+        <Button size="lg" w="100%" type="submit" variant="primary">
           회원가입
         </Button>
       </VStack>
