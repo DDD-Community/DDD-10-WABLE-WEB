@@ -25,7 +25,7 @@ export default function Profile({
       </Box>
       <Box ml="20px">
         <Heading fontSize="18px">{name}</Heading>
-        <Text fontSize="14px" color="var(--chakra-colors-waggle-gray-700)">
+        <Text fontSize="14px" color="waggle.gray.700">
           {email}
         </Text>
       </Box>

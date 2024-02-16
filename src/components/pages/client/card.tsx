@@ -28,11 +28,7 @@ export default function Card({ data }: { data: CardType }) {
           height="58px"
           src={data.imgSrc ?? (ProfileImageUrl.src as string)}
         />
-        <Text
-          fontSize="12px"
-          color="var(--chakra-colors-gray-500)"
-          fontWeight="medium"
-        >
+        <Text fontSize="12px" color="gray.500" fontWeight="medium">
           {data.from}
         </Text>
       </VStack>
@@ -41,16 +37,11 @@ export default function Card({ data }: { data: CardType }) {
           <Heading fontSize="18px" fontWeight="bold">
             {data.to}님 {CardMessage[data.type as keyof typeof CardMessage]}
           </Heading>
-          <Text fontSize="12px" color="var(--chakra-colors-gray-700)">
+          <Text fontSize="12px" color="gray.700">
             {format(data.time, 'hh:mm aa')}
           </Text>
         </Flex>
-        <Text
-          fontSize="12px"
-          fontWeight="medium"
-          mt="4px"
-          color="var(--chakra-colors-gray-500)"
-        >
+        <Text fontSize="12px" fontWeight="medium" mt="4px" color="gray.500">
           {data.from}님이 {data.type}카드를 보냈어요.
         </Text>
         <Text fontSize="12px" fontWeight="medium" mt="12px" noOfLines={2}>
