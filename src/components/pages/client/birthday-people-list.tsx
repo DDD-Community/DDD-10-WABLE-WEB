@@ -10,6 +10,8 @@ import {
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { format } from 'date-fns';
 
+import { Carousel, Slide } from '@/components/common/carousel';
+import CarouselStyleWrapper from '@/components/common/carousel/style';
 import BirthdayCakeIcon from '@/assets/icons/birthday-line.svg';
 
 function BirthdayPersonCard({ name, date }: { name: string; date: string }) {
@@ -58,9 +60,19 @@ export default function BirthdayPeopleList({
           축하의 마음을 담아 카드를 보내보세요!
         </Text>
       </Flex>
-      <BirthdayPersonCard name="홍길동" date={formattedDate} />
-      <BirthdayPersonCard name="홍길동" date={formattedDate} />
-      <BirthdayPersonCard name="홍길동" date={formattedDate} />
+      <CarouselStyleWrapper>
+        <Carousel options={{ loop: true }}>
+          <Slide>
+            <BirthdayPersonCard name="김도경" date={formattedDate} />
+            <BirthdayPersonCard name="김도경" date={formattedDate} />
+            <BirthdayPersonCard name="김도경" date={formattedDate} />
+          </Slide>
+          <Slide>
+            <BirthdayPersonCard name="신승준" date={formattedDate} />
+            <BirthdayPersonCard name="신승준" date={formattedDate} />
+          </Slide>
+        </Carousel>
+      </CarouselStyleWrapper>
     </>
   );
 }
