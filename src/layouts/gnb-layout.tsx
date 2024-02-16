@@ -9,9 +9,9 @@ export default function GNBLayout({ children }: { children: React.ReactNode }) {
       <VStack
         padding="1.5rem"
         gap="16px"
-        width="full"
         height="100vh"
         align="start"
+        flexGrow={1}
       >
         {children}
       </VStack>

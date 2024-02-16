@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 const CarouselStyleWrapper = styled.div`
   position: relative;
+  padding: 0 12px;
+  margin-bottom: 52px;
 
   .embla {
     --slide-spacing: 1rem;
@@ -51,7 +53,7 @@ const CarouselStyleWrapper = styled.div`
   .embla__button--prev {
     position: absolute;
     top: 50%;
-    left: -1.5rem;
+    left: -1rem;
     transform: translateY(-50%);
 
     display: flex;
@@ -61,7 +63,7 @@ const CarouselStyleWrapper = styled.div`
   .embla__button--next {
     position: absolute;
     top: 50%;
-    right: -1.5rem;
+    right: -1rem;
     transform: translateY(-50%);
 
     display: flex;
@@ -100,6 +102,7 @@ const CarouselStyleWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 24px;
   }
 
   .embla__dot::after {

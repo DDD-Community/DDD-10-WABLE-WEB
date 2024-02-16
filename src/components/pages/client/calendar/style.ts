@@ -34,6 +34,10 @@ const StyleWrapper = styled.div`
     border-radius: 40px;
   }
 
+  .rdp-table {
+    margin: 0 8px;
+  }
+
   .rdp-head_cell {
     font-size: 14px;
     text-transform: none;
