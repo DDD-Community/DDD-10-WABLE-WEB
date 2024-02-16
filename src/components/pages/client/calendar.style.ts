@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 const StyleWrapper = styled.div`
   .rdp {
+    --rdp-cell-size: 44px;
     --rdp-background-color: #fff;
 
     margin: 0;
