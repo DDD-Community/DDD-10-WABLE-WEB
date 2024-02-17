@@ -3,6 +3,11 @@ import styled from '@emotion/styled';
 import type { ItemWrapperProps } from './types';
 
 const GNBContainer = styled.div`
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  left: 0;
+
   display: flex;
   flex-direction: column;
   gap: 2rem;

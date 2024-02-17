@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 const CarouselStyleWrapper = styled.div`
   position: relative;
-  padding: 0 12px;
   margin-bottom: 52px;
+  padding: 0 12px;
 
   .embla {
     --slide-spacing: 1rem;
@@ -88,6 +88,7 @@ const CarouselStyleWrapper = styled.div`
     padding: 0;
 
     text-decoration: none;
+
     appearance: none;
     background-color: transparent;
     border: 0;
@@ -102,6 +103,7 @@ const CarouselStyleWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
     margin-top: 24px;
   }
 
