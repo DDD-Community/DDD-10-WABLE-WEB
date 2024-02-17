@@ -118,7 +118,9 @@ export function LoginForm() {
     <Form autoComplete="off" onSubmit={handleSubmit(handleLogin)}>
       <FormControl isInvalid={!!errors.email || isFormError}>
         <Flex align="center">
-          <FormLabel>이메일</FormLabel>
+          <FormLabel>
+            <strong>이메일</strong>
+          </FormLabel>
         </Flex>
         <Input
           type="email"
@@ -134,7 +136,9 @@ export function LoginForm() {
       </FormControl>
       <FormControl isInvalid={!!errors.password || isFormError}>
         <Flex align="center">
-          <FormLabel>비밀번호</FormLabel>
+          <FormLabel>
+            <strong>비밀번호</strong>
+          </FormLabel>
         </Flex>
         <Controller
           name="password"
@@ -161,8 +165,8 @@ export function LoginForm() {
           로그인 정보 저장
         </FormLabel>
         <Spacer />
-        <Link href={ROUTES.HOME}>
-          <b>비밀번호를 잊으셨나요?</b>
+        <Link href={ROUTES.HOME} as="b">
+          <strong>비밀번호를 잊으셨나요?</strong>
         </Link>
       </Flex>
       <footer>
@@ -186,7 +190,7 @@ export function LoginForm() {
         <HStack width="full" alignItems="center" justifyContent="flex-start">
           <Text color="waggle.gray.700">계정이 없으신가요?</Text>
           <Link href={ROUTES.SIGN_UP}>
-            <b>회원가입하기</b>
+            <strong>회원가입하기</strong>
           </Link>
         </HStack>
       </footer>

@@ -69,7 +69,7 @@ export default function SignUpForm() {
         <FormControl isInvalid={!!errors.email || isFormError}>
           <HStack marginBottom="12px">
             <FormLabel htmlFor="email" margin="0px">
-              <b>이메일</b>
+              <strong>이메일</strong>
             </FormLabel>
             <FormErrorMessage margin="0px">
               * {errors.email?.message}
@@ -91,7 +91,7 @@ export default function SignUpForm() {
         <FormControl isInvalid={!!errors.newPassword || isFormError}>
           <HStack marginBottom="12px">
             <FormLabel htmlFor="newPassword" margin="0px">
-              <b>비밀번호</b>
+              <strong>비밀번호</strong>
             </FormLabel>
             <FormErrorMessage margin="0px">
               * {errors.newPassword?.message}
@@ -126,7 +126,7 @@ export default function SignUpForm() {
         <FormControl isInvalid={!!errors.confirmPassword || isFormError}>
           <HStack marginBottom="12px">
             <FormLabel htmlFor="confirmPassword" margin="0px">
-              <b>비밀번호 확인</b>
+              <strong>비밀번호 확인</strong>
             </FormLabel>
             <FormErrorMessage margin="0px">
               * {errors.confirmPassword?.message}
@@ -169,7 +169,7 @@ export default function SignUpForm() {
         <HStack justifyContent="flex-start" width="full">
           <Text color="waggle.gray.700">계정이 있으신가요?</Text>
           <Link href={ROUTES.LOGIN}>
-            <b>로그인하기</b>
+            <strong>로그인하기</strong>
           </Link>
         </HStack>
       </VStack>
