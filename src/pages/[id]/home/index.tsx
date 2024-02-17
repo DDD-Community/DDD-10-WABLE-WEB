@@ -2,9 +2,9 @@ import { Flex, Heading } from '@chakra-ui/react';
 
 import GNBLayout from '@/layouts/gnb-layout';
 import DashboardItem from '@/components/common/dashboard-item';
-import Profile from '@/components/pages/client/profile';
-import CardSection from '@/components/pages/client/card-section';
-import BirthdaySection from '@/components/pages/client/birthday-section';
+import Profile from '@/components/pages/home/profile';
+import CardSection from '@/components/pages/home/card-section';
+import BirthdaySection from '@/components/pages/home/birthday-section';
 
 export default function Home() {
   return (

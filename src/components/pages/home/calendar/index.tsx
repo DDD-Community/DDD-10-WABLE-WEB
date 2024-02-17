@@ -24,6 +24,7 @@ export default function Calendar({
           booked: {
             textDecoration: 'underline',
             textUnderlineOffset: '6px',
+            textDecorationThickness: '1.5px',
           },
         }}
         weekStartsOn={1}

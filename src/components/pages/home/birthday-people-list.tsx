@@ -10,8 +10,8 @@ import {
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { format } from 'date-fns';
 
-import { Carousel, Slide } from '@/components/pages/client/carousel';
-import CarouselStyleWrapper from '@/components/pages/client/carousel/style';
+import { Carousel, Slide } from '@/components/pages/home/carousel';
+import CarouselStyleWrapper from '@/components/pages/home/carousel/style';
 import BirthdayCakeIcon from '@/assets/icons/birthday-line.svg';
 import { chunk } from '@/utils/array';
 

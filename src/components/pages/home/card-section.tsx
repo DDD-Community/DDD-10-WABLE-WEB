@@ -1,4 +1,4 @@
-import Card from '@/components/pages/client/card';
+import Card from '@/components/pages/home/card';
 import { DividerWithContent } from '@/components/common/divider-with-content';
 
 const MOCK_DATA = [

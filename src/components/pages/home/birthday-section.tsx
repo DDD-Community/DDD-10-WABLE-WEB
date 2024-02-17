@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Divider } from '@chakra-ui/react';
 
-import Calendar from '@/components/pages/client/calendar';
+import Calendar from '@/components/pages/home/calendar';
 import BirthdayPeopleList from './birthday-people-list';
 
 export default function BirthdaySection() {

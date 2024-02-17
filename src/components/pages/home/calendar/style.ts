@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 const StyleWrapper = styled.div`
   .rdp {
     --rdp-cell-size: 44px;
-    --rdp-background-color: #fff;
+    --rdp-background-color: #f2f3f4;
 
     margin: 0;
     margin-bottom: 16px;
@@ -56,6 +56,10 @@ const StyleWrapper = styled.div`
   .rdp-day {
     font-size: 12px;
     font-weight: 500;
+  }
+
+  .rdp-day_today {
+    background-color: var(--chakra-colors-waggle-gray-600);
   }
 
   .rdp-day_outside {
