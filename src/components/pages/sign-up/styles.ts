@@ -20,6 +20,7 @@ const SignUpCardSection = styled.section`
   flex-direction: column;
   gap: 40px;
   align-items: center;
+
   width: 458px;
   padding: 45px 50px;
   background-color: white;
@@ -28,10 +29,10 @@ const SignUpCardSection = styled.section`
 `;
 
 const ArrowIconWrapper = styled.div`
+  cursor: pointer;
   position: absolute;
   top: 22px;
   left: 22px;
-  cursor: pointer;
 `;
 
 const Form = styled.form`
