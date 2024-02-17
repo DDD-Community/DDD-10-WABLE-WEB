@@ -1,25 +1,35 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { Heading, VStack, Button, Text, HStack } from '@chakra-ui/react';
+import { Heading, VStack, Button, Center, Flex } from '@chakra-ui/react';
+import Logo from '@/assets/images/logo-white.svg';
 import SignUpForm from '@/components/pages/sign-up/sign-up-form';
 import {
   SignUpContainer,
-  SignUpBackground,
   SignUpCardSection,
   ArrowIconWrapper,
+  LogoWrapper,
 } from './styles';
 import SignUpBackgroundImage from '@/assets/images/sign-up-background.png';
 import GoogleIcon from '@/assets/icons/google.svg';
 import ArrowBackIcon from '@/assets/icons/arrow-back.svg';
 import { DividerWithContent } from '@/components/common/divider-with-content';
-import { ROUTES } from '@/constants/routes';
 
 export default function SignUp() {
   return (
     <SignUpContainer>
-      <SignUpBackground>
-        <Image src={SignUpBackgroundImage} alt="background" />
-      </SignUpBackground>
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
+      <Flex
+        justifyContent="center"
+        alignItems="flex-end"
+        height="50%"
+        bg="black"
+        borderRadius="0 0 22px 22px"
+      >
+        <Center width="1440px" paddingBottom="15px">
+          <Image src={SignUpBackgroundImage} alt="background" width="1270" />
+        </Center>
+      </Flex>
       <SignUpCardSection>
         <ArrowIconWrapper>
           <ArrowBackIcon />
@@ -31,12 +41,6 @@ export default function SignUp() {
           </Button>
           <DividerWithContent content="or" />
           <SignUpForm />
-          <HStack justifyContent="flex-start" width="full">
-            <Text color="waggle.gray.700">계정이 있으신가요?</Text>
-            <Link href={ROUTES.LOGIN}>
-              <b>로그인하기</b>
-            </Link>
-          </HStack>
         </VStack>
       </SignUpCardSection>
     </SignUpContainer>
