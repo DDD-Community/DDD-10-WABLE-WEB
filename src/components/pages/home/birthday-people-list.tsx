@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import {
+  Box,
   Card,
   CardBody,
   Flex,
@@ -6,6 +8,7 @@ import {
   IconButton,
   Stack,
   Text,
+  background,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { format } from 'date-fns';
@@ -25,31 +28,42 @@ const MOCK_BIRTHDAY_PEOPLE = [
 
 function BirthdayPersonCard({ name, date }: { name: string; date: string }) {
   return (
-    <Card borderRadius="12px" shadow="none" mt="16px">
-      <CardBody
-        padding="16px"
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
+    <Link href="/">
+      <Card
+        borderRadius="12px"
+        shadow="none"
+        mt="16px"
+        _hover={{
+          backgroundColor: 'waggle.gray.600',
+        }}
+        transition={'background-color 0.2s'}
       >
-        <Stack>
-          <Text fontSize="12px" fontWeight={500} color="waggle.gray.700">
-            {date}
-          </Text>
-          <Heading fontSize="16px">{name}님 축하하기</Heading>
-        </Stack>
-        <IconButton
-          isRound={true}
-          variant="solid"
-          background="black"
-          fontSize="16px"
-          color="white"
-          aria-label={`${name}님께 생일 축하 카드 보내기`}
-          size="xs"
-          icon={<ChevronRightIcon />}
-        />
-      </CardBody>
-    </Card>
+        <CardBody
+          padding="16px"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Stack>
+            <Text fontSize="12px" fontWeight={500} color="waggle.gray.700">
+              {date}
+            </Text>
+            <Heading fontSize="16px">{name}님 축하하기</Heading>
+          </Stack>
+          <Flex
+            justify="center"
+            align="center"
+            borderRadius="full"
+            backgroundColor="black"
+            w="24px"
+            h="24px"
+            color="white"
+          >
+            <ChevronRightIcon />
+          </Flex>
+        </CardBody>
+      </Card>
+    </Link>
   );
 }
 
