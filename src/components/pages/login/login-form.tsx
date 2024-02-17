@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
   Button,
@@ -10,6 +9,8 @@ import {
   Input,
   Spacer,
   Switch,
+  HStack,
+  Text,
 } from '@chakra-ui/react';
 import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';
@@ -17,11 +18,18 @@ import { ROUTES } from '@/constants/routes';
 import { LoginFormValues } from './types';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import userPool from '@/lib/user-pool';
+import { useFormRootError } from '@/hooks/common/useFormRootError';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const USER_NOT_CONFIRMED_EXCEPTION = 'UserNotConfirmedException';
 const NOT_AUTHORIZED_EXCEPTION = 'NotAuthorizedException';
 
+const LOGIN_EMAIL_KEY = 'loginEmail';
+
 export function LoginForm() {
+  const router = useRouter();
+
   const defaultValues = {
     email: '',
     password: '',
@@ -32,8 +40,19 @@ export function LoginForm() {
     control,
     register,
     formState: { errors, isValid },
+    setValue,
     setError,
   } = useForm<LoginFormValues>({ defaultValues });
+
+  const [isLoginInfoSaved, setIsLoginInfoSaved] = useState(false);
+  useEffect(() => {
+    const loginEmail = localStorage.getItem(LOGIN_EMAIL_KEY);
+
+    if (loginEmail !== null) {
+      setValue('email', loginEmail);
+      setIsLoginInfoSaved(true);
+    }
+  }, []);
 
   function handleLogin({ email, password }: LoginFormValues) {
     if (email.length === 0 || password.length === 0) {
@@ -52,7 +71,17 @@ export function LoginForm() {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
         const accessToken = result.getAccessToken().getJwtToken();
-        console.log('accessToken', accessToken);
+
+        if (isLoginInfoSaved) {
+          const loginEmail = localStorage.getItem(LOGIN_EMAIL_KEY);
+          if (loginEmail === null) {
+            localStorage.setItem(LOGIN_EMAIL_KEY, email);
+          }
+        } else {
+          localStorage.removeItem(LOGIN_EMAIL_KEY);
+        }
+
+        router.push(ROUTES.HOME);
       },
       onFailure: function (err) {
         if (err.code === USER_NOT_CONFIRMED_EXCEPTION) {
@@ -70,7 +99,7 @@ export function LoginForm() {
     });
   }
 
-  const errorMessages = [
+  const rootErrorMessages = [
     {
       condition: errors.root?.formError,
       message: errors.root?.formError?.message,
@@ -83,17 +112,15 @@ export function LoginForm() {
     },
   ];
 
-  const [isFormError, setIsFormError] = useState(false);
-  useEffect(() => {
-    const isError = !!errors?.root && Object.keys(errors.root).length > 0;
-    setIsFormError(isError);
-  }, [errors.root]);
+  const isFormError = useFormRootError(errors);
 
   return (
     <Form autoComplete="off" onSubmit={handleSubmit(handleLogin)}>
       <FormControl isInvalid={!!errors.email || isFormError}>
         <Flex align="center">
-          <FormLabel>이메일</FormLabel>
+          <FormLabel>
+            <strong>이메일</strong>
+          </FormLabel>
         </Flex>
         <Input
           type="email"
@@ -109,7 +136,9 @@ export function LoginForm() {
       </FormControl>
       <FormControl isInvalid={!!errors.password || isFormError}>
         <Flex align="center">
-          <FormLabel>비밀번호</FormLabel>
+          <FormLabel>
+            <strong>비밀번호</strong>
+          </FormLabel>
         </Flex>
         <Controller
           name="password"
@@ -125,25 +154,46 @@ export function LoginForm() {
         />
       </FormControl>
       <Flex align="center">
-        <Switch id="save-login-info" mr={3} colorScheme="black" />
+        <Switch
+          id="save-login-info"
+          mr={3}
+          colorScheme="black"
+          isChecked={isLoginInfoSaved}
+          onChange={(e) => setIsLoginInfoSaved(e.target.checked)}
+        />
         <FormLabel htmlFor="save-login-info" mb={0}>
           로그인 정보 저장
         </FormLabel>
         <Spacer />
-        <Link href={ROUTES.HOME}>
-          <b>비밀번호를 잊으셨나요?</b>
+        <Link href={ROUTES.HOME} as="b">
+          <strong>비밀번호를 잊으셨나요?</strong>
         </Link>
       </Flex>
-      <FormControl isInvalid={!isValid}>
-        {errorMessages.find((error) => error.condition) && (
-          <FormErrorMessage>
-            {errorMessages.find((error) => error.condition)?.message}
-          </FormErrorMessage>
-        )}
-      </FormControl>
-      <Button type="submit" variant="primary" size="lg" width="full">
-        로그인
-      </Button>
+      <footer>
+        <FormControl isInvalid={!isValid}>
+          {rootErrorMessages.find((error) => error.condition) && (
+            <FormErrorMessage>
+              {rootErrorMessages.find((error) => error.condition)?.message}
+            </FormErrorMessage>
+          )}
+        </FormControl>
+        <Button
+          type="submit"
+          variant="primary"
+          size="lg"
+          width="full"
+          marginTop="16px"
+          marginBottom="12px"
+        >
+          로그인
+        </Button>
+        <HStack width="full" alignItems="center" justifyContent="flex-start">
+          <Text color="waggle.gray.700">계정이 없으신가요?</Text>
+          <Link href={ROUTES.SIGN_UP}>
+            <strong>회원가입하기</strong>
+          </Link>
+        </HStack>
+      </footer>
     </Form>
   );
 }
