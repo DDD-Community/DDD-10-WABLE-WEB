@@ -1,15 +1,5 @@
 import Link from 'next/link';
-import {
-  Box,
-  Card,
-  CardBody,
-  Flex,
-  Heading,
-  IconButton,
-  Stack,
-  Text,
-  background,
-} from '@chakra-ui/react';
+import { Card, CardBody, Flex, Heading, Stack, Text } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { format } from 'date-fns';
 
@@ -87,15 +77,13 @@ export default function BirthdayPeopleList({
         <Carousel options={{ loop: true }}>
           {chunk(MOCK_BIRTHDAY_PEOPLE, 3).map((group, index) => (
             <Slide key={`group-${index}`}>
-              {group[0] && (
-                <BirthdayPersonCard name={group[0].name} date={formattedDate} />
-              )}
-              {group[1] && (
-                <BirthdayPersonCard name={group[1].name} date={formattedDate} />
-              )}
-              {group[2] && (
-                <BirthdayPersonCard name={group[2].name} date={formattedDate} />
-              )}
+              {group.map((person, index) => (
+                <BirthdayPersonCard
+                  name={person.name}
+                  date={formattedDate}
+                  key={`person-${index}`}
+                />
+              ))}
             </Slide>
           ))}
         </Carousel>
