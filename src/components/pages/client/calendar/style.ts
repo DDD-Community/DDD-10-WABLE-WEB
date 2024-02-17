@@ -65,6 +65,7 @@ const StyleWrapper = styled.div`
   .rdp-day[aria-selected='true'] {
     font-weight: normal;
     background-color: black;
+    text-decoration-color: white;
   }
 `;
 

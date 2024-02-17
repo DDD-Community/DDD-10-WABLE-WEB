@@ -20,7 +20,12 @@ export default function Calendar({
         required
         selected={date}
         modifiers={{ booked: [new Date(2024, 1, 11)] }}
-        modifiersStyles={{ booked: { border: '2px solid currentColor' } }}
+        modifiersStyles={{
+          booked: {
+            textDecoration: 'underline',
+            textUnderlineOffset: '6px',
+          },
+        }}
         weekStartsOn={1}
         onSelect={onChange}
       />
