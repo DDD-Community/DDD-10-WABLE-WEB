@@ -1,7 +1,6 @@
 import { Flex, Heading } from '@chakra-ui/react';
 
 import GNBLayout from '@/layouts/gnb-layout';
-import DashboardItem from '@/components/common/dashboard-item';
 import Profile from '@/components/pages/home/profile';
 import CardSection from '@/components/pages/home/card-section';
 import BirthdaySection from '@/components/pages/home/birthday-section';
@@ -18,19 +17,8 @@ export default function Home() {
         email="esthera@simmmple.com"
       />
       <Flex height="full" gap="16px" w="full">
-        <DashboardItem
-          flexDir="column"
-          gap="18px"
-          overflow="auto"
-          minWidth="653px"
-          w="full"
-          h="full"
-        >
-          <CardSection />
-        </DashboardItem>
-        <DashboardItem flexDir="column">
-          <BirthdaySection />
-        </DashboardItem>
+        <CardSection />
+        <BirthdaySection />
       </Flex>
     </GNBLayout>
   );

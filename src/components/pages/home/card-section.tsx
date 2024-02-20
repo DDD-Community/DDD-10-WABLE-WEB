@@ -1,5 +1,6 @@
 import Card from '@/components/pages/home/card';
 import { DividerWithContent } from '@/components/common/divider-with-content';
+import DashboardItem from '@/components/common/dashboard-item';
 
 const MOCK_DATA = [
   {
@@ -38,7 +39,14 @@ const MOCK_DATA = [
 
 export default function CardSection() {
   return (
-    <>
+    <DashboardItem
+      flexDir="column"
+      gap="18px"
+      overflow="auto"
+      minWidth="653px"
+      w="full"
+      h="full"
+    >
       <DividerWithContent
         content="12월 20일"
         bg="waggle.gray.100"
@@ -48,6 +56,6 @@ export default function CardSection() {
       {MOCK_DATA.map((data, index) => (
         <Card key={index} data={data} />
       ))}
-    </>
+    </DashboardItem>
   );
 }
