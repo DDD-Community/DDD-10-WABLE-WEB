@@ -10,7 +10,7 @@ export default function MyCard() {
     {
       name: '박경서',
       nickname: '박경서_1',
-      gender: '남성',
+      gender: 'male',
       birth: '1998-01-21',
       profile_image_url: '~~~',
       mbti: 'ENTP',
@@ -19,7 +19,7 @@ export default function MyCard() {
     {
       name: '김도경',
       nickname: '김도경_1',
-      gender: '여성',
+      gender: 'female',
       birth: '1996-01-21',
       profile_image_url: '~~~',
       mbti: 'ENTP',
