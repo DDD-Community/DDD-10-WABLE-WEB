@@ -1,14 +1,13 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import type { ItemWrapperProps } from './types';
 
-const dividerCss = css({
-  marginTop: '0.5rem',
-  marginBottom: '1.125rem',
-});
-
 const GNBContainer = styled.div`
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  left: 0;
+
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -112,7 +111,6 @@ const Logout = styled.a`
 `;
 
 export {
-  dividerCss,
   GNBContainer,
   GNBHeader,
   GNBBody,

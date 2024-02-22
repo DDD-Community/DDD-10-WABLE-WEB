@@ -5,10 +5,10 @@ const LoginContainer = styled.div`
 `;
 
 const Form = styled.form`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 `;
 
 export { LoginContainer, Form };
