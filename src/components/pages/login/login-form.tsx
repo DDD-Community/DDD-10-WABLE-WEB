@@ -21,6 +21,7 @@ import userPool from '@/lib/user-pool';
 import { useFormRootError } from '@/hooks/common/useFormRootError';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { AUTH_TOKEN_SET } from '@/api/constants';
 
 const USER_NOT_CONFIRMED_EXCEPTION = 'UserNotConfirmedException';
 const NOT_AUTHORIZED_EXCEPTION = 'NotAuthorizedException';
@@ -71,6 +72,17 @@ export function LoginForm() {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
         const accessToken = result.getAccessToken().getJwtToken();
+        const refreshToken = result.getRefreshToken().getToken();
+        const idToken = result.getIdToken().getJwtToken();
+
+        localStorage.setItem(
+          AUTH_TOKEN_SET,
+          JSON.stringify({
+            accessToken,
+            refreshToken,
+            idToken,
+          }),
+        );
 
         if (isLoginInfoSaved) {
           const loginEmail = localStorage.getItem(LOGIN_EMAIL_KEY);
