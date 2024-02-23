@@ -7,3 +7,7 @@ export interface ProfileInfo {
   mbti: string;
   hobby: string[];
 }
+
+export type CardDirection = 'SENT' | 'RECEIVED';
+
+export type CardViewType = 'GRID' | 'LIST';
