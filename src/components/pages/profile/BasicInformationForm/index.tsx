@@ -16,7 +16,7 @@ import { GENDER_OPTIONS, ProfileSchema } from '@/models/profile';
 import { ImageUpload, RadioGroup } from './components';
 import { useDateInput } from './logic';
 
-export function ProfileBasicInformationForm() {
+export function BasicInformationForm() {
   const {
     register,
     control,
