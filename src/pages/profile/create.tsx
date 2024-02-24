@@ -24,6 +24,7 @@ export default function Profile() {
   const [Funnel, step, setStep] = useFunnel({
     steps: STEPS,
     initialStep: '프로필 상세 정보 입력 - MBTI 및 관심사',
+    // initialStep: '프로필 상세 정보 입력 - 기본 정보',
   });
   const methods = useForm<ProfileSchema>({
     resolver: zodResolver(profileSchema),
@@ -78,6 +79,7 @@ export default function Profile() {
             </Flex>
           </Flex>
           <Flex
+            w="fit-content"
             padding="0 0 24px 31px"
             alignItems="center"
             gap="8px"
