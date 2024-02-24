@@ -26,15 +26,7 @@ export function BasicInformationForm() {
   const { currentDate, years, months, days, handleChangeDate } = useDateInput();
 
   return (
-    <Flex
-      w="100%"
-      flexDirection="column"
-      alignItems="center"
-      gap="24px"
-      bg="white"
-      borderRadius="16px"
-      padding="24px"
-    >
+    <>
       <Flex
         w="100%"
         justifyContent="center"
@@ -184,6 +176,6 @@ export function BasicInformationForm() {
       <Button type="submit" variant="primary" maxW="412px" w="100%" h="48px">
         다음으로
       </Button>
-    </Flex>
+    </>
   );
 }
