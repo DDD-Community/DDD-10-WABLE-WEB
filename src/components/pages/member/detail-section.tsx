@@ -8,9 +8,11 @@ import { ProfileInfo as ProfileInfoType } from '@/components/common/profile-info
 export default function DetailSection({
   selectedMember,
   onClose,
+  onClickSend,
 }: {
   selectedMember: ProfileInfoType;
   onClose: () => void;
+  onClickSend: () => void;
 }) {
   return (
     <DashboardItem flexDir="column" grow={1} h="fit-content">
@@ -33,6 +35,7 @@ export default function DetailSection({
         mb="8px"
         mx="auto"
         w="fit-content"
+        onClick={onClickSend}
       >
         카드 보내기
       </Button>
