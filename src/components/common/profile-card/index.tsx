@@ -31,7 +31,8 @@ export default function ProfileCard({ isOpened, profile, onClick }: Props) {
                 <Text fontSize="xl" as="b">
                   {profile.name}
                 </Text>
-                {profile.gender === 'male' ? <Male /> : <Female />}
+                {profile?.gender &&
+                  (profile.gender === 'male' ? <Male /> : <Female />)}
               </HStack>
             </VStack>
             <Divider />

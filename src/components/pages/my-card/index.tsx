@@ -3,7 +3,7 @@ import { HStack, Heading } from '@chakra-ui/react';
 import { ProfileInfo, CardDirection, CardViewType } from './types';
 import { ProfileCardSection, CardListSection } from './styles';
 import GNBLayout from '@/layouts/gnb-layout';
-import ProfileCard from '@/components/pages/my-card/profile-card/index';
+import ProfileCard from '@/components/common/profile-card/index';
 import CardListHeader from './card-list/header';
 import { mockCardInfoForGrid, mockCardInfoForList, mockProfile } from './data';
 
