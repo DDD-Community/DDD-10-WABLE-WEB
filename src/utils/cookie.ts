@@ -2,13 +2,10 @@ const setCookie = (name: string, value: string, minutes: number) => {
   const exdate = new Date();
   exdate.setMinutes(exdate.getMinutes() + minutes);
 
-  const location = window.location.hostname;
-  const isDevelopment =
-    location.includes('localhost') || location.includes('127.0.0.1');
-  const secureFlag = isDevelopment ? '' : '; Secure';
-  const sameSiteFlag = isDevelopment ? '; SameSite=Lax' : '; SameSite=None';
-
-  const domain = '; domain=waggle-dev.vercel.app';
+  const isDevelopment = process.env.NODE_ENV == 'development';
+  const secureOptions = isDevelopment
+    ? ''
+    : '; Secure; SameSite=None; domain=waggle-dev.vercel.app';
 
   document.cookie =
     name +
@@ -16,9 +13,7 @@ const setCookie = (name: string, value: string, minutes: number) => {
     (value || '') +
     ('; expires=' + exdate.toUTCString()) +
     '; path=/' +
-    secureFlag +
-    sameSiteFlag +
-    domain;
+    secureOptions;
 };
 
 const deleteCookie = (name: string) => {
