@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 import { Divider } from '@chakra-ui/react';
 
