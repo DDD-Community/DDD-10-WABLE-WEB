@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   AdditionalInformationForm,
   BasicInformationForm,
+  CreateProfileComplete,
 } from '@/components/pages/profile';
 import { Stepper } from '@/components/pages/profile';
 import { Header } from '@/components/pages/profile';
@@ -23,8 +24,7 @@ export type ProfileSteps = typeof STEPS;
 export default function Profile() {
   const [Funnel, step, setStep] = useFunnel({
     steps: STEPS,
-    initialStep: '프로필 상세 정보 입력 - MBTI 및 관심사',
-    // initialStep: '프로필 상세 정보 입력 - 기본 정보',
+    initialStep: '프로필 상세 정보 입력 - 기본 정보',
   });
   const methods = useForm<ProfileSchema>({
     resolver: zodResolver(profileSchema),
@@ -74,6 +74,9 @@ export default function Profile() {
                 </Funnel.Step>
                 <Funnel.Step name="프로필 상세 정보 입력 - MBTI 및 관심사">
                   <AdditionalInformationForm />
+                </Funnel.Step>
+                <Funnel.Step name="프로필 상세 정보 입력 - 완료">
+                  <CreateProfileComplete />
                 </Funnel.Step>
               </Funnel>
             </Flex>
