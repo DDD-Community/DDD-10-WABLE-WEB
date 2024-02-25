@@ -11,14 +11,13 @@ import {
 } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { DEFAULT_INTERESTS, MBTIS } from './data';
 import { useRef, useState } from 'react';
-
-type Interests = (typeof DEFAULT_INTERESTS)[number][];
+import { MBTI } from '@/constants/mbti';
+import { DEFAULT_INTERESTS } from '@/constants/interest';
 
 export function AdditionalInformationForm() {
   const {} = useFormContext();
-  const [interests, setInterests] = useState<Interests>(DEFAULT_INTERESTS);
+  const [interests, setInterests] = useState<string[]>(DEFAULT_INTERESTS);
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleAdditionalInterest(
@@ -27,10 +26,7 @@ export function AdditionalInformationForm() {
     if (!inputRef.current?.value) return;
 
     if (event.key === 'Enter') {
-      setInterests([
-        ...interests,
-        { name: inputRef.current?.value, emoji: null },
-      ]);
+      setInterests([...interests, inputRef.current?.value]);
 
       inputRef.current.value = '';
     }
@@ -49,7 +45,7 @@ export function AdditionalInformationForm() {
             <option hidden disabled value="">
               MBTI
             </option>
-            {MBTIS.map((mbti) => (
+            {MBTI.map((mbti) => (
               <option key={mbti} value={mbti}>
                 {mbti}
               </option>
@@ -67,9 +63,9 @@ export function AdditionalInformationForm() {
              * @todo 선택된 interest이면 bg, color 변경하기
              * @todo 다시 선택하면 bg, color 원래대로 변경하기
              */}
-            {interests.map(({ name, emoji }) => (
+            {interests.map((interest) => (
               <Flex
-                key={name}
+                key={interest}
                 as="button"
                 gap="4px"
                 h="48px"
@@ -81,9 +77,8 @@ export function AdditionalInformationForm() {
                 justifyItems="center"
               >
                 <Text size="md" color="gray.400">
-                  {name}
+                  {interest}
                 </Text>
-                {emoji}
               </Flex>
             ))}
           </Flex>
