@@ -21,6 +21,8 @@ import userPool from '@/lib/user-pool';
 import { useFormRootError } from '@/hooks/common/useFormRootError';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { AUTH_TOKEN_SET } from '@/api/constants';
+import { deleteCookie, getCookie, setCookie } from '@/utils/cookie';
 
 const USER_NOT_CONFIRMED_EXCEPTION = 'UserNotConfirmedException';
 const NOT_AUTHORIZED_EXCEPTION = 'NotAuthorizedException';
@@ -46,7 +48,7 @@ export function LoginForm() {
 
   const [isLoginInfoSaved, setIsLoginInfoSaved] = useState(false);
   useEffect(() => {
-    const loginEmail = localStorage.getItem(LOGIN_EMAIL_KEY);
+    const loginEmail = getCookie(LOGIN_EMAIL_KEY);
 
     if (loginEmail !== null) {
       setValue('email', loginEmail);
@@ -71,14 +73,22 @@ export function LoginForm() {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
         const accessToken = result.getAccessToken().getJwtToken();
+        const refreshToken = result.getRefreshToken().getToken();
+        const idToken = result.getIdToken().getJwtToken();
+
+        setCookie(
+          AUTH_TOKEN_SET,
+          JSON.stringify({ accessToken, refreshToken, idToken }),
+          60,
+        );
 
         if (isLoginInfoSaved) {
-          const loginEmail = localStorage.getItem(LOGIN_EMAIL_KEY);
+          const loginEmail = getCookie(LOGIN_EMAIL_KEY);
           if (loginEmail === null) {
-            localStorage.setItem(LOGIN_EMAIL_KEY, email);
+            setCookie(LOGIN_EMAIL_KEY, email, 60);
           }
         } else {
-          localStorage.removeItem(LOGIN_EMAIL_KEY);
+          deleteCookie(LOGIN_EMAIL_KEY);
         }
 
         router.push(ROUTES.HOME);
