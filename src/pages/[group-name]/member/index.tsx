@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Flex, Heading } from '@chakra-ui/react';
-
 import GNBLayout from '@/layouts/gnb-layout';
 import MemberListSection from '@/components/pages/member/member-list-section';
 import DetailSection from '@/components/pages/member/detail-section';
@@ -20,8 +19,7 @@ export default function Member() {
     setSelectedMember(null);
     setStep(0);
   };
-    
-export default function Member() {
+
   return (
     <GNBLayout>
       <Heading fontSize="24px" px="24px" mb="8px">
