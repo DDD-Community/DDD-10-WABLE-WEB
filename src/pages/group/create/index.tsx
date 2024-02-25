@@ -31,6 +31,9 @@ export default function CreateGroup() {
   const requiredOptionInputRef = useRef<HTMLInputElement>(null);
 
   function _handleSubmit(group: GroupSchema) {
+    /**
+     * @todo api 연결하기
+     */
     console.log(group);
   }
 
