@@ -21,10 +21,10 @@ const STEPS = [
 
 export type ProfileSteps = typeof STEPS;
 
-export default function Profile() {
+export default function CreateProfile() {
   const [Funnel, step, setStep] = useFunnel({
     steps: STEPS,
-    initialStep: '프로필 상세 정보 입력 - MBTI 및 관심사',
+    initialStep: '프로필 상세 정보 입력 - 기본 정보',
   });
   const methods = useForm<ProfileSchema>({
     resolver: zodResolver(profileSchema),

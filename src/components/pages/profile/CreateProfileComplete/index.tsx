@@ -1,5 +1,7 @@
+import { ROUTES } from '@/constants/routes';
 import { Button, Center, Flex, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function CreateProfileComplete() {
   return (
@@ -39,15 +41,11 @@ export function CreateProfileComplete() {
           <Heading size="sm">홍길동</Heading>
         </Flex>
       </Flex>
-      <Button
-        size="lg"
-        w="100%"
-        bg="black"
-        color="white"
-        _hover={{ opacity: 0.8 }}
-      >
-        홈
-      </Button>
+      <Link href={ROUTES.HOME}>
+        <Button size="lg" w="100%" variant="primary">
+          홈
+        </Button>
+      </Link>
     </Center>
   );
 }
