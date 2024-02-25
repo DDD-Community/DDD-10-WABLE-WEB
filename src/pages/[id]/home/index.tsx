@@ -16,7 +16,7 @@ export default function Home() {
         name="홍길동"
         email="esthera@simmmple.com"
       />
-      <Flex height="full" gap="16px" w="full">
+      <Flex height="full" gap="16px" w="full" overflowY="auto">
         <CardSection />
         <BirthdaySection />
       </Flex>
