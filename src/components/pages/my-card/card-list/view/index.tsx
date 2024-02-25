@@ -1,7 +1,12 @@
 import { Text } from '@chakra-ui/react';
 import { CardInfo, CardType } from '../../types';
 import { CardTypeText } from './constants';
-import { CardListItem, CardTypeBadge, CardViewContainer } from './styles';
+import {
+  CardListItem,
+  CardTypeBadge,
+  CardViewListContainer,
+  CardViewGridContainer,
+} from './styles';
 import { Props } from './types';
 import { formatDateOnToday } from '@/utils/date';
 
@@ -31,10 +36,20 @@ function ListItem({ card }: { card: CardInfo }) {
 
 export default function CardView({ viewType, cardList }: Props) {
   return (
-    <CardViewContainer>
-      {viewType === 'GRID'
-        ? cardList.map((card) => <GridItem key={card.id} card={card} />)
-        : cardList.map((card) => <ListItem key={card.id} card={card} />)}
-    </CardViewContainer>
+    <>
+      {viewType === 'LIST' ? (
+        <CardViewListContainer>
+          {cardList.map((card) => (
+            <ListItem key={card.id} card={card} />
+          ))}
+        </CardViewListContainer>
+      ) : (
+        <CardViewGridContainer>
+          {cardList.map((card) => (
+            <GridItem key={card.id} card={card} />
+          ))}
+        </CardViewGridContainer>
+      )}
+    </>
   );
 }
