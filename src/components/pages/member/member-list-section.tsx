@@ -7,6 +7,7 @@ import {
   InputGroup,
   InputLeftElement,
   Text,
+  VStack,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 
@@ -69,25 +70,26 @@ export default function MemberListSection() {
           (총 {n}명)
         </Text>
       </Flex>
-      <InputGroup
-        backgroundColor="white"
-        size="sm"
-        w="200px"
-        ml="auto"
-        mb="32px"
-      >
-        <InputLeftElement>
-          <SearchIcon />
-        </InputLeftElement>
-        <Input placeholder="팀원 검색" />
-      </InputGroup>
-      <Grid templateColumns="repeat(5, 1fr)" gap="16px" mx="auto">
-        {MOCK_MEMBERS.map((member, i) => (
-          <GridItem key={i} w="170px">
-            <ProfileCard {...member} />
-          </GridItem>
-        ))}
-      </Grid>
+      <VStack mx="auto" w="fit-content" overflowY="auto" alignItems="end">
+        <InputGroup backgroundColor="white" size="sm" w="200px" mb="32px">
+          <InputLeftElement>
+            <SearchIcon />
+          </InputLeftElement>
+          <Input placeholder="팀원 검색" />
+        </InputGroup>
+        <Grid
+          templateColumns="repeat(5, 1fr)"
+          gap="16px"
+          mx="auto"
+          overflowY="scroll"
+        >
+          {MOCK_MEMBERS.map((member, i) => (
+            <GridItem key={i} w="170px">
+              <ProfileCard {...member} />
+            </GridItem>
+          ))}
+        </Grid>
+      </VStack>
     </DashboardItem>
   );
 }
