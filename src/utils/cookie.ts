@@ -6,7 +6,7 @@ const setCookie = (name: string, value: string, minutes: number) => {
     '=' +
     (value || '') +
     ('; expires=' + exdate.toUTCString()) +
-    '; path=/; Secure; HttpOnly';
+    '; path=/; Secure; SameSite=None; HttpOnly';
 };
 
 const deleteCookie = (name: string) => {
