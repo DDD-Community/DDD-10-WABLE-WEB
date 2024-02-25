@@ -173,7 +173,15 @@ export function BasicInformationForm() {
           </FormControl>
         </Flex>
       </Flex>
-      <Button type="submit" variant="primary" maxW="412px" w="100%" h="48px">
+      <Button
+        type="submit"
+        maxW="412px"
+        w="100%"
+        h="48px"
+        bg="black"
+        color="white"
+        _hover={{ opacity: 0.8 }}
+      >
         다음으로
       </Button>
     </>

@@ -39,7 +39,15 @@ export function CreateProfileComplete() {
           <Heading size="sm">홍길동</Heading>
         </Flex>
       </Flex>
-      <Button w="100%">홈</Button>
+      <Button
+        size="lg"
+        w="100%"
+        bg="black"
+        color="white"
+        _hover={{ opacity: 0.8 }}
+      >
+        홈
+      </Button>
     </Center>
   );
 }
