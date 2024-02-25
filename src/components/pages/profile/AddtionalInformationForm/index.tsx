@@ -93,7 +93,7 @@ export function AdditionalInformationForm() {
         />
       </Flex>
       <Flex w="100%" gap="18px">
-        <Button flex="1" bg="gray.100" color="black">
+        <Button flex="1" bg="gray.100" color="black" border="none">
           이전
         </Button>
         <Button flex="1" variant="primary">
