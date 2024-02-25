@@ -6,7 +6,7 @@ const setCookie = (name: string, value: string, minutes: number) => {
     '=' +
     (value || '') +
     ('; expires=' + exdate.toUTCString()) +
-    '; path=/; Secure; SameSite=None; HttpOnly';
+    '; path=/; Secure; HttpOnly; Domain=waggle-dev.vercel.app;';
 };
 
 const deleteCookie = (name: string) => {
