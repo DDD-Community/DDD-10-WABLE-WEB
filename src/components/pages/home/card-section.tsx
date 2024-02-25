@@ -1,6 +1,7 @@
 import Card from '@/components/pages/home/card';
 import { DividerWithContent } from '@/components/common/divider-with-content';
 import DashboardItem from '@/components/common/dashboard-item';
+import { Flex } from '@chakra-ui/react';
 
 const MOCK_DATA = [
   {
@@ -39,23 +40,18 @@ const MOCK_DATA = [
 
 export default function CardSection() {
   return (
-    <DashboardItem
-      flexDir="column"
-      gap="18px"
-      overflow="auto"
-      minWidth="653px"
-      w="full"
-      h="full"
-    >
-      <DividerWithContent
-        content="12월 20일"
-        bg="waggle.gray.100"
-        variant="dashboard"
-        fontSize={12}
-      />
-      {MOCK_DATA.map((data, index) => (
-        <Card key={index} data={data} />
-      ))}
+    <DashboardItem overflow="auto" minWidth="653px" w="full" h="full">
+      <Flex flexDir="column" gap="18px" w="full" overflowY="scroll">
+        <DividerWithContent
+          content="12월 20일"
+          bg="waggle.gray.100"
+          variant="dashboard"
+          fontSize={12}
+        />
+        {MOCK_DATA.map((data, index) => (
+          <Card key={index} data={data} />
+        ))}
+      </Flex>
     </DashboardItem>
   );
 }
