@@ -1,5 +1,4 @@
-import { ProfileInfo } from '@/components/pages/my-card/types';
-import React from 'react';
+import { ProfileInfo } from '@/components/common/profile-info/types';
 
 export interface Props {
   isOpened: boolean;
