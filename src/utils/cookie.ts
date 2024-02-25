@@ -5,7 +5,7 @@ const setCookie = (name: string, value: string, minutes: number) => {
   const isDevelopment = process.env.NODE_ENV == 'development';
   const secureOptions = isDevelopment
     ? ''
-    : '; Secure; SameSite=None; domain=waggle-dev.vercel.app';
+    : '; Secure; SameSite=None; HttpOnly; domain=waggle-dev.vercel.app';
 
   document.cookie =
     name +
