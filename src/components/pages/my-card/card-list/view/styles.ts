@@ -16,12 +16,13 @@ const CardViewListContainer = styled.ul`
 `;
 
 const CardViewGridContainer = styled.ul`
-  padding: 0 26px;
-  border-top: 1px solid #ececec;
-  border-bottom: 1px solid #ececec;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 26px;
 `;
 
 const CardListItem = styled.li`
@@ -37,6 +38,13 @@ const CardListItem = styled.li`
   }
 `;
 
+const CardGridItem = styled.li`
+  width: 100%;
+  height: 100%;
+  background-color: #d9d9d9;
+  border-radius: 8px;
+`;
+
 const CardTypeBadge = styled.span<{ type: CardType }>`
   padding: 4px 12px;
   border-radius: 6px;
@@ -49,5 +57,6 @@ export {
   CardViewListContainer,
   CardViewGridContainer,
   CardListItem,
+  CardGridItem,
   CardTypeBadge,
 };

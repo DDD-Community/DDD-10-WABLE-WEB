@@ -6,12 +6,13 @@ import {
   CardTypeBadge,
   CardViewListContainer,
   CardViewGridContainer,
+  CardGridItem,
 } from './styles';
 import { Props } from './types';
 import { formatDateOnToday } from '@/utils/date';
 
 function GridItem({ card }: { card: CardInfo }) {
-  return <section>{card.content}</section>;
+  return <CardGridItem>{card.content}</CardGridItem>;
 }
 
 function ListItem({ card }: { card: CardInfo }) {

@@ -17,7 +17,7 @@ export default function MyCard() {
 
   const [openedProfileIndex, setOpenedProfileIndex] = useState(0);
   const [cardDirection, setCardDirection] = useState<CardDirection>('RECEIVED');
-  const [viewType, setViewType] = useState<CardViewType>('LIST');
+  const [viewType, setViewType] = useState<CardViewType>('GRID');
 
   function handleProfileCardClick(cardIndex: number) {
     setOpenedProfileIndex(cardIndex);
