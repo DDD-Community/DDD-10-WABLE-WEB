@@ -19,10 +19,16 @@ const CardViewGridContainer = styled.ul`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
   gap: 16px;
   padding: 0 26px;
+
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  @media ${({ theme }) => theme.device.largeDevice} {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const CardListItem = styled.li`
