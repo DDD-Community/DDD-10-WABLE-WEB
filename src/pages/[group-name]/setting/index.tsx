@@ -3,6 +3,7 @@ import { Flex, Heading, Button, Text } from '@chakra-ui/react';
 import Profile from '@/components/pages/home/profile';
 import DashboardItem from '@/components/common/dashboard-item';
 import { EditGroupForm } from '@/components/pages/group/form';
+import { ManageGroupMembers } from '@/components/pages/group/manage-group-members';
 
 export default function GroupSetting() {
   function handleClickDeleteGroup() {}
@@ -50,7 +51,7 @@ export default function GroupSetting() {
               <EditGroupForm />
             </DashboardItem>
             <DashboardItem flex="1.2">
-              <div>asd</div>
+              <ManageGroupMembers />
             </DashboardItem>
           </Flex>
         </Flex>
