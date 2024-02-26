@@ -45,9 +45,14 @@ export default function GroupSetting() {
               </Button>
             }
           />
-          <DashboardItem h="full">
-            <EditGroupForm />
-          </DashboardItem>
+          <Flex w="full" h="full" gap="16px">
+            <DashboardItem flex="1" h="full">
+              <EditGroupForm />
+            </DashboardItem>
+            <DashboardItem flex="1.2">
+              <div>asd</div>
+            </DashboardItem>
+          </Flex>
         </Flex>
       </Flex>
     </GNBLayout>

@@ -1,3 +1,3 @@
-export * from './ServiceLeaveModal';
-export * from './GroupLeaveModal';
-export * from './GroupOwnerWarningModal';
+export * from './service-leave-modal';
+export * from './group-leave-modal';
+export * from './group-owner-warning-modal';
