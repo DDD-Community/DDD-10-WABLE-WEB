@@ -57,6 +57,13 @@ const theme = extendTheme({
             opacity: 0.8,
           },
         },
+        error: {
+          bg: 'red.600',
+          color: 'white',
+          _hover: {
+            opacity: 0.8,
+          },
+        },
       },
     },
     Switch: switchTheme,
