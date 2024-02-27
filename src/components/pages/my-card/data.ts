@@ -23,153 +23,6 @@ export const mockCardInfoForGrid = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 1,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 1,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 2,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 3,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 4,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 5,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-];
-
-export const mockCardInfoForList = [
-  {
-    createdAt: new Date('2024-02-25T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
     id: 0,
     sid: 'GREETING',
     fromUser: {
@@ -188,31 +41,7 @@ export const mockCardInfoForList = [
         name: 'Group 1 owner',
       },
     },
-    content: '응원응원해요~~~~응원응원해요~~~~응원응원해요~~~~응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 1,
-    sid: 'CELEBRATION',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~응원응원해요~~~~응원응원해요~~~~',
+    content: '응원응원해요~~~~',
     visible: true,
   },
   {
@@ -291,6 +120,33 @@ export const mockCardInfoForList = [
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
     id: 5,
+    sid: 'CELEBRATION',
+    fromUser: {
+      id: 0,
+      name: 'DK',
+    },
+    toUser: {
+      id: 0,
+      name: 'MS',
+    },
+    group: {
+      id: 0,
+      name: 'Group1',
+      owner: {
+        id: 0,
+        name: 'Group 1 owner',
+      },
+    },
+    content: '응원응원해요~~~~',
+    visible: true,
+  },
+];
+
+export const mockCardInfoForList = [
+  {
+    createdAt: new Date('2024-02-24T13:40:48.424Z'),
+    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -314,7 +170,7 @@ export const mockCardInfoForList = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 6,
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -338,7 +194,7 @@ export const mockCardInfoForList = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 7,
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -362,7 +218,7 @@ export const mockCardInfoForList = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 8,
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -386,7 +242,7 @@ export const mockCardInfoForList = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 9,
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -410,7 +266,7 @@ export const mockCardInfoForList = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 10,
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -434,7 +290,7 @@ export const mockCardInfoForList = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 11,
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -458,7 +314,7 @@ export const mockCardInfoForList = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 12,
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -482,7 +338,127 @@ export const mockCardInfoForList = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 13,
+    id: 0,
+    sid: 'GREETING',
+    fromUser: {
+      id: 0,
+      name: 'DK',
+    },
+    toUser: {
+      id: 0,
+      name: 'MS',
+    },
+    group: {
+      id: 0,
+      name: 'Group1',
+      owner: {
+        id: 0,
+        name: 'Group 1 owner',
+      },
+    },
+    content: '응원응원해요~~~~',
+    visible: true,
+  },
+  {
+    createdAt: new Date('2024-02-24T13:40:48.424Z'),
+    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
+    id: 0,
+    sid: 'GREETING',
+    fromUser: {
+      id: 0,
+      name: 'DK',
+    },
+    toUser: {
+      id: 0,
+      name: 'MS',
+    },
+    group: {
+      id: 0,
+      name: 'Group1',
+      owner: {
+        id: 0,
+        name: 'Group 1 owner',
+      },
+    },
+    content: '응원응원해요~~~~',
+    visible: true,
+  },
+  {
+    createdAt: new Date('2024-02-24T13:40:48.424Z'),
+    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
+    id: 0,
+    sid: 'GREETING',
+    fromUser: {
+      id: 0,
+      name: 'DK',
+    },
+    toUser: {
+      id: 0,
+      name: 'MS',
+    },
+    group: {
+      id: 0,
+      name: 'Group1',
+      owner: {
+        id: 0,
+        name: 'Group 1 owner',
+      },
+    },
+    content: '응원응원해요~~~~',
+    visible: true,
+  },
+  {
+    createdAt: new Date('2024-02-24T13:40:48.424Z'),
+    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
+    id: 0,
+    sid: 'GREETING',
+    fromUser: {
+      id: 0,
+      name: 'DK',
+    },
+    toUser: {
+      id: 0,
+      name: 'MS',
+    },
+    group: {
+      id: 0,
+      name: 'Group1',
+      owner: {
+        id: 0,
+        name: 'Group 1 owner',
+      },
+    },
+    content: '응원응원해요~~~~',
+    visible: true,
+  },
+  {
+    createdAt: new Date('2024-02-24T13:40:48.424Z'),
+    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
+    id: 0,
+    sid: 'GREETING',
+    fromUser: {
+      id: 0,
+      name: 'DK',
+    },
+    toUser: {
+      id: 0,
+      name: 'MS',
+    },
+    group: {
+      id: 0,
+      name: 'Group1',
+      owner: {
+        id: 0,
+        name: 'Group 1 owner',
+      },
+    },
+    content: '응원응원해요~~~~',
+    visible: true,
+  },
+  {
+    createdAt: new Date('2024-02-24T13:40:48.424Z'),
+    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
+    id: 0,
     sid: 'GREETING',
     fromUser: {
       id: 0,

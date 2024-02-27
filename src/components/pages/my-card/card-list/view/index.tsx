@@ -12,7 +12,7 @@ import { Props } from './types';
 import { formatDateOnToday } from '@/utils/date';
 
 function GridItem({ card }: { card: CardInfo }) {
-  return <CardGridItem>{card.content}</CardGridItem>;
+  return <CardGridItem type={card.sid}>{card.content}</CardGridItem>;
 }
 
 function ListItem({ card }: { card: CardInfo }) {
