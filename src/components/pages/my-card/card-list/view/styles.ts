@@ -60,6 +60,7 @@ const CardListItem = styled.li`
 `;
 
 const CardGridItem = styled.li<{ type: CardType }>`
+  justify-self: center;
   padding: 30px 32px 62px;
   width: 294px;
   height: 339px;

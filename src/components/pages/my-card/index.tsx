@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HStack, Heading } from '@chakra-ui/react';
+import ReactPaginate from 'react-paginate';
 import { ProfileInfo } from '@/components/common/profile-info/types';
 import { CardDirection, CardViewType, CardInfo } from './types';
-import { ProfileCardSection, CardListSection } from './styles';
+import { ProfileCardSection, CardListSection, CardListFooter } from './styles';
 import GNBLayout from '@/layouts/gnb-layout';
 import ProfileCard from '@/components/pages/my-card/profile-card/index';
 import CardListHeader from './card-list/header';
 import CardListView from './card-list/view';
-import CardListFooter from './card-list/footer';
+import NextPage from '@/assets/icons/next-page.svg';
+import PrevPage from '@/assets/icons/prev-page.svg';
 import { mockCardInfoForGrid, mockCardInfoForList, mockProfile } from './data';
 
 export default function MyCard() {
@@ -21,6 +23,26 @@ export default function MyCard() {
 
   function handleProfileCardClick(cardIndex: number) {
     setOpenedProfileIndex(cardIndex);
+  }
+
+  const GRID_LIMIT = 6;
+  const LIST_LIMIT = 14;
+  const totalCardCount = 32;
+  const [limit, setLimit] = useState(GRID_LIMIT);
+  const [pageCount, setPageCount] = useState(Math.ceil(totalCardCount / limit));
+
+  useEffect(() => {
+    const newLimit = viewType === 'GRID' ? GRID_LIMIT : LIST_LIMIT;
+    setLimit(newLimit);
+  }, [viewType]);
+
+  useEffect(() => {
+    setPageCount(Math.ceil(totalCardCount / limit));
+  }, [limit]);
+
+  const [page, setPage] = useState(0);
+  function handlePageClick(e) {
+    setPage(e.selected);
   }
 
   return (
@@ -56,7 +78,25 @@ export default function MyCard() {
             viewType={viewType}
             cardList={viewType === 'GRID' ? cardListForGrid : cardListForList}
           />
-          <CardListFooter />
+          <CardListFooter>
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel={<NextPage />}
+              previousLabel={<PrevPage />}
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              renderOnZeroPageCount={null}
+              containerClassName="pagination"
+              pageClassName="pagination__page"
+              pageLinkClassName="pagination__page-link"
+              previousClassName="pagination__page"
+              previousLinkClassName="pagination__page-link"
+              nextClassName="pagination__page"
+              nextLinkClassName="pagination__page-link"
+              activeClassName="pagination__active"
+            />
+          </CardListFooter>
         </CardListSection>
       </HStack>
     </GNBLayout>
