@@ -36,6 +36,7 @@ const CardViewGridContainer = styled.ul`
   display: grid;
   gap: 16px;
   padding: 0 26px;
+  overflow-y: auto;
 
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
