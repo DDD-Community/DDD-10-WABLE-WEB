@@ -1,3 +1,5 @@
+import { CardInfo } from './types';
+
 export const mockProfile = [
   {
     name: '박경서',
@@ -19,7 +21,7 @@ export const mockProfile = [
   },
 ];
 
-export const mockCardInfoForGrid = [
+export const mockCardInfoForGrid: CardInfo[] = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
@@ -45,9 +47,57 @@ export const mockCardInfoForGrid = [
     visible: true,
   },
   {
+    createdAt: new Date('2023-02-24T13:40:48.424Z'),
+    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
+    id: 2,
+    sid: 'ENCOURAGEMENT',
+    fromUser: {
+      id: 0,
+      name: 'DK',
+    },
+    toUser: {
+      id: 0,
+      name: 'MS',
+    },
+    group: {
+      id: 0,
+      name: 'Group1',
+      owner: {
+        id: 0,
+        name: 'Group 1 owner',
+      },
+    },
+    content: '응원응원해요~~~~',
+    visible: true,
+  },
+  {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 0,
+    id: 3,
+    sid: 'GRATITUDE',
+    fromUser: {
+      id: 0,
+      name: 'DK',
+    },
+    toUser: {
+      id: 0,
+      name: 'MS',
+    },
+    group: {
+      id: 0,
+      name: 'Group1',
+      owner: {
+        id: 0,
+        name: 'Group 1 owner',
+      },
+    },
+    content: '응원응원해요~~~~',
+    visible: true,
+  },
+  {
+    createdAt: new Date('2024-02-24T13:40:48.424Z'),
+    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
+    id: 4,
     sid: 'GREETING',
     fromUser: {
       id: 0,
@@ -71,104 +121,8 @@ export const mockCardInfoForGrid = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 0,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 0,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 0,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 0,
-    sid: 'GREETING',
-    fromUser: {
-      id: 0,
-      name: 'DK',
-    },
-    toUser: {
-      id: 0,
-      name: 'MS',
-    },
-    group: {
-      id: 0,
-      name: 'Group1',
-      owner: {
-        id: 0,
-        name: 'Group 1 owner',
-      },
-    },
-    content: '응원응원해요~~~~',
-    visible: true,
-  },
-  {
-    createdAt: new Date('2024-02-24T13:40:48.424Z'),
-    updatedAt: new Date('2024-02-24T13:40:48.424Z'),
-    id: 0,
-    sid: 'GREETING',
+    id: 5,
+    sid: 'CELEBRATION',
     fromUser: {
       id: 0,
       name: 'DK',
@@ -190,7 +144,7 @@ export const mockCardInfoForGrid = [
   },
 ];
 
-export const mockCardInfoForList = [
+export const mockCardInfoForList: CardInfo[] = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
