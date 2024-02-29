@@ -19,6 +19,7 @@ import SettingsIcon from '@/assets/icons/settings.svg';
 import LogoutIcon from '@/assets/icons/logout.svg';
 
 import { NavItemProps } from './types';
+import { ROUTES } from '@/constants/routes';
 
 function NavItem({ children, href, icon, currentTab }: NavItemProps) {
   return (
@@ -60,7 +61,7 @@ export default function GlobalNavigationBar() {
         <Divider />
 
         <ItemGroup>
-          <NavItem href="" icon={<HomeIcon />}>
+          <NavItem href={ROUTES.GROUP.CREATE} icon={<HomeIcon />}>
             새 그룹 만들기
           </NavItem>
           <NavItem href="" icon={<UserIcon />}>

@@ -96,7 +96,7 @@ export function AdditionalInformationForm() {
         <Button flex="1" bg="gray.100" color="black">
           이전
         </Button>
-        <Button flex="1" bg="black" color="white" _hover={{ opacity: 0.8 }}>
+        <Button flex="1" variant="primary">
           건너뛰기
         </Button>
       </Flex>

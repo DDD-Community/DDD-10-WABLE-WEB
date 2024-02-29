@@ -32,10 +32,17 @@ const theme = extendTheme({
         primary: {
           bg: 'black',
           color: 'white',
+          _hover: {
+            opacity: 0.8,
+          },
         },
         secondary: {
           bg: 'waggle.gray.600',
           color: 'waggle.gray.800',
+        },
+        solid: {
+          bg: 'white',
+          border: '1px solid black',
         },
       },
     },
