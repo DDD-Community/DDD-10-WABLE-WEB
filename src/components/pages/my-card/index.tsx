@@ -41,8 +41,8 @@ export default function MyCard() {
   }, [limit]);
 
   const [page, setPage] = useState(0);
-  function handlePageClick(e) {
-    setPage(e.selected);
+  function handlePageClick(selectedItem: { selected: number }) {
+    setPage(selectedItem.selected);
   }
 
   return (

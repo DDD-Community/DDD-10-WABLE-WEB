@@ -1,3 +1,5 @@
+import { CardInfo } from './types';
+
 export const mockProfile = [
   {
     name: '박경서',
@@ -19,7 +21,7 @@ export const mockProfile = [
   },
 ];
 
-export const mockCardInfoForGrid = [
+export const mockCardInfoForGrid: CardInfo[] = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
@@ -142,7 +144,7 @@ export const mockCardInfoForGrid = [
   },
 ];
 
-export const mockCardInfoForList = [
+export const mockCardInfoForList: CardInfo[] = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
