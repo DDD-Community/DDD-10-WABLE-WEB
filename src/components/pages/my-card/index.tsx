@@ -11,14 +11,14 @@ import CardListHeader from './card-list/header';
 import CardListView from './card-list/view';
 import NextPage from '@/assets/icons/next-page.svg';
 import PrevPage from '@/assets/icons/prev-page.svg';
-import { mockCardInfoForGrid, mockCardInfoForList, mockProfile } from './data';
+import { mockReceivedCardInfo, mockSentCardInfo, mockProfile } from './data';
 import { useMyCardsQuery } from '@/hooks/queries/card/useMyCardsQuery';
 import { CardModal } from './card-modal';
 import { useMyProfilesQuery } from '@/hooks/queries/profile/useMyProfilesQuery';
 
 export default function MyCard() {
   const profiles: ProfileInfo[] = mockProfile;
-  const mockCardList: CardInfo[] = mockCardInfoForGrid;
+  const mockCardList: CardInfo[] = mockReceivedCardInfo;
   const [cardList, setCardList] = useState([]);
 
   // const { data: profiles } = useMyProfilesQuery();

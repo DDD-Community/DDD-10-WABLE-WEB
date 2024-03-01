@@ -21,7 +21,7 @@ export const mockProfile = [
   },
 ];
 
-export const mockCardInfoForGrid: CardInfo[] = [
+export const mockReceivedCardInfo: CardInfo[] = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
@@ -44,7 +44,7 @@ export const mockCardInfoForGrid: CardInfo[] = [
       },
     },
     content:
-      '안녕하세요, 도경님! 이런 능력자가 우리 회사에 오신다니 너무 반갑고 기대됩니다!',
+      '안녕하세요, 승준님! 이런 능력자가 우리 회사에 오신다니 너무 반갑고 기대됩니다!',
     visible: true,
   },
   {
@@ -68,7 +68,7 @@ export const mockCardInfoForGrid: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content: '도경님 오늘 하루도 파이팅입니다!!! 👍',
+    content: '승준님 오늘 하루도 파이팅입니다!!! 👍',
     visible: true,
   },
   {
@@ -117,7 +117,7 @@ export const mockCardInfoForGrid: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content: '반갑습니다 도경님!! 같이 열심히 일해봐요 ♥️',
+    content: '반갑습니다 승준님!! 같이 열심히 일해봐요 ♥️',
     visible: true,
   },
   {
@@ -141,7 +141,7 @@ export const mockCardInfoForGrid: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content: '어제 생일 축하드립니다 도경님!!!🔥',
+    content: '어제 생일 축하드립니다 승준님!!!🔥',
     visible: true,
   },
   {
@@ -189,12 +189,12 @@ export const mockCardInfoForGrid: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content: '같이 열심히 일해봐요 도경님!!! 화이팅!',
+    content: '같이 열심히 일해봐요 승준님!!! 화이팅!',
     visible: true,
   },
 ];
 
-export const mockCardInfoForList: CardInfo[] = [
+export const mockSentCardInfo: CardInfo[] = [
   {
     createdAt: new Date('2024-02-24T13:40:48.424Z'),
     updatedAt: new Date('2024-02-24T13:40:48.424Z'),
@@ -216,8 +216,7 @@ export const mockCardInfoForList: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content:
-      '안녕하세요, 도경님! 이런 능력자가 우리 회사에 오신다니 너무 반갑고 기대됩니다!',
+    content: '안녕하세요, 환영해 주셔서 감사합니다!!! 화이팅!!!',
     visible: true,
   },
   {
@@ -241,7 +240,7 @@ export const mockCardInfoForList: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content: '도경님 오늘 하루도 파이팅입니다!!! 👍',
+    content: '어제 커피 잘 마셧습니다! 오늘 하루도 파이팅입니다!!! ⭐️',
     visible: true,
   },
   {
@@ -265,8 +264,7 @@ export const mockCardInfoForList: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content:
-      '어제 제 버그 같이 잡아주셔서 너무 감사드립니다! 덕분에 잘 해결했어요~',
+    content: '덕분에 저도 많이 알아가네요 ㅎㅎ',
     visible: true,
   },
   {
@@ -290,7 +288,7 @@ export const mockCardInfoForList: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content: '반갑습니다 도경님!! 같이 열심히 일해봐요 ♥️',
+    content: '제가 더 반갑습니다!! 팀원으로서 화이팅할게요♥️',
     visible: true,
   },
   {
@@ -314,7 +312,7 @@ export const mockCardInfoForList: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content: '어제 생일 축하드립니다 도경님!!!🔥',
+    content: '어제 생일 축하드립니다 승준님!!!🔥',
     visible: true,
   },
   {
@@ -362,7 +360,7 @@ export const mockCardInfoForList: CardInfo[] = [
         name: 'Group 1 owner',
       },
     },
-    content: '같이 열심히 일해봐요 도경님!!! 화이팅!',
+    content: '같이 열심히 일해봐요 승준님!!! 화이팅!',
     visible: true,
   },
 ];
