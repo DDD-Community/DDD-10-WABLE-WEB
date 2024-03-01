@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 
 import ProfileImageUrl from '@/assets/icons/profile.svg?url';
 
-import type CardPreviewType from './card.type';
+import { CardInfo } from '../my-card/types';
 
 const CardMessage = {
   GREETING: '안녕하세요! 😊',
@@ -19,7 +19,7 @@ const CardType = {
   GRATITUDE: '감사',
 };
 
-export default function Card({ data }: { data: CardPreviewType }) {
+export default function Card({ data }: { data: CardInfo }) {
   return (
     <Flex
       gap="32px"
@@ -33,23 +33,23 @@ export default function Card({ data }: { data: CardPreviewType }) {
         <Avatar
           width="58px"
           height="58px"
-          src={data.toUserProfileImageUrl ?? (ProfileImageUrl.src as string)}
+          src={ProfileImageUrl.src as string}
         />
         <Text fontSize="12px" color="gray.500" fontWeight="medium">
-          {data.fromUserNickname}
+          {data.fromUser.name}
         </Text>
       </VStack>
       <Flex flexDir="column">
         <Flex gap={2} align="center">
           <Heading fontSize="18px" fontWeight="bold">
-            {data.toUserNickname}님 {CardMessage[data.sid]}
+            {data.toUser.name}님 {CardMessage[data.sid]}
           </Heading>
           <Text fontSize="12px" color="gray.700">
             {format(data.createdAt, 'hh:mm aa')}
           </Text>
         </Flex>
         <Text fontSize="12px" fontWeight="medium" mt="4px" color="gray.500">
-          {data.fromUserNickname}님이 {CardType[data.sid]}카드를 보냈어요.
+          {data.fromUser.name}님이 {CardType[data.sid]}카드를 보냈어요.
         </Text>
         <Text fontSize="12px" fontWeight="medium" mt="12px" noOfLines={2}>
           {data.content}
