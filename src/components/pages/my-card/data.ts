@@ -71,7 +71,10 @@ export const mockProfile = [
     birth: '1992-05-05',
     profile_image_url: '~~~',
     mbti: 'INFJ',
-    hobby: ['영화 🍿', '등산 ⛰️', '독서'],
+    hobby: ['공부 📔', '운동 🤼‍♀️'],
+    group: {
+      name: 'DDD',
+    },
   },
 ];
 

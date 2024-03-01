@@ -10,14 +10,14 @@ import Image from 'next/image';
 
 const MOCK_MEMBERS = [
   {
-    name: '신승준',
+    name: '김도경',
     role: '관리자',
-    imageSrc: '/images/002501.png',
+    imageSrc: '/images/000101.png',
   },
   {
-    name: '김도경',
+    name: '신승준',
     role: '팀원',
-    imageSrc: '/images/000101.png',
+    imageSrc: '/images/002501.png',
   },
   {
     name: '조성원',
