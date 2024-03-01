@@ -101,7 +101,7 @@ export default function GroupSettings() {
                   fontSize="14px"
                   fontWeight="semibold"
                 >
-                  그룹 1
+                  DDD
                 </Text>
                 <Flex flex="1" gap="36px">
                   {/**

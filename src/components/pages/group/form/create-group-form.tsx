@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import { GroupSchema, groupSchema } from '@/models/group';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-export function CreateGroupForm() {
+export function CreateGroupForm({ onSuccess }: { onSuccess?: () => void }) {
   const { handleSubmit, watch, setValue, register } = useForm<GroupSchema>({
     resolver: zodResolver(groupSchema),
     defaultValues: {
@@ -183,7 +183,14 @@ export function CreateGroupForm() {
           <Button flex="1" variant="solid" size="lg">
             취소
           </Button>
-          <Button flex="1" variant="primary" size="lg">
+          <Button
+            flex="1"
+            variant="primary"
+            size="lg"
+            onClick={() => {
+              onSuccess?.();
+            }}
+          >
             완료
           </Button>
         </Flex>

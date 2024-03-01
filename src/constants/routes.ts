@@ -10,4 +10,7 @@ export const ROUTES = {
   },
   MY_CARD: '/my-card',
   SETTING: '/setting',
+  PROFILE: {
+    CREATE: '/profile/create',
+  },
 };

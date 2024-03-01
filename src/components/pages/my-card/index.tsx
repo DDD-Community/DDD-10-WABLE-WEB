@@ -11,14 +11,17 @@ import CardListHeader from './card-list/header';
 import CardListView from './card-list/view';
 import NextPage from '@/assets/icons/next-page.svg';
 import PrevPage from '@/assets/icons/prev-page.svg';
-import { mockCardInfoForGrid, mockCardInfoForList, mockProfile } from './data';
+import { mockReceivedCardInfo, mockSentCardInfo, mockProfile } from './data';
 import { useMyCardsQuery } from '@/hooks/queries/card/useMyCardsQuery';
 import { CardModal } from './card-modal';
+import { useMyProfilesQuery } from '@/hooks/queries/profile/useMyProfilesQuery';
 
 export default function MyCard() {
   const profiles: ProfileInfo[] = mockProfile;
-  const cardListForGrid: CardInfo[] = mockCardInfoForGrid;
-  const cardListForList: CardInfo[] = mockCardInfoForList;
+  const mockCardList: CardInfo[] = mockReceivedCardInfo;
+  const [cardList, setCardList] = useState([]);
+
+  // const { data: profiles } = useMyProfilesQuery();
 
   const [openedProfileIndex, setOpenedProfileIndex] = useState(0);
 
@@ -39,10 +42,11 @@ export default function MyCard() {
 
   const GRID_SIZE = 6;
   const LIST_SIZE = 14;
-  const totalCardCount = 32;
   const [lastId, setLastId] = useState(0);
   const [size, setSize] = useState(GRID_SIZE);
-  const [pageCount, setPageCount] = useState(Math.ceil(totalCardCount / size));
+  const [pageCount, setPageCount] = useState(
+    Math.ceil(mockCardList.length / size),
+  );
   const [page, setPage] = useState(0);
   function handlePageClick(selectedItem: { selected: number }) {
     setPage(selectedItem.selected);
@@ -54,15 +58,17 @@ export default function MyCard() {
   }, [viewType]);
 
   useEffect(() => {
-    setPageCount(Math.ceil(totalCardCount / size));
+    setPageCount(Math.ceil(mockCardList.length / size));
   }, [size]);
 
   useEffect(() => {
-    const newLastId = (page - 1) * size + 1;
+    const newLastId = page * size;
+    const newCardData = mockCardList.slice(newLastId, newLastId + size);
     setLastId(newLastId);
+    setCardList([...newCardData]);
   }, [page, size]);
 
-  const { myCards } = useMyCardsQuery(
+  const { data: myCards } = useMyCardsQuery(
     cardDirection,
     groupIds,
     cardTypes,
@@ -81,7 +87,7 @@ export default function MyCard() {
   return (
     <GNBLayout>
       <Heading fontSize="24px" px="24px" mb="27px">
-        그룹1에 오신걸 환영합니다.
+        내 카드
       </Heading>
       <HStack
         gap="16px"
@@ -91,14 +97,15 @@ export default function MyCard() {
         overflowY="auto"
       >
         <ProfileCardSection>
-          {profiles.map((profile, index) => (
-            <ProfileCard
-              profile={profile}
-              isOpened={openedProfileIndex === index}
-              key={index}
-              onClick={() => handleProfileCardClick(index)}
-            />
-          ))}
+          {profiles &&
+            profiles.map((profile, index) => (
+              <ProfileCard
+                profile={profile}
+                isOpened={openedProfileIndex === index}
+                key={index}
+                onClick={() => handleProfileCardClick(index)}
+              />
+            ))}
         </ProfileCardSection>
         <CardListSection>
           {openedCard === null ? (
@@ -111,9 +118,7 @@ export default function MyCard() {
               />
               <CardListView
                 viewType={viewType}
-                cardList={
-                  viewType === 'GRID' ? cardListForGrid : cardListForList
-                }
+                cardList={cardList}
                 onClickCard={handleCardOpen}
               />
               <CardListFooter>

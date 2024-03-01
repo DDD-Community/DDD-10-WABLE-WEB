@@ -1,38 +1,69 @@
 import GNBLayout from '@/layouts/gnb-layout';
-import { Flex, Heading } from '@chakra-ui/react';
+import { Flex, Heading, Button, Text } from '@chakra-ui/react';
 import Profile from '@/components/pages/home/profile';
 import DashboardItem from '@/components/common/dashboard-item';
 import { CreateGroupForm } from '@/components/pages/group/form';
+import { ConfirmModal } from '@/components/pages/group/settings/modal';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { ROUTES } from '@/constants/routes';
 
 export default function CreateGroup() {
+  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
   return (
-    <GNBLayout>
-      <Flex
-        w="100%"
-        h="100%"
-        gap="24px"
-        px="24px"
-        flexDirection="column"
-        justifyContent="flex-start"
-      >
-        <Heading fontSize="24px">새로운 그룹을 만들어보세요!</Heading>
+    <>
+      <GNBLayout>
         <Flex
           w="100%"
           h="100%"
-          gap="16px"
+          gap="24px"
+          px="24px"
           flexDirection="column"
           justifyContent="flex-start"
         >
-          <Profile
-            src="https://s3-alpha-sig.figma.com/img/b940/caf9/f3a52bcc9317c793ebc094db911b237b?Expires=1708905600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NoEOsKXD5w0yt7BvBmmMmzPaBUYd8cPdngiFmcCsy9HcGNTEdsmEzYDjYhxQpjxQuS59kmhlPA1w4jqqMr4mBFsCBU8lukzrEuaictw8GMfrtEcFu34vpU4MhB-2iRh8mEC2ZF084ZY014Q~qoIx9GO-6Q9TRHeamBB9PuXncXfEDDMg5tloKfasLP7otc9VdKHcGoYTKm8fvwjfLqg7QLdJ2mPvgQGjM2Rsp7~GpcMBEUnmjjESOJ9wnnux2uSkTCCnLa--l06lAO3-n1p-~9R1SpYVnSr9nMAOzXD95JutarM3WbGK3vPn3waaIq5nQEzncHzwMj6LUEyW0Cil3g__"
-            name="홍길동"
-            email="esthera@simmmple.com"
-          />
-          <DashboardItem h="full">
-            <CreateGroupForm />
-          </DashboardItem>
+          <Heading fontSize="24px">새로운 그룹을 만들어보세요!</Heading>
+          <Flex
+            w="100%"
+            h="100%"
+            gap="16px"
+            flexDirection="column"
+            justifyContent="flex-start"
+          >
+            <Profile
+              src="/images/my-face.jpeg"
+              name="신승준"
+              email="alohajune22@gmail.com"
+            />
+            <DashboardItem h="full">
+              <CreateGroupForm
+                onSuccess={() => {
+                  setIsOpen(true);
+                }}
+              />
+            </DashboardItem>
+          </Flex>
         </Flex>
-      </Flex>
-    </GNBLayout>
+      </GNBLayout>
+      <ConfirmModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ConfirmModal.Header>그룹 생성 완료</ConfirmModal.Header>
+        <ConfirmModal.Body>
+          <Text>그룹이 완성되었습니다.</Text>
+          <Text>그룹에서 사용할 프로필을 작성하세요!</Text>
+        </ConfirmModal.Body>
+        <ConfirmModal.Footer>
+          <Button variant="tertiary">다음에 하기</Button>
+          <Button
+            variant="quaternary"
+            onClick={() => {
+              router.push(ROUTES.PROFILE.CREATE);
+            }}
+          >
+            지금 만들기
+          </Button>
+        </ConfirmModal.Footer>
+      </ConfirmModal>
+    </>
   );
 }

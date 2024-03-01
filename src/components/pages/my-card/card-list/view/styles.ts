@@ -13,6 +13,7 @@ const CardViewListContainer = styled.ul`
   border-top: 1px solid #ececec;
   border-bottom: 1px solid #ececec;
   overflow-y: auto;
+  height: 100%;
 `;
 
 const CardViewGridContainer = styled.ul`
