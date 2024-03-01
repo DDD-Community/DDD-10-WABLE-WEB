@@ -1,9 +1,9 @@
 export interface ProfileInfo {
   name: string;
-  nickname: string;
+  nickName: string;
   gender?: string;
   birth: string;
-  profile_image_url: string;
-  mbti: string;
-  hobby: string[];
+  profileImageUrl: string;
+  mbti?: string;
+  hobby?: string[];
 }

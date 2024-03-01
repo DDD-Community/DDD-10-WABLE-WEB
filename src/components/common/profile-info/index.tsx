@@ -1,10 +1,10 @@
 import { VStack, HStack, Text, Divider } from '@chakra-ui/react';
 import { ProfileInfoGrid } from './styles';
-import { ProfileInfo } from './types';
 import Male from '@/assets/icons/male.svg';
 import Female from '@/assets/icons/female.svg';
+import { MyProfileResponseDto } from '@/api/profile/types';
 
-export function ProfileInfo({ profile }: { profile: ProfileInfo }) {
+export function ProfileInfo({ profile }: { profile: MyProfileResponseDto }) {
   return (
     <VStack as="main" gap="20px">
       <VStack gap="12px">
@@ -19,7 +19,7 @@ export function ProfileInfo({ profile }: { profile: ProfileInfo }) {
       <Divider />
       <ProfileInfoGrid>
         <Text>닉네임</Text>
-        <Text color="waggle.gray.700">{profile.nickname}</Text>
+        <Text color="waggle.gray.700">{profile.nickName}</Text>
         <Text>생일</Text>
         <Text color="waggle.gray.700">{profile.birth}</Text>
         <Text>MBTI</Text>

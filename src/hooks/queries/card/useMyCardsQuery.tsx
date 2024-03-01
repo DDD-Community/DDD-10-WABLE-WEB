@@ -12,21 +12,9 @@ export function useMyCardsQuery(
   lastId: number,
   size: number,
 ) {
-  const {
-    isLoading: isMyCardsLoading,
-    isError: isMyCardsError,
-    data: myCards,
-    isSuccess: isMyCardsSuccess,
-  } = useQuery<CardInfo[], AxiosError>({
+  return useQuery<CardInfo[], AxiosError>({
     queryKey: ['myCard', groupIds, cardTypes, lastId, size],
     queryFn: async () =>
       getMyCards(cardDirection, groupIds, cardTypes, lastId, size),
   });
-
-  return {
-    isMyCardsLoading,
-    isMyCardsError,
-    myCards,
-    isMyCardsSuccess,
-  };
 }

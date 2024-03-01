@@ -14,11 +14,14 @@ import PrevPage from '@/assets/icons/prev-page.svg';
 import { mockCardInfoForGrid, mockCardInfoForList, mockProfile } from './data';
 import { useMyCardsQuery } from '@/hooks/queries/card/useMyCardsQuery';
 import { CardModal } from './card-modal';
+import { useMyProfilesQuery } from '@/hooks/queries/profile/useMyProfilesQuery';
 
 export default function MyCard() {
   const profiles: ProfileInfo[] = mockProfile;
   const cardListForGrid: CardInfo[] = mockCardInfoForGrid;
   const cardListForList: CardInfo[] = mockCardInfoForList;
+
+  // const { data: profiles } = useMyProfilesQuery();
 
   const [openedProfileIndex, setOpenedProfileIndex] = useState(0);
 
@@ -62,7 +65,7 @@ export default function MyCard() {
     setLastId(newLastId);
   }, [page, size]);
 
-  const { myCards } = useMyCardsQuery(
+  const { data: myCards } = useMyCardsQuery(
     cardDirection,
     groupIds,
     cardTypes,
@@ -91,14 +94,15 @@ export default function MyCard() {
         overflowY="auto"
       >
         <ProfileCardSection>
-          {profiles.map((profile, index) => (
-            <ProfileCard
-              profile={profile}
-              isOpened={openedProfileIndex === index}
-              key={index}
-              onClick={() => handleProfileCardClick(index)}
-            />
-          ))}
+          {profiles &&
+            profiles.map((profile, index) => (
+              <ProfileCard
+                profile={profile}
+                isOpened={openedProfileIndex === index}
+                key={index}
+                onClick={() => handleProfileCardClick(index)}
+              />
+            ))}
         </ProfileCardSection>
         <CardListSection>
           {openedCard === null ? (
