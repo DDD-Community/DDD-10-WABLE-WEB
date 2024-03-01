@@ -15,7 +15,7 @@ export function Header() {
       justifyContent="space-between"
     >
       <WaggleWaggleLogo />
-      <Link href={ROUTES.HOME}>
+      <Link href={ROUTES.GROUP.HOME('DDD')}>
         <Flex>
           <Flex
             padding="12px 16px"
@@ -30,7 +30,7 @@ export function Header() {
             boxShadow="0px 3.5px 5.5px 0px rgba(0, 0, 0, 0.02);"
           >
             <Box padding="8px" bg="black" borderRadius="12px">
-              <HomeIcon />
+              <HomeIcon color="white" />
             </Box>
             <Heading size="xs">홈으로 가기</Heading>
           </Flex>

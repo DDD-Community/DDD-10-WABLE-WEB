@@ -19,9 +19,9 @@ export type CreateUserProfileRequestDto = {
 
 export async function createUserProfile(dto: CreateUserProfileRequestDto) {
   try {
-    const response = await axiosInstance.post('v1/profiles/user', dto);
+    const data = await axiosInstance.post('v1/profiles/user', dto);
 
-    return response.data;
+    return data;
   } catch (error) {
     if (isAxiosError(error)) {
       console.error(error);
@@ -35,20 +35,13 @@ type PresignedUrlResponseDto = {
   signedUrl: string;
 };
 
-export async function getPresignedUrl() {
-  const response = await axiosInstance.get<PresignedUrlResponseDto>(
-    '/v1/profiles/presigned-url',
-  );
-
-  return {
-    filename: response.data.filename,
-    presignedUrl: response.data.signedUrl,
-  };
+export async function getPresignedUrl(): Promise<{
+  filename: string;
+  signedUrl: string;
+}> {
+  return await axiosInstance.get('/v1/profiles/presigned-url');
 }
 
 export async function getUserProfile() {
-  const response =
-    await axiosInstance.get<CreateUserProfileRequestDto>('v1/profiles/me');
-
-  return response.data;
+  return await axiosInstance.get('v1/profiles/me');
 }

@@ -19,7 +19,7 @@ export function CreateProfileComplete() {
         gap="36px"
       >
         <Heading size="xl" textAlign="center">
-          {data?.name}님,
+          신승준님,
           <br />
           가입을 축하드립니다.
         </Heading>
@@ -38,26 +38,17 @@ export function CreateProfileComplete() {
             h="274px"
             bg="gray.400"
           >
-            {data?.profileImageUrl ? (
-              <Image
-                src={data?.profileImageUrl ?? BASE_PROFILE_IMAGE}
-                fill
-                alt="프로필 사진"
-                style={{ objectFit: 'cover' }}
-              />
-            ) : (
-              <Image
-                width={143}
-                height={180}
-                src="/images/waggle.png"
-                alt="와글이 기본 이미지"
-              />
-            )}
+            <Image
+              src="/images/my-face.jpeg"
+              fill
+              alt="프로필 사진"
+              style={{ objectFit: 'cover', borderRadius: '12px' }}
+            />
           </Flex>
-          <Heading size="sm">{data?.name}</Heading>
+          <Heading size="sm">신승준</Heading>
         </Flex>
       </Flex>
-      <Link href={ROUTES.HOME}>
+      <Link href={ROUTES.GROUP.HOME('DDD')}>
         <Button size="lg" w="100%" variant="primary">
           홈
         </Button>
