@@ -64,6 +64,10 @@ export function ImageUpload() {
           h="54px"
           boxShadow="0px 2px 6px rgba(0, 0, 0, 0.06)"
           bg="white"
+          transition="transform 0.1s"
+          _hover={{
+            transform: 'scale(1.1)',
+          }}
         >
           <EditIcon />
         </Flex>
