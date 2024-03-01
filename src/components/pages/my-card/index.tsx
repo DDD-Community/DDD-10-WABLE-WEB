@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { HStack, Heading } from '@chakra-ui/react';
 import ReactPaginate from 'react-paginate';
 import { ProfileInfo } from '@/components/common/profile-info/types';
-import { CardDirection, CardViewType, CardInfo } from './types';
+import { CardDirection, CardViewType, CardInfo, CardType } from './types';
 import { ProfileCardSection, CardListSection, CardListFooter } from './styles';
 import GNBLayout from '@/layouts/gnb-layout';
 import ProfileCard from '@/components/pages/my-card/profile-card/index';
@@ -11,6 +11,7 @@ import CardListView from './card-list/view';
 import NextPage from '@/assets/icons/next-page.svg';
 import PrevPage from '@/assets/icons/prev-page.svg';
 import { mockCardInfoForGrid, mockCardInfoForList, mockProfile } from './data';
+import { useMyCardsQuery } from '@/hooks/my-card/useMyCardsQuery';
 
 export default function MyCard() {
   const profiles: ProfileInfo[] = mockProfile;
@@ -18,32 +19,54 @@ export default function MyCard() {
   const cardListForList: CardInfo[] = mockCardInfoForList;
 
   const [openedProfileIndex, setOpenedProfileIndex] = useState(0);
-  const [cardDirection, setCardDirection] = useState<CardDirection>('RECEIVED');
-  const [viewType, setViewType] = useState<CardViewType>('GRID');
 
   function handleProfileCardClick(cardIndex: number) {
     setOpenedProfileIndex(cardIndex);
   }
 
-  const GRID_LIMIT = 6;
-  const LIST_LIMIT = 14;
+  // search
+  const [cardDirection, setCardDirection] = useState<CardDirection>('RECEIVED');
+  const [viewType, setViewType] = useState<CardViewType>('GRID');
+  const [cardTypes, setCardTypes] = useState<CardType[]>([
+    'CELEBRATION',
+    'ENCOURAGEMENT',
+    'GRATITUDE',
+    'GREETING',
+  ]);
+  const [groupIds, setGroupIds] = useState<number[]>([]);
+
+  const GRID_SIZE = 6;
+  const LIST_SIZE = 14;
   const totalCardCount = 32;
-  const [limit, setLimit] = useState(GRID_LIMIT);
-  const [pageCount, setPageCount] = useState(Math.ceil(totalCardCount / limit));
-
-  useEffect(() => {
-    const newLimit = viewType === 'GRID' ? GRID_LIMIT : LIST_LIMIT;
-    setLimit(newLimit);
-  }, [viewType]);
-
-  useEffect(() => {
-    setPageCount(Math.ceil(totalCardCount / limit));
-  }, [limit]);
-
+  const [lastId, setLastId] = useState(0);
+  const [size, setSize] = useState(GRID_SIZE);
+  const [pageCount, setPageCount] = useState(Math.ceil(totalCardCount / size));
   const [page, setPage] = useState(0);
   function handlePageClick(selectedItem: { selected: number }) {
     setPage(selectedItem.selected);
   }
+
+  useEffect(() => {
+    const newSize = viewType === 'GRID' ? GRID_SIZE : LIST_SIZE;
+    setSize(newSize);
+  }, [viewType]);
+
+  useEffect(() => {
+    setPageCount(Math.ceil(totalCardCount / size));
+  }, [size]);
+
+  useEffect(() => {
+    const newLastId = (page - 1) * size + 1;
+    setLastId(newLastId);
+  }, [page]);
+
+  const { myCards } = useMyCardsQuery(
+    cardDirection,
+    groupIds,
+    cardTypes,
+    0,
+    size,
+  );
 
   return (
     <GNBLayout>
