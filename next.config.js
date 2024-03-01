@@ -8,6 +8,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 's3-alpha-sig.figma.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'ddd-harmonika.s3.ap-northeast-2.amazonaws.com',
+      },
     ],
   },
   webpack(config) {

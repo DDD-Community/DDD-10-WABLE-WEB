@@ -63,6 +63,10 @@ export default function CreateProfile() {
      */
   }
 
+  function handleClickGoBackButton() {
+    setStep('프로필 상세 정보 입력 - 기본 정보');
+  }
+
   return (
     <VStack w="100%" bg="waggle.gray.100">
       <Header />
@@ -97,6 +101,7 @@ export default function CreateProfile() {
                 <FormProvider {...profileAdditionalInformationForm}>
                   <AdditionalInformationForm
                     onSubmit={handleSubmitProfileAdditionalInformation}
+                    onClickGoBackButton={handleClickGoBackButton}
                   />
                 </FormProvider>
               </Funnel.Step>

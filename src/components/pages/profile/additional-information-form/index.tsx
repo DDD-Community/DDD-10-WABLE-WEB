@@ -18,8 +18,10 @@ import { ProfileAdditionalInformationSchema } from '@/models/profile';
 
 export function AdditionalInformationForm({
   onSubmit,
+  onClickGoBackButton,
 }: {
   onSubmit: (data: ProfileAdditionalInformationSchema) => void;
+  onClickGoBackButton: () => void;
 }) {
   const { register, handleSubmit } =
     useFormContext<ProfileAdditionalInformationSchema>();
@@ -104,7 +106,13 @@ export function AdditionalInformationForm({
           />
         </Flex>
         <Flex w="100%" gap="18px">
-          <Button flex="1" bg="gray.100" color="black" border="none">
+          <Button
+            flex="1"
+            bg="gray.100"
+            color="black"
+            border="none"
+            onClick={onClickGoBackButton}
+          >
             이전
           </Button>
           <Button flex="1" variant="primary">

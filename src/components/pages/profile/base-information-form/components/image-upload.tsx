@@ -4,12 +4,15 @@ import EditIcon from '@/assets/icons/edit.svg';
 import { DragEvent, useRef } from 'react';
 import Image from 'next/image';
 import { useFormContext } from 'react-hook-form';
+import { ProfileBaseInformationSchema } from '@/models/profile';
+import { BASE_PROFILE_IMAGE } from '@/constants/profile/base-image';
 
 /**
  * @todo upload 후 이미지 미리 보여주기
  * @todo 백엔드 이미지 업로드 API 연동하기
  */
 export function ImageUpload() {
+  const { getValues } = useFormContext<ProfileBaseInformationSchema>();
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleDragOver(event: DragEvent<HTMLDivElement>) {
@@ -46,7 +49,7 @@ export function ImageUpload() {
         <Image
           width={82}
           height={119}
-          src="/images/waggle.png"
+          src={getValues('profileImageUrl') ?? BASE_PROFILE_IMAGE}
           alt="와글이 기본 이미지"
         />
         <Input ref={inputRef} display="none" type="file" accept="image/*" />
