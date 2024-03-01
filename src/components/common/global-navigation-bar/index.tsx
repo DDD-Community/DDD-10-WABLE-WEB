@@ -43,8 +43,8 @@ function NavDropdown({
   groups,
   currentTab,
 }: {
-  cur: GroupInfo | undefined;
-  groups: GroupInfo[];
+  cur: string;
+  groups: string[];
   currentTab?: boolean;
 }) {
   return (
@@ -54,14 +54,14 @@ function NavDropdown({
           <div>
             <HomeIcon />
           </div>
-          {cur?.name || groups[0].name}
+          {cur || groups[0]}
           <ArrowUpDownIcon ml="auto" />
         </ItemContainer>
       </MenuButton>
       <MenuList borderRadius="12px">
-        {groups.map((group) => (
-          <MenuItem key={group.id} as="a" href={`/${group.name}/home`}>
-            {group.name}
+        {groups.map((group, index) => (
+          <MenuItem key={index} as="a" href={`/${group}/home`}>
+            {group}
           </MenuItem>
         ))}
       </MenuList>
@@ -83,8 +83,9 @@ function Divider() {
 
 export default function GlobalNavigationBar() {
   const router = useRouter();
-  const { data } = useMyGroupsQuery();
-  const cur = useCurrentGroup();
+
+  const groups = ['DDD'];
+  const cur = 'DDD';
 
   return (
     <GNBContainer>
@@ -106,10 +107,10 @@ export default function GlobalNavigationBar() {
         <Divider />
 
         <ItemGroup>
-          {data?.groups.length ? (
+          {groups.length ? (
             <NavDropdown
               cur={cur}
-              groups={data.groups}
+              groups={groups}
               currentTab={router.pathname.endsWith('home')}
             />
           ) : (
@@ -122,7 +123,7 @@ export default function GlobalNavigationBar() {
             </NavItem>
           )}
           <NavItem
-            href={ROUTES.GROUP.MEMBER(cur?.name || data?.groups[0].name || '')}
+            href={ROUTES.GROUP.MEMBER(cur)}
             icon={<UserIcon />}
             currentTab={router.pathname.endsWith('member')}
           >
