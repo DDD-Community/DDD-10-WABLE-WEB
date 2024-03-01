@@ -16,8 +16,15 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["@emotion/react/types/css-prop"]
+    "types": ["@emotion/react"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "global.d.ts", "env.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "global.d.ts",
+    "env.d.ts",
+    "emotion.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
