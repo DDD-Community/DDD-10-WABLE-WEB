@@ -13,10 +13,10 @@ export function ProfileInfo({ profile }: { profile: Profile }) {
       <VStack gap="12px">
         <Box borderRadius="8px">
           <Image
-            src={profileImage.src}
+            src={'/images/009501.png'}
             width="111"
             height="111"
-            alt={profile.nickName}
+            alt={profile.nickname}
           />
         </Box>
         <HStack gap="2px">
@@ -30,7 +30,7 @@ export function ProfileInfo({ profile }: { profile: Profile }) {
       <Divider />
       <ProfileInfoGrid>
         <Text>닉네임</Text>
-        <Text color="waggle.gray.700">{profile.nickName}</Text>
+        <Text color="waggle.gray.700">{profile.nickname}</Text>
         <Text>생일</Text>
         <Text color="waggle.gray.700">{profile.birth}</Text>
         <Text>MBTI</Text>
