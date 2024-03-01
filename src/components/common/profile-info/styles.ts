@@ -8,4 +8,13 @@ const ProfileInfoGrid = styled.section`
   width: 300px;
 `;
 
-export { ProfileInfoGrid };
+const HobbyBadge = styled.div`
+  padding: 10px 13px;
+  border: solid 1px var(--chakra-colors-gray-200);
+  border-radius: 10px;
+  color: var(--chakra-colors-waggle-gray-700);
+  background-color: white;
+  width: fit-content;
+`;
+
+export { ProfileInfoGrid, HobbyBadge };
