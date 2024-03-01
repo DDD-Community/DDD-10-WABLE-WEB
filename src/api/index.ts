@@ -15,4 +15,8 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
+axiosInstance.interceptors.response.use((response) => {
+  return response.data;
+});
+
 export default axiosInstance;
