@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import axiosInstance from '..';
 import { CardDirection, CardType } from '@/components/pages/my-card/types';
 
-export async function getMyCards(
+async function getMyCards(
   cardDirection: CardDirection,
   groupIds: number[],
   cardTypes: CardType[],
@@ -27,3 +27,5 @@ export async function getMyCards(
     }
   }
 }
+
+export { getMyCards };
