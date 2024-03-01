@@ -142,7 +142,10 @@ export function AdditionalInformationForm({
               placeholder="관심사를 입력해주세요."
               _placeholder={{ color: 'gray.400' }}
             />
-            <InputRightAddon onClick={handleClickAdditionalInterestOption}>
+            <InputRightAddon
+              onClick={handleClickAdditionalInterestOption}
+              cursor="pointer"
+            >
               +
             </InputRightAddon>
           </InputGroup>
@@ -158,7 +161,7 @@ export function AdditionalInformationForm({
             이전
           </Button>
           <Button flex="1" variant="primary" type="submit">
-            건너뛰기
+            {watch('interests') || watch('mbti') ? '완료' : '건너뛰기'}
           </Button>
         </Flex>
       </Center>

@@ -54,10 +54,33 @@ export type ProfileAdditionalInformationSchema = z.infer<
 export function mapProfileToRequestDto(
   profile: ProfileBaseInformationSchema & ProfileAdditionalInformationSchema,
 ) {
-  const { year, month, day, ...restProfile } = profile;
+  const { name, nickname, gender, profileImageUrl, year, month, day } = profile;
+  const questions = Object.entries(profile)
+    .filter(([key]) => key === 'interests' || key === 'mbti')
+    .map(([key, value]) => {
+      if (key === 'mbti')
+        return {
+          sid: 'mbti',
+          question: 'MBTI',
+          questionType: 'OPEN_ENDED',
+          answers: [value],
+        };
+
+      if (key === 'interests')
+        return {
+          sid: 'interests',
+          question: '관심사',
+          questionType: 'MULTIPLE_CHOICE',
+          answers: value,
+        };
+    });
 
   return {
-    ...restProfile,
+    name,
+    nickname,
+    gender,
+    profileImageUrl: profileImageUrl?.src,
     birth: `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`,
+    questions,
   };
 }

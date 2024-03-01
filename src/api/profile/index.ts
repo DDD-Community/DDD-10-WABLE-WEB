@@ -1,14 +1,13 @@
 import { isAxiosError } from 'axios';
 import axiosInstance from '..';
 
-type CreateUserProfileRequestDto = {
+export type CreateUserProfileRequestDto = {
   name: string;
   nickname?: string;
   gender: '남성' | '여성';
   birth: string;
   profileImageUrl?: string;
   questions: Array<{
-    id: number;
     sid: string;
     question: string;
     questionType: string;
