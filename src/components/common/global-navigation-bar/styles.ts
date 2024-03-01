@@ -73,6 +73,12 @@ const ItemContainer = styled.div<ItemWrapperProps>`
     currentTab
       ? `color: var(--chakra-colors-black); background-color: var(--chakra-colors-white);`
       : `color: var(--chakra-colors-waggle-gray-600); background-color: transparent;`};
+
+  > path {
+    fill: ${({ currentTab }) =>
+      currentTab ? 'var(--chakra-colors-black)' : 'var(--chakra-colors-white)'};
+  }
+
   & > div {
     display: flex;
     align-items: center;
@@ -86,11 +92,13 @@ const ItemContainer = styled.div<ItemWrapperProps>`
     background-color: ${({ currentTab }) =>
       currentTab ? 'var(--chakra-colors-black)' : 'var(--chakra-colors-white)'};
     border-radius: 0.75rem;
-  }
 
-  & path {
-    fill: ${({ currentTab }) =>
-      currentTab ? 'var(--chakra-colors-white)' : 'var(--chakra-colors-black)'};
+    & path {
+      fill: ${({ currentTab }) =>
+        currentTab
+          ? 'var(--chakra-colors-white)'
+          : 'var(--chakra-colors-black)'};
+    }
   }
 `;
 
