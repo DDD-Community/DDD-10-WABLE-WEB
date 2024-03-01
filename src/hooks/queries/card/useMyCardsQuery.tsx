@@ -1,10 +1,7 @@
 import axiosInstance from '../../../api';
 import { useQuery } from '@tanstack/react-query';
-import {
-  CardDirection,
-  CardInfo,
-  CardType,
-} from '@/components/pages/my-card/types';
+import { CardType } from '@/api/card/types';
+import { CardDirection, CardInfo } from '@/components/pages/my-card/types';
 import { AxiosError } from 'axios';
 import { getMyCards } from '@/api/card';
 

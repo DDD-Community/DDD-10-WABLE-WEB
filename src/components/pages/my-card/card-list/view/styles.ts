@@ -1,20 +1,6 @@
 import styled from '@emotion/styled';
-import { CardType } from '../../types';
-import gratitudeS from '@/assets/images/cards/gratitude-s.png';
-import gratitudeL from '@/assets/images/cards/gratitude-l.png';
-import celebrationS from '@/assets/images/cards/celebration-s.png';
-import celebrationL from '@/assets/images/cards/celebration-l.png';
-import encouragementS from '@/assets/images/cards/encouragement-s.png';
-import encouragementL from '@/assets/images/cards/encouragement-l.png';
-import greetingS from '@/assets/images/cards/greeting-s.png';
-import greetingL from '@/assets/images/cards/greeting-l.png';
-
-const cardTypeImages: Record<CardType, Record<'s' | 'l', string>> = {
-  GRATITUDE: { s: gratitudeS.src, l: gratitudeL.src },
-  CELEBRATION: { s: celebrationS.src, l: celebrationL.src },
-  ENCOURAGEMENT: { s: encouragementS.src, l: encouragementL.src },
-  GREETING: { s: greetingS.src, l: greetingL.src },
-};
+import { CardType } from '@/api/card/types';
+import { cardTypeImages } from '@/utils/cardImage';
 
 const CardTypeColor: Record<CardType, string> = {
   CELEBRATION: `blue`,
@@ -24,7 +10,6 @@ const CardTypeColor: Record<CardType, string> = {
 };
 
 const CardViewListContainer = styled.ul`
-  padding: 0 26px;
   border-top: 1px solid #ececec;
   border-bottom: 1px solid #ececec;
   overflow-y: auto;
@@ -53,7 +38,12 @@ const CardListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  padding: 15px 0;
+  padding: 15px 26px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d9d9d9;
+  }
 
   &:not(:first-of-type) {
     border-top: 1px solid #ececec;
@@ -66,6 +56,7 @@ const CardGridItem = styled.li<{ type: CardType }>`
   width: 294px;
   height: 339px;
   border-radius: 8px;
+  cursor: pointer;
 
   background-image: ${(props) =>
     'url(' + cardTypeImages[props.type]['l'] + ')'};
