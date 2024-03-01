@@ -16,7 +16,7 @@ import { GENDER_OPTIONS, ProfileBaseInformationSchema } from '@/models/profile';
 import { ImageUpload, RadioGroup } from './components';
 import { useDateInput } from './logic';
 
-export function BasicInformationForm({
+export function BaseInformation({
   onSubmit,
 }: {
   onSubmit: (data: ProfileBaseInformationSchema) => void;

@@ -3,6 +3,7 @@ import { z } from 'zod';
 export const GENDER_OPTIONS = ['남성', '여성'] as const;
 
 export const profileBaseInformationSchema = z.object({
+  profileImageUrl: z.string().optional(),
   name: z
     .string({
       required_error: '이름을 입력해주세요.',
@@ -33,8 +34,26 @@ export const profileBaseInformationSchema = z.object({
   }),
 });
 
-export const profileAdditionalInformationSchema = z.object({});
+export const profileAdditionalInformationSchema = z.object({
+  mbti: z.string().optional(),
+  interests: z.array(z.string()).optional(),
+});
 
 export type ProfileBaseInformationSchema = z.infer<
   typeof profileBaseInformationSchema
 >;
+
+export type ProfileAdditionalInformationSchema = z.infer<
+  typeof profileAdditionalInformationSchema
+>;
+
+export function mapProfileToRequestDto(
+  profile: ProfileBaseInformationSchema & ProfileAdditionalInformationSchema,
+) {
+  const { year, month, day, ...restProfile } = profile;
+
+  return {
+    ...restProfile,
+    birth: `${year}-${month}-${day}`,
+  };
+}

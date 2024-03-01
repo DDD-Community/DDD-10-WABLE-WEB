@@ -1,4 +1,4 @@
-import { ProfileSchema } from '@/models/profile';
+import { ProfileBaseInformationSchema } from '@/models/profile';
 import {
   HStack,
   useRadioGroup,
@@ -12,8 +12,8 @@ import { ReactNode } from 'react';
 import { Control, useController } from 'react-hook-form';
 
 type RadioGroupProps = {
-  name: keyof ProfileSchema;
-  control: Control<ProfileSchema, any>;
+  name: keyof ProfileBaseInformationSchema;
+  control: Control<ProfileBaseInformationSchema, any>;
   options: readonly string[];
 };
 

@@ -1,6 +1,9 @@
 import { useFunnel } from '@/hooks/common/useFunnel';
 import {
+  ProfileAdditionalInformationSchema,
   ProfileBaseInformationSchema,
+  mapProfileToRequestDto,
+  profileAdditionalInformationSchema,
   profileBaseInformationSchema,
 } from '@/models/profile';
 import { Flex, VStack, Heading, Text } from '@chakra-ui/react';
@@ -9,12 +12,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
   AdditionalInformationForm,
-  BasicInformationForm,
+  BaseInformation,
   CreateProfileComplete,
 } from '@/components/pages/profile';
 import { Stepper } from '@/components/pages/profile';
 import { Header } from '@/components/pages/profile';
 import LogoutIcon from '@/assets/icons/logout.svg';
+import { BASE_PROFILE_IMAGE } from '@/constants/profile/base-image';
 
 const STEPS = [
   '프로필 상세 정보 입력 - 기본 정보',
@@ -31,16 +35,32 @@ export default function CreateProfile() {
   });
   const profileBaseInformationForm = useForm<ProfileBaseInformationSchema>({
     resolver: zodResolver(profileBaseInformationSchema),
+    defaultValues: {
+      profileImageUrl: BASE_PROFILE_IMAGE,
+    },
   });
+  const profileAdditionalInformationForm =
+    useForm<ProfileAdditionalInformationSchema>({
+      resolver: zodResolver(profileAdditionalInformationSchema),
+    });
 
-  function handleSubmitProfileBaseInformation(
-    profileBasicInformation: ProfileBaseInformationSchema,
-  ) {
-    /**
-     * @todo year, month, day 뽑아서 birthday로 만들기
-     * @todo API 연결하기
-     */
+  function handleSubmitProfileBaseInformation() {
     setStep('프로필 상세 정보 입력 - MBTI 및 관심사');
+  }
+
+  async function handleSubmitProfileAdditionalInformation(
+    profileAdditionalInformation: ProfileAdditionalInformationSchema,
+  ) {
+    const profileBaseInformation = profileBaseInformationForm.getValues();
+    const profile = mapProfileToRequestDto({
+      ...profileBaseInformation,
+      ...profileAdditionalInformation,
+    });
+
+    /**
+     * @todo API(useMutation) 연결하기
+     * @todo onSuccess: 완료 step으로 이동하기
+     */
   }
 
   return (
@@ -68,13 +88,17 @@ export default function CreateProfile() {
             <Funnel>
               <Funnel.Step name="프로필 상세 정보 입력 - 기본 정보">
                 <FormProvider {...profileBaseInformationForm}>
-                  <BasicInformationForm
+                  <BaseInformation
                     onSubmit={handleSubmitProfileBaseInformation}
                   />
                 </FormProvider>
               </Funnel.Step>
               <Funnel.Step name="프로필 상세 정보 입력 - MBTI 및 관심사">
-                <AdditionalInformationForm />
+                <FormProvider {...profileAdditionalInformationForm}>
+                  <AdditionalInformationForm
+                    onSubmit={handleSubmitProfileAdditionalInformation}
+                  />
+                </FormProvider>
               </Funnel.Step>
               <Funnel.Step name="프로필 상세 정보 입력 - 완료">
                 <CreateProfileComplete />

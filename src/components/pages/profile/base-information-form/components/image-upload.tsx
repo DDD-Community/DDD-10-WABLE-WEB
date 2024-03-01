@@ -3,6 +3,7 @@ import { Center, Flex, Input } from '@chakra-ui/react';
 import EditIcon from '@/assets/icons/edit.svg';
 import { DragEvent, useRef } from 'react';
 import Image from 'next/image';
+import { useFormContext } from 'react-hook-form';
 
 /**
  * @todo upload 후 이미지 미리 보여주기
