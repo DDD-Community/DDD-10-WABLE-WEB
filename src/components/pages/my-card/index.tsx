@@ -18,8 +18,8 @@ import { useMyProfilesQuery } from '@/hooks/queries/profile/useMyProfilesQuery';
 
 export default function MyCard() {
   const profiles: ProfileInfo[] = mockProfile;
-  const cardListForGrid: CardInfo[] = mockCardInfoForGrid;
-  const cardListForList: CardInfo[] = mockCardInfoForList;
+  const mockCardList: CardInfo[] = mockCardInfoForGrid;
+  const [cardList, setCardList] = useState([]);
 
   // const { data: profiles } = useMyProfilesQuery();
 
@@ -42,10 +42,11 @@ export default function MyCard() {
 
   const GRID_SIZE = 6;
   const LIST_SIZE = 14;
-  const totalCardCount = 32;
   const [lastId, setLastId] = useState(0);
   const [size, setSize] = useState(GRID_SIZE);
-  const [pageCount, setPageCount] = useState(Math.ceil(totalCardCount / size));
+  const [pageCount, setPageCount] = useState(
+    Math.ceil(mockCardList.length / size),
+  );
   const [page, setPage] = useState(0);
   function handlePageClick(selectedItem: { selected: number }) {
     setPage(selectedItem.selected);
@@ -57,12 +58,14 @@ export default function MyCard() {
   }, [viewType]);
 
   useEffect(() => {
-    setPageCount(Math.ceil(totalCardCount / size));
+    setPageCount(Math.ceil(mockCardList.length / size));
   }, [size]);
 
   useEffect(() => {
-    const newLastId = (page - 1) * size + 1;
+    const newLastId = page * size;
+    const newCardData = mockCardList.slice(newLastId, newLastId + size);
     setLastId(newLastId);
+    setCardList([...newCardData]);
   }, [page, size]);
 
   const { data: myCards } = useMyCardsQuery(
@@ -84,7 +87,7 @@ export default function MyCard() {
   return (
     <GNBLayout>
       <Heading fontSize="24px" px="24px" mb="27px">
-        그룹1에 오신걸 환영합니다.
+        내 카드
       </Heading>
       <HStack
         gap="16px"
@@ -115,9 +118,7 @@ export default function MyCard() {
               />
               <CardListView
                 viewType={viewType}
-                cardList={
-                  viewType === 'GRID' ? cardListForGrid : cardListForList
-                }
+                cardList={cardList}
                 onClickCard={handleCardOpen}
               />
               <CardListFooter>
