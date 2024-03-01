@@ -12,9 +12,22 @@ ConfirmModal.Header = Header;
 ConfirmModal.Body = Body;
 ConfirmModal.Footer = Footer;
 
-export function ConfirmModal({ children }: { children: React.ReactNode }) {
+export function ConfirmModal({
+  isOpen = false,
+  onClose,
+  children,
+}: {
+  isOpen?: boolean;
+  onClose?: () => void;
+  children: React.ReactNode;
+}) {
   return (
-    <Modal isOpen={false} onClose={() => {}}>
+    <Modal
+      isOpen={isOpen}
+      onClose={() => {
+        onClose?.();
+      }}
+    >
       <ModalOverlay />
       <ModalContent>{children}</ModalContent>
     </Modal>
