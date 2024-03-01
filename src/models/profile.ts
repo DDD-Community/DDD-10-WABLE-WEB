@@ -1,8 +1,14 @@
+import { Question } from '@/api/profile';
 import { z } from 'zod';
 
 export const GENDER_OPTIONS = ['남성', '여성'] as const;
 
-export const profileSchema = z.object({
+export const profileBaseInformationSchema = z.object({
+  profileImageUrl: z
+    .object({
+      src: z.string(),
+    })
+    .optional(),
   name: z
     .string({
       required_error: '이름을 입력해주세요.',
@@ -13,12 +19,9 @@ export const profileSchema = z.object({
     .max(10, {
       message: '이름은 10자 이내로 입력해주세요.',
     }),
-  nickname: z
-    .string()
-    .max(10, {
-      message: '닉네임은 10자 이내로 입력해주세요.',
-    })
-    .optional(),
+  nickname: z.string().max(10, {
+    message: '닉네임은 10자 이내로 입력해주세요.',
+  }),
   gender: z.enum(GENDER_OPTIONS, {
     required_error: '성별을 선택해주세요.',
   }),
@@ -33,4 +36,49 @@ export const profileSchema = z.object({
   }),
 });
 
-export type ProfileSchema = z.infer<typeof profileSchema>;
+export const profileAdditionalInformationSchema = z.object({
+  mbti: z.string().optional(),
+  interests: z.array(z.string()).optional(),
+});
+
+export type ProfileBaseInformationSchema = z.infer<
+  typeof profileBaseInformationSchema
+>;
+
+export type ProfileAdditionalInformationSchema = z.infer<
+  typeof profileAdditionalInformationSchema
+>;
+
+export function mapProfileToRequestDto(
+  profile: ProfileBaseInformationSchema & ProfileAdditionalInformationSchema,
+) {
+  const { name, nickname, gender, profileImageUrl, year, month, day } = profile;
+  const questions = Object.entries(profile)
+    .filter(([key]) => key === 'interests' || key === 'mbti')
+    .map(([key, value]) => {
+      if (key === 'mbti')
+        return {
+          sid: 'MBTI',
+          question: 'MBTI',
+          questionType: 'OPEN_ENDED',
+          answers: [value],
+        };
+
+      if (key === 'interests')
+        return {
+          sid: 'HOBBY',
+          question: '관심사',
+          questionType: 'MULTIPLE_CHOICE',
+          answers: [...(value as string[])],
+        };
+    }) as Question[];
+
+  return {
+    name,
+    nickname,
+    gender,
+    profileImageUrl: profileImageUrl?.src,
+    birth: `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`,
+    questions,
+  };
+}

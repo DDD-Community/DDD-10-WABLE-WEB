@@ -4,7 +4,7 @@ export const mockProfile = [
   {
     name: '박경서',
     nickname: '박경서_1',
-    gender: 'male',
+    gender: '남성',
     birth: '1998-01-21',
     profile_image_url: '~~~',
     mbti: 'ENTP',
@@ -13,7 +13,7 @@ export const mockProfile = [
   {
     name: '김도경',
     nickname: '김도경_1',
-    gender: 'female',
+    gender: '여성',
     birth: '1996-01-21',
     profile_image_url: '~~~',
     mbti: 'ENTP',

@@ -12,21 +12,26 @@ import {
 import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
-import { GENDER_OPTIONS, ProfileSchema } from '@/models/profile';
+import { GENDER_OPTIONS, ProfileBaseInformationSchema } from '@/models/profile';
 import { ImageUpload, RadioGroup } from './components';
 import { useDateInput } from './logic';
 
-export function BasicInformationForm() {
+export function BaseInformation({
+  onSubmit,
+}: {
+  onSubmit: (data: ProfileBaseInformationSchema) => void;
+}) {
   const {
     register,
     control,
     formState: { errors },
     getValues,
-  } = useFormContext<ProfileSchema>();
+    handleSubmit,
+  } = useFormContext<ProfileBaseInformationSchema>();
   const { currentDate, years, months, days, handleChangeDate } = useDateInput();
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Flex
         w="100%"
         justifyContent="center"
@@ -55,7 +60,7 @@ export function BasicInformationForm() {
           <FormControl isInvalid={!!errors.nickname}>
             <FormLabel htmlFor="nickname">
               <Flex gap="12px" alignItems="flex-end">
-                <Heading size="sm">닉네임</Heading>
+                <Heading size="sm">닉네임*</Heading>
                 <FormErrorMessage m="0">
                   {errors.nickname?.message}
                 </FormErrorMessage>
@@ -173,9 +178,16 @@ export function BasicInformationForm() {
           </FormControl>
         </Flex>
       </Flex>
-      <Button type="submit" maxW="412px" w="100%" h="48px" variant="primary">
+      <Button
+        type="submit"
+        maxW="412px"
+        w="100%"
+        h="48px"
+        variant="primary"
+        marginTop="24px"
+      >
         다음으로
       </Button>
-    </>
+    </form>
   );
 }
