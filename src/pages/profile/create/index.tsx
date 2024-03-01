@@ -81,7 +81,7 @@ export default function CreateProfile() {
           alignItems="center"
           gap="32px"
         >
-          <Heading size="md">프로필 상세 정보 입력</Heading>
+          <Heading size="md">새로운 그룹 프로필 정보 입력</Heading>
           <Stepper steps={STEPS} activeStepIndex={getIndex(step)} />
           <Flex
             w="100%"
