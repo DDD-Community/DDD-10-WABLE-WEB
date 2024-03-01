@@ -58,13 +58,13 @@ export default function MyCard() {
   useEffect(() => {
     const newLastId = (page - 1) * size + 1;
     setLastId(newLastId);
-  }, [page]);
+  }, [page, size]);
 
   const { myCards } = useMyCardsQuery(
     cardDirection,
     groupIds,
     cardTypes,
-    0,
+    lastId,
     size,
   );
 
