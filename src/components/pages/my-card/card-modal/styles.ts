@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { cardTypeImages } from '@/utils/cardImage';
-import { CardType } from '../types';
+import { CardType } from '@/api/card/types';
 
 const CardModalContainer = styled.section`
   width: 100%;

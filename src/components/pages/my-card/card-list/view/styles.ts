@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { CardType } from '../../types';
+import { CardType } from '@/api/card/types';
 import { cardTypeImages } from '@/utils/cardImage';
 
 const CardTypeColor: Record<CardType, string> = {

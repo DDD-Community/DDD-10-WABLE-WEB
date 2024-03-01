@@ -1,4 +1,4 @@
-import { CardType } from './types';
+import { CardType } from '@/api/card/types';
 
 const cardTypeMap: Record<CardType, string> = {
   GREETING: '인사',

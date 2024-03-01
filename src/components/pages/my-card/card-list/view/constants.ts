@@ -1,4 +1,4 @@
-import { CardType } from '../../types';
+import { CardType } from '@/api/card/types';
 
 const CardTypeText: Record<CardType, string> = {
   CELEBRATION: '축하',

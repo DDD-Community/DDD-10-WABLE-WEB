@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/react';
-import { CardInfo, CardType } from '../../types';
+import { CardInfo } from '../../types';
 import { CardTypeText } from './constants';
 import {
   CardListItem,

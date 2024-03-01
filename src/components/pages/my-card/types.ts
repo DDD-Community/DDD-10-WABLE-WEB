@@ -1,9 +1,4 @@
-export type CardType =
-  | 'GREETING'
-  | 'CELEBRATION'
-  | 'ENCOURAGEMENT'
-  | 'GRATITUDE';
-
+import { CardType } from '@/api/card/types';
 export interface CardInfo {
   createdAt: Date;
   updatedAt: Date;

@@ -1,4 +1,4 @@
-import { CardType } from '@/components/pages/my-card/types';
+import { CardType } from '@/api/card/types';
 import gratitudeS from '@/assets/images/cards/gratitude-s.png';
 import gratitudeL from '@/assets/images/cards/gratitude-l.png';
 import gratitudeXL from '@/assets/images/cards/gratitude-xl.png';

@@ -1,7 +1,6 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 import { Props } from './types';
 import { CloseIcon } from '@chakra-ui/icons';
-import { CardType } from '../types';
 import { cardTypeMap } from '../constants';
 import { Card } from './styles';
 
