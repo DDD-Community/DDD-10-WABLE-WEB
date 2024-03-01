@@ -9,14 +9,12 @@ import {
   Select,
   Text,
 } from '@chakra-ui/react';
-import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useRef, useState } from 'react';
 import { MBTI } from '@/constants/mbti';
 import { DEFAULT_INTERESTS } from '@/constants/interest';
 
 export function AdditionalInformationForm() {
-  const {} = useFormContext();
   const [interests, setInterests] = useState<string[]>(DEFAULT_INTERESTS);
   const inputRef = useRef<HTMLInputElement>(null);
 

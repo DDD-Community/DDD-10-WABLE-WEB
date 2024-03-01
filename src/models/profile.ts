@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const GENDER_OPTIONS = ['남성', '여성'] as const;
 
-export const profileSchema = z.object({
+export const profileBaseInformationSchema = z.object({
   name: z
     .string({
       required_error: '이름을 입력해주세요.',
@@ -33,4 +33,8 @@ export const profileSchema = z.object({
   }),
 });
 
-export type ProfileSchema = z.infer<typeof profileSchema>;
+export const profileAdditionalInformationSchema = z.object({});
+
+export type ProfileBaseInformationSchema = z.infer<
+  typeof profileBaseInformationSchema
+>;

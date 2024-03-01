@@ -12,21 +12,26 @@ import {
 import { useFormContext } from 'react-hook-form';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
-import { GENDER_OPTIONS, ProfileSchema } from '@/models/profile';
+import { GENDER_OPTIONS, ProfileBaseInformationSchema } from '@/models/profile';
 import { ImageUpload, RadioGroup } from './components';
 import { useDateInput } from './logic';
 
-export function BasicInformationForm() {
+export function BasicInformationForm({
+  onSubmit,
+}: {
+  onSubmit: (data: ProfileBaseInformationSchema) => void;
+}) {
   const {
     register,
     control,
     formState: { errors },
     getValues,
-  } = useFormContext<ProfileSchema>();
+    handleSubmit,
+  } = useFormContext<ProfileBaseInformationSchema>();
   const { currentDate, years, months, days, handleChangeDate } = useDateInput();
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Flex
         w="100%"
         justifyContent="center"
@@ -173,9 +178,16 @@ export function BasicInformationForm() {
           </FormControl>
         </Flex>
       </Flex>
-      <Button type="submit" maxW="412px" w="100%" h="48px" variant="primary">
+      <Button
+        type="submit"
+        maxW="412px"
+        w="100%"
+        h="48px"
+        variant="primary"
+        marginTop="24px"
+      >
         다음으로
       </Button>
-    </>
+    </form>
   );
 }
