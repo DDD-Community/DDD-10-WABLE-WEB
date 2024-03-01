@@ -28,3 +28,19 @@ export async function createUserProfile(dto: CreateUserProfileRequestDto) {
     }
   }
 }
+
+type PresignedUrlResponseDto = {
+  filename: string;
+  signedUrl: string;
+};
+
+export async function getPresignedUrl() {
+  const response = await axiosInstance.get<PresignedUrlResponseDto>(
+    '/v1/profiles/presigned-url',
+  );
+
+  return {
+    filename: response.data.filename,
+    presignedUrl: response.data.signedUrl,
+  };
+}

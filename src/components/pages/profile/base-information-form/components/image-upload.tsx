@@ -1,19 +1,20 @@
 import { Center, Flex, Input } from '@chakra-ui/react';
 
 import EditIcon from '@/assets/icons/edit.svg';
-import { DragEvent, useRef } from 'react';
+import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useFormContext } from 'react-hook-form';
 import { ProfileBaseInformationSchema } from '@/models/profile';
 import { BASE_PROFILE_IMAGE } from '@/constants/profile/base-image';
+import { getPresignedUrl } from '@/api/profile';
+import axios from 'axios';
 
-/**
- * @todo upload 후 이미지 미리 보여주기
- * @todo 백엔드 이미지 업로드 API 연동하기
- */
 export function ImageUpload() {
-  const { getValues } = useFormContext<ProfileBaseInformationSchema>();
+  const { setValue } = useFormContext<ProfileBaseInformationSchema>();
   const inputRef = useRef<HTMLInputElement>(null);
+  const [previewImage, setPreviewImage] = useState<{ src: string | null }>({
+    src: null,
+  });
 
   function handleDragOver(event: DragEvent<HTMLDivElement>) {
     event.preventDefault();
@@ -25,10 +26,35 @@ export function ImageUpload() {
     event.stopPropagation();
 
     const { files } = event.dataTransfer;
+    const file = files?.[0];
+
+    if (file) uploadImage(file);
   }
 
-  function handleOpenFileUpload() {
+  async function handleClickInputWrapper() {
     inputRef.current?.click();
+  }
+
+  async function uploadImage(file: File) {
+    const { filename, presignedUrl } = await getPresignedUrl();
+
+    await axios.put(presignedUrl, file, {
+      headers: {
+        'Content-Type': file.type,
+      },
+    });
+
+    setValue('profileImageUrl', filename);
+    setPreviewImage({
+      src: URL.createObjectURL(file),
+    });
+  }
+
+  function handleChangeFile(event: ChangeEvent<HTMLInputElement>) {
+    const { files } = event.target;
+    const file = files?.[0];
+
+    if (file) uploadImage(file);
   }
 
   return (
@@ -42,17 +68,32 @@ export function ImageUpload() {
         h="168px"
         bg="gray.400"
         cursor="pointer"
-        onClick={handleOpenFileUpload}
+        onClick={handleClickInputWrapper}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
-        <Image
-          width={82}
-          height={119}
-          src={getValues('profileImageUrl') ?? BASE_PROFILE_IMAGE}
-          alt="와글이 기본 이미지"
+        {previewImage.src ? (
+          <Image
+            src={previewImage.src}
+            fill
+            alt="프로필 사진"
+            style={{ objectFit: 'cover', borderRadius: '12px' }}
+          />
+        ) : (
+          <Image
+            width={82}
+            height={119}
+            src={BASE_PROFILE_IMAGE}
+            alt="와글이 기본 이미지"
+          />
+        )}
+        <Input
+          ref={inputRef}
+          display="none"
+          type="file"
+          accept="image/*"
+          onChange={handleChangeFile}
         />
-        <Input ref={inputRef} display="none" type="file" accept="image/*" />
         <Flex
           justifyContent="center"
           alignItems="center"
