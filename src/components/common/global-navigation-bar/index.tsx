@@ -58,7 +58,7 @@ function NavDropdown({
           <ArrowUpDownIcon ml="auto" />
         </ItemContainer>
       </MenuButton>
-      <MenuList>
+      <MenuList borderRadius="12px">
         {groups.map((group) => (
           <MenuItem key={group.id} as="a" href={`/${group.name}/home`}>
             {group.name}
@@ -122,7 +122,7 @@ export default function GlobalNavigationBar() {
             </NavItem>
           )}
           <NavItem
-            href={ROUTES.GROUP.MEMBER(cur?.name || data?.groups[0].name)}
+            href={ROUTES.GROUP.MEMBER(cur?.name || data?.groups[0].name || '')}
             icon={<UserIcon />}
             currentTab={router.pathname.endsWith('member')}
           >
