@@ -4,6 +4,7 @@ export const ROUTES = {
   SIGN_UP: '/sign-up',
   GROUP: {
     CREATE: '/group/create',
-    SETTING: (groupName: string) => `/group/${groupName}/setting`,
+    SETTING: (groupName: string) => `/${groupName}/setting`,
   },
+  SETTING: '/settings',
 };
