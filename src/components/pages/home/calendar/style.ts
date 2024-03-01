@@ -44,12 +44,12 @@ const StyleWrapper = styled.div`
   }
 
   th[aria-label='Saturday'],
-  .rdp-row .rdp-cell:nth-child(6) {
+  .rdp-row .rdp-cell:nth-of-type(6) {
     color: #2b6cb0;
   }
 
   th[aria-label='Sunday'],
-  .rdp-row .rdp-cell:nth-child(7) {
+  .rdp-row .rdp-cell:nth-of-type(7) {
     color: #c53030;
   }
 

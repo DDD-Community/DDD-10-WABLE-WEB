@@ -25,6 +25,7 @@ import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { ArrowUpDownIcon } from '@chakra-ui/icons';
 import { GroupInfo } from '@/api/group/type';
 import { useCurrentGroup } from '@/hooks/common/useCurrentGroup';
+import { useRouter } from 'next/router';
 
 function NavItem({ children, href, icon, currentTab }: NavItemProps) {
   return (
@@ -57,7 +58,7 @@ function NavDropdown({
           <ArrowUpDownIcon ml="auto" />
         </ItemContainer>
       </MenuButton>
-      <MenuList>
+      <MenuList borderRadius="12px">
         {groups.map((group) => (
           <MenuItem key={group.id} as="a" href={`/${group.name}/home`}>
             {group.name}
@@ -81,6 +82,7 @@ function Divider() {
 }
 
 export default function GlobalNavigationBar() {
+  const router = useRouter();
   const { data } = useMyGroupsQuery();
   const cur = useCurrentGroup();
 
@@ -92,7 +94,11 @@ export default function GlobalNavigationBar() {
 
       <GNBBody>
         <ItemGroup>
-          <NavItem href={ROUTES.MY_CARD} icon={<CopyIcon />} currentTab>
+          <NavItem
+            href={ROUTES.MY_CARD}
+            icon={<CopyIcon />}
+            currentTab={router.pathname.endsWith('my-card')}
+          >
             내 카드
           </NavItem>
         </ItemGroup>
@@ -101,15 +107,24 @@ export default function GlobalNavigationBar() {
 
         <ItemGroup>
           {data?.groups.length ? (
-            <NavDropdown cur={cur} groups={data.groups} />
+            <NavDropdown
+              cur={cur}
+              groups={data.groups}
+              currentTab={router.pathname.endsWith('home')}
+            />
           ) : (
-            <NavItem href={ROUTES.GROUP.CREATE} icon={<HomeIcon />}>
+            <NavItem
+              href={ROUTES.GROUP.CREATE}
+              icon={<HomeIcon />}
+              currentTab={router.pathname.endsWith('create')}
+            >
               새 그룹 만들기
             </NavItem>
           )}
           <NavItem
-            href={ROUTES.GROUP.MEMBER(cur?.name || data?.groups[0].name)}
+            href={ROUTES.GROUP.MEMBER(cur?.name || data?.groups[0].name || '')}
             icon={<UserIcon />}
+            currentTab={router.pathname.endsWith('member')}
           >
             팀원 목록
           </NavItem>
@@ -117,7 +132,11 @@ export default function GlobalNavigationBar() {
 
         <ItemGroup>
           <ItemGroupHeader>ACCOUNT PAGES</ItemGroupHeader>
-          <NavItem href={ROUTES.SETTING} icon={<SettingsIcon />}>
+          <NavItem
+            href={ROUTES.SETTING}
+            icon={<SettingsIcon />}
+            currentTab={router.pathname.endsWith('setting')}
+          >
             설정
           </NavItem>
         </ItemGroup>
