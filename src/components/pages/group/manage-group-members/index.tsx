@@ -8,6 +8,54 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 
+const MOCK_MEMBERS = [
+  {
+    name: '김도경',
+    role: '관리자',
+    imageSrc: '/images/000101.png',
+  },
+  {
+    name: '신승준',
+    role: '팀원',
+    imageSrc: '/images/002501.png',
+  },
+  {
+    name: '조성원',
+    role: '팀원',
+    imageSrc: '/images/009501.png',
+  },
+  {
+    name: '조서현',
+    role: '팀원',
+    imageSrc: '/images/003901.png',
+  },
+  {
+    name: '한나리',
+    role: '팀원',
+    imageSrc: '/images/005401.png',
+  },
+  {
+    name: '박경서',
+    role: '팀원',
+    imageSrc: '/images/015001.png',
+  },
+  {
+    name: '신민수',
+    role: '팀원',
+    imageSrc: '/images/014301.png',
+  },
+  {
+    name: '최사라',
+    role: '팀원',
+    imageSrc: '/images/013201.png',
+  },
+  {
+    name: '김율아',
+    role: '팀원',
+    imageSrc: '/images/014301.png',
+  },
+];
+
 export function ManageGroupMembers() {
   return (
     <Flex
@@ -61,45 +109,47 @@ export function ManageGroupMembers() {
             역할
           </Text>
         </Flex>
-        <Flex borderBottom="1px" borderColor="gray.200">
-          <Flex
-            h="56px"
-            align="center"
-            paddingLeft="10px"
-            gap="16px"
-            flex="3.5"
-          >
+        {MOCK_MEMBERS.map(({ name, role, imageSrc }) => (
+          <Flex key={name} borderBottom="1px" borderColor="gray.200">
             <Flex
+              h="56px"
               align="center"
-              justify="center"
-              borderRadius="12px"
-              bg="gray.400"
-              w="42px"
-              h="40px"
+              paddingLeft="10px"
+              gap="16px"
+              flex="3.5"
             >
-              <Image
-                width={24}
-                height={36}
-                src="/images/waggle.png"
-                alt="와글이 기본 이미지"
-              />
+              <Flex
+                align="center"
+                justify="center"
+                borderRadius="12px"
+                bg="gray.400"
+                w="42px"
+                h="40px"
+              >
+                <Image
+                  width={24}
+                  height={36}
+                  src={imageSrc}
+                  alt="와글이 기본 이미지"
+                />
+              </Flex>
+              <Text
+                fontSize="14px"
+                fontWeight="600"
+                lineHeight="140%"
+                color="gray.700"
+              >
+                {name}
+              </Text>
             </Flex>
-            <Text
-              fontSize="14px"
-              fontWeight="600"
-              lineHeight="140%"
-              color="gray.700"
-            >
-              홍길동
-            </Text>
+            <Flex flex="1" align="center" gap="4px" cursor="pointer">
+              <Text fontSize="14px" lineHeight="140%">
+                {role}
+              </Text>
+              <ChevronDownIcon />
+            </Flex>
           </Flex>
-          <Flex flex="1" align="center" gap="4px" cursor="pointer">
-            <Text fontSize="14px" lineHeight="140%">
-              관리자
-            </Text>
-            <ChevronDownIcon />
-          </Flex>
-        </Flex>
+        ))}
       </Flex>
     </Flex>
   );
