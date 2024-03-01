@@ -19,7 +19,15 @@ export default function Calendar({
         showOutsideDays
         required
         selected={date}
-        modifiers={{ booked: [new Date(2024, 1, 11)] }}
+        modifiers={{
+          booked: [
+            new Date(2024, 2, 23),
+            new Date(2024, 2, 13),
+            new Date(2024, 2, 4),
+            new Date(2024, 2, 2),
+            new Date(2024, 2, 26),
+          ],
+        }}
         modifiersStyles={{
           booked: {
             textDecoration: 'underline',

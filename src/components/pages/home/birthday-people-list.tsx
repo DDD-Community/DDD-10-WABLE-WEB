@@ -9,11 +9,14 @@ import BirthdayCakeIcon from '@/assets/icons/birthday-line.svg';
 import { chunk } from '@/utils/array';
 
 const MOCK_BIRTHDAY_PEOPLE = [
-  { name: '김도경' },
-  { name: '신승준' },
-  { name: '조성원' },
-  { name: '한나리' },
-  { name: '조서현' },
+  { name: '김도경', birth: '3월 04일' },
+  { name: '신승준', birth: '3월 13일' },
+  { name: '조성원', birth: '3월 23일' },
+  { name: '한나리', birth: '3월 02일' },
+  { name: '조서현', birth: '3월 02일' },
+  { name: '신민수', birth: '3월 02일' },
+  { name: '최사라', birth: '3월 13일' },
+  { name: '박경서', birth: '3월 13일' },
 ];
 
 function BirthdayPersonCard({ name, date }: { name: string; date: string }) {
@@ -75,7 +78,10 @@ export default function BirthdayPeopleList({
       </Flex>
       <CarouselStyleWrapper>
         <Carousel options={{ loop: true }}>
-          {chunk(MOCK_BIRTHDAY_PEOPLE, 3).map((group, index) => (
+          {chunk(
+            MOCK_BIRTHDAY_PEOPLE.filter((p) => p.birth === formattedDate),
+            3,
+          ).map((group, index) => (
             <Slide key={`group-${index}`}>
               {group.map((person, index) => (
                 <BirthdayPersonCard
