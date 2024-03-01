@@ -5,11 +5,7 @@ import SettingsIcon from '@/assets/icons/settings.svg';
 import LeaveIcon from '@/assets/icons/leave.svg';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
-import {
-  GroupLeaveModal,
-  GroupOwnerWarningModal,
-  ServiceLeaveModal,
-} from '@/components/pages/group/settings/modal';
+import { ConfirmModal } from '@/components/pages/group/settings/modal';
 
 export default function GroupSettings() {
   function handleClickLeaveButton() {
@@ -161,9 +157,44 @@ export default function GroupSettings() {
           </Flex>
         </Flex>
       </GNBLayout>
-      <ServiceLeaveModal />
-      <GroupLeaveModal />
-      <GroupOwnerWarningModal />
+      <ConfirmModal>
+        <ConfirmModal.Header>
+          <Text>와글와글 탈퇴</Text>
+        </ConfirmModal.Header>
+        <ConfirmModal.Body>
+          <Text>와글와글 서비스를 떠나실 건가요?</Text>
+        </ConfirmModal.Body>
+        <ConfirmModal.Footer>
+          <Button variant="tertiary">취소</Button>
+          <Button variant="quaternary">확인</Button>
+        </ConfirmModal.Footer>
+      </ConfirmModal>
+      <ConfirmModal>
+        <ConfirmModal.Header>
+          <Text>그룹 탈퇴</Text>
+        </ConfirmModal.Header>
+        <ConfirmModal.Body>
+          <Text>그룹을 탈퇴하시겠습니까?</Text>
+        </ConfirmModal.Body>
+        <ConfirmModal.Footer>
+          <Button variant="tertiary">취소</Button>
+          <Button variant="quaternary">확인</Button>
+        </ConfirmModal.Footer>
+      </ConfirmModal>
+      <ConfirmModal>
+        <ConfirmModal.Header>
+          <Text>그룹장은 탈퇴할 수 없습니다.</Text>
+        </ConfirmModal.Header>
+        <ConfirmModal.Body>
+          <Text>
+            그룹장은 그룹에 팀원이 1명 이상 있을 시 탈퇴할 수 없습니다.
+          </Text>
+        </ConfirmModal.Body>
+        <ConfirmModal.Footer>
+          <Button variant="tertiary">취소</Button>
+          <Button variant="quaternary">확인</Button>
+        </ConfirmModal.Footer>
+      </ConfirmModal>
     </>
   );
 }

@@ -1,13 +1,10 @@
 import GNBLayout from '@/layouts/gnb-layout';
-import { Flex, Heading, Button, Text } from '@chakra-ui/react';
+import { Flex, Heading, Button, Text, CloseButton } from '@chakra-ui/react';
 import Profile from '@/components/pages/home/profile';
 import DashboardItem from '@/components/common/dashboard-item';
 import { EditGroupForm } from '@/components/pages/group/form';
 import { ManageGroupMembers } from '@/components/pages/group/manage-group-members';
-import {
-  GroupDeleteModal,
-  MemberDeleteModal,
-} from '@/components/pages/group/settings/modal';
+import { ConfirmModal } from '@/components/pages/group/settings/modal';
 
 export default function GroupSetting() {
   function handleClickDeleteGroup() {}
@@ -62,8 +59,34 @@ export default function GroupSetting() {
           </Flex>
         </Flex>
       </GNBLayout>
-      <MemberDeleteModal />
-      <GroupDeleteModal />
+      <ConfirmModal>
+        <ConfirmModal.Header>
+          <Text>팀원 삭제</Text>
+        </ConfirmModal.Header>
+        <ConfirmModal.Body>
+          <Text>팀원을 그룹에서 삭제하시겠습니까?</Text>
+        </ConfirmModal.Body>
+        <ConfirmModal.Footer>
+          <Button variant="tertiary">취소</Button>
+          <Button variant="error">삭제</Button>
+        </ConfirmModal.Footer>
+      </ConfirmModal>
+      <ConfirmModal>
+        <ConfirmModal.Header>
+          <Text>그룹 삭제</Text>
+        </ConfirmModal.Header>
+        <ConfirmModal.Body>
+          <Text>
+            그룹을 삭제하시겠습니까?
+            <br />
+            기존에 받았던 카드는 내 카드에 저장됩니다.
+          </Text>
+        </ConfirmModal.Body>
+        <ConfirmModal.Footer>
+          <Button variant="tertiary">취소</Button>
+          <Button variant="error">삭제</Button>
+        </ConfirmModal.Footer>
+      </ConfirmModal>
     </>
   );
 }
