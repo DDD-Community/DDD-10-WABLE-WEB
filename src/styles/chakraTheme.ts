@@ -44,6 +44,26 @@ const theme = extendTheme({
           bg: 'white',
           border: '1px solid black',
         },
+        tertiary: {
+          bg: 'gray.100',
+          _hover: {
+            opacity: 0.8,
+          },
+        },
+        quaternary: {
+          bg: 'blue.800',
+          color: 'white',
+          _hover: {
+            opacity: 0.8,
+          },
+        },
+        error: {
+          bg: 'red.600',
+          color: 'white',
+          _hover: {
+            opacity: 0.8,
+          },
+        },
       },
     },
     Switch: switchTheme,
