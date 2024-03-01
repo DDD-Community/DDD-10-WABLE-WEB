@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
-import { CardDirection, CardType } from '@/components/pages/my-card/types';
+import { CardType } from './types';
+import { CardDirection } from '@/components/pages/my-card/types';
 
 async function getMyCards(
   cardDirection: CardDirection,
