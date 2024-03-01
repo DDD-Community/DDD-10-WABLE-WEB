@@ -31,7 +31,7 @@ export type ProfileSteps = typeof STEPS;
 export default function CreateProfile() {
   const [Funnel, step, setStep] = useFunnel({
     steps: STEPS,
-    initialStep: '프로필 상세 정보 입력 - 완료',
+    initialStep: '프로필 상세 정보 입력 - 기본 정보',
   });
   const profileBaseInformationForm = useForm<ProfileBaseInformationSchema>({
     resolver: zodResolver(profileBaseInformationSchema),
