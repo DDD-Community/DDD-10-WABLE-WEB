@@ -16,7 +16,7 @@ export default function ProfileCard({ isOpened, profile, onClick }: Props) {
         <OpenedProfile>
           <HStack as="header" justifyContent="space-between">
             <Text fontSize="xs" as="b">
-              기본 프로필
+              {profile.group?.name || '기본'} 프로필
             </Text>
             <EditProfileButton>
               수정
@@ -27,7 +27,7 @@ export default function ProfileCard({ isOpened, profile, onClick }: Props) {
         </OpenedProfile>
       ) : (
         <ClosedProfile>
-          <Text as="b">그룹 프로필</Text>
+          <Text as="b">{profile.group?.name || '기본'} 프로필</Text>
         </ClosedProfile>
       )}
     </ProfileSection>

@@ -3,21 +3,24 @@ import { CardInfo } from './types';
 export const mockProfile = [
   {
     name: '신승준',
-    nickname: '승주니',
-    gender: 'male',
-    birth: '1995-01-21',
-    profile_image_url: '~~~',
-    mbti: 'INFJ',
-    hobby: ['공부 📔', '운동 🤼‍♀️'],
-  },
-  {
-    name: '신승준',
     nickname: '메타몽',
     gender: 'male',
     birth: '1995-01-21',
     profile_image_url: '~~~',
     mbti: 'INFJ',
     hobby: ['영화 🍿', '등산 ⛰️', '독서'],
+  },
+  {
+    name: '신승준',
+    nickname: '승주니',
+    gender: 'male',
+    birth: '1995-01-21',
+    profile_image_url: '~~~',
+    mbti: 'INFJ',
+    hobby: ['공부 📔', '운동 🤼‍♀️'],
+    group: {
+      name: 'DDD',
+    },
   },
 ];
 
