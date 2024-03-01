@@ -3,7 +3,11 @@ import { z } from 'zod';
 export const GENDER_OPTIONS = ['남성', '여성'] as const;
 
 export const profileBaseInformationSchema = z.object({
-  profileImageUrl: z.string().optional(),
+  profileImageUrl: z
+    .object({
+      src: z.string(),
+    })
+    .optional(),
   name: z
     .string({
       required_error: '이름을 입력해주세요.',

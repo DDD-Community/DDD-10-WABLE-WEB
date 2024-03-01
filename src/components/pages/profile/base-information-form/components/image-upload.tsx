@@ -10,11 +10,9 @@ import { getPresignedUrl } from '@/api/profile';
 import axios from 'axios';
 
 export function ImageUpload() {
-  const { setValue } = useFormContext<ProfileBaseInformationSchema>();
+  const { setValue, watch } = useFormContext<ProfileBaseInformationSchema>();
   const inputRef = useRef<HTMLInputElement>(null);
-  const [previewImage, setPreviewImage] = useState<{ src: string | null }>({
-    src: null,
-  });
+  const [count, setCount] = useState(0);
 
   function handleDragOver(event: DragEvent<HTMLDivElement>) {
     event.preventDefault();
@@ -37,6 +35,7 @@ export function ImageUpload() {
 
   async function uploadImage(file: File) {
     const { filename, presignedUrl } = await getPresignedUrl();
+    console.log('🚀 ~ uploadImage ~ filename:', filename);
 
     await axios.put(presignedUrl, file, {
       headers: {
@@ -44,10 +43,8 @@ export function ImageUpload() {
       },
     });
 
-    setValue('profileImageUrl', filename);
-    setPreviewImage({
-      src: URL.createObjectURL(file),
-    });
+    setValue('profileImageUrl', { src: filename });
+    setCount((prev) => prev + 1);
   }
 
   function handleChangeFile(event: ChangeEvent<HTMLInputElement>) {
@@ -72,21 +69,24 @@ export function ImageUpload() {
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
-        {previewImage.src ? (
+        {watch('profileImageUrl')?.src ? (
           <Image
-            src={previewImage.src}
+            key={count}
+            src={watch('profileImageUrl')?.src as string}
             fill
             alt="프로필 사진"
             style={{ objectFit: 'cover', borderRadius: '12px' }}
+            unoptimized
           />
         ) : (
           <Image
             width={82}
             height={119}
             src={BASE_PROFILE_IMAGE}
-            alt="와글이 기본 이미지"
+            alt="프로필 사진"
           />
         )}
+
         <Input
           ref={inputRef}
           display="none"

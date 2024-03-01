@@ -35,9 +35,6 @@ export default function CreateProfile() {
   });
   const profileBaseInformationForm = useForm<ProfileBaseInformationSchema>({
     resolver: zodResolver(profileBaseInformationSchema),
-    defaultValues: {
-      profileImageUrl: BASE_PROFILE_IMAGE,
-    },
   });
   const profileAdditionalInformationForm =
     useForm<ProfileAdditionalInformationSchema>({
@@ -57,6 +54,7 @@ export default function CreateProfile() {
       ...profileAdditionalInformation,
     });
 
+    console.log('🚀 ~ CreateProfile ~ profile:', profile);
     /**
      * @todo API(useMutation) 연결하기
      * @todo onSuccess: 완료 step으로 이동하기
