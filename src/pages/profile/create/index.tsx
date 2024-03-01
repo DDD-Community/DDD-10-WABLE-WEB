@@ -18,7 +18,6 @@ import {
 import { Stepper } from '@/components/pages/profile';
 import { Header } from '@/components/pages/profile';
 import LogoutIcon from '@/assets/icons/logout.svg';
-import { BASE_PROFILE_IMAGE } from '@/constants/profile/base-image';
 
 const STEPS = [
   '프로필 상세 정보 입력 - 기본 정보',
@@ -31,7 +30,7 @@ export type ProfileSteps = typeof STEPS;
 export default function CreateProfile() {
   const [Funnel, step, setStep] = useFunnel({
     steps: STEPS,
-    initialStep: '프로필 상세 정보 입력 - 기본 정보',
+    initialStep: '프로필 상세 정보 입력 - MBTI 및 관심사',
   });
   const profileBaseInformationForm = useForm<ProfileBaseInformationSchema>({
     resolver: zodResolver(profileBaseInformationSchema),
@@ -65,6 +64,10 @@ export default function CreateProfile() {
     setStep('프로필 상세 정보 입력 - 기본 정보');
   }
 
+  function getIndex(step: ProfileSteps[number]) {
+    return STEPS.indexOf(step);
+  }
+
   return (
     <VStack w="100%" bg="waggle.gray.100">
       <Header />
@@ -77,7 +80,7 @@ export default function CreateProfile() {
           gap="32px"
         >
           <Heading size="md">프로필 상세 정보 입력</Heading>
-          <Stepper steps={STEPS} activeStepIndex={0} />
+          <Stepper steps={STEPS} activeStepIndex={getIndex(step)} />
           <Flex
             w="100%"
             flexDirection="column"

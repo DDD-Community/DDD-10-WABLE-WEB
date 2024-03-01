@@ -58,6 +58,6 @@ export function mapProfileToRequestDto(
 
   return {
     ...restProfile,
-    birth: `${year}-${month}-${day}`,
+    birth: `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`,
   };
 }

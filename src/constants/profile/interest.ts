@@ -1,4 +1,4 @@
-export const DEFAULT_INTERESTS = [
+export const DEFAULT_INTEREST_OPTIONS = [
   '영화 🍿',
   '연극 🎭',
   '드라마 정주행 🎬',

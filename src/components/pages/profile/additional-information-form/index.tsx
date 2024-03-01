@@ -6,13 +6,15 @@ import {
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputRightAddon,
   Select,
   Text,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useRef, useState } from 'react';
 import { MBTI } from '@/constants/profile/mbti';
-import { DEFAULT_INTERESTS } from '@/constants/profile/interest';
+import { DEFAULT_INTEREST_OPTIONS } from '@/constants/profile/interest';
 import { useFormContext } from 'react-hook-form';
 import { ProfileAdditionalInformationSchema } from '@/models/profile';
 
@@ -23,21 +25,39 @@ export function AdditionalInformationForm({
   onSubmit: (data: ProfileAdditionalInformationSchema) => void;
   onClickGoBackButton: () => void;
 }) {
-  const { register, handleSubmit } =
+  const { register, handleSubmit, watch, setValue } =
     useFormContext<ProfileAdditionalInformationSchema>();
-  const [interests, setInterests] = useState<string[]>(DEFAULT_INTERESTS);
+  const [interestOptions, setInterestOptions] = useState<string[]>(
+    DEFAULT_INTEREST_OPTIONS,
+  );
   const inputRef = useRef<HTMLInputElement>(null);
+  const interests = watch('interests');
 
-  function handleAdditionalInterest(
-    event: React.KeyboardEvent<HTMLInputElement>,
-  ) {
+  function handleClickAdditionalInterestOption() {
     if (!inputRef.current?.value) return;
 
-    if (event.key === 'Enter') {
-      setInterests([...interests, inputRef.current?.value]);
+    setInterestOptions([...interestOptions, inputRef.current?.value]);
+    setValue('interests', [...(interests ?? []), inputRef.current.value]);
 
-      inputRef.current.value = '';
-    }
+    inputRef.current.value = '';
+  }
+
+  function handleClickInterestOption(interest: string) {
+    return () => {
+      if (interests?.includes(interest)) {
+        setValue(
+          'interests',
+          interests.filter((selectedInterest) => selectedInterest !== interest),
+        );
+        return;
+      }
+
+      setValue('interests', [...(interests ?? []), interest]);
+    };
+  }
+
+  function isSelectedInterestOption(interestOption: string) {
+    return interests?.includes(interestOption);
   }
 
   return (
@@ -76,34 +96,56 @@ export function AdditionalInformationForm({
                * @todo 선택된 interest이면 bg, color 변경하기
                * @todo 다시 선택하면 bg, color 원래대로 변경하기
                */}
-              {interests.map((interest) => (
+              {interestOptions.map((interestOption) => (
                 <Flex
-                  key={interest}
+                  key={interestOption}
                   as="button"
+                  type="button"
                   gap="4px"
                   h="48px"
                   paddingX="20px"
                   borderRadius="6px"
                   border="1px"
-                  borderColor="gray.200"
                   alignItems="center"
                   justifyItems="center"
+                  borderColor={
+                    isSelectedInterestOption(interestOption)
+                      ? 'gray.400'
+                      : 'gray.200'
+                  }
+                  bg={
+                    isSelectedInterestOption(interestOption)
+                      ? 'gray.500'
+                      : 'white'
+                  }
+                  onClick={handleClickInterestOption(interestOption)}
                 >
-                  <Text size="md" color="gray.400">
-                    {interest}
+                  <Text
+                    size="md"
+                    color={
+                      isSelectedInterestOption(interestOption)
+                        ? 'gray.200'
+                        : 'gray.400'
+                    }
+                  >
+                    {interestOption}
                   </Text>
                 </Flex>
               ))}
             </Flex>
           </FormControl>
-          <Input
-            ref={inputRef}
-            onKeyUp={handleAdditionalInterest}
-            size="lg"
-            fontSize="16px"
-            placeholder="관심사를 입력해주세요."
-            _placeholder={{ color: 'gray.400' }}
-          />
+          <InputGroup>
+            <Input
+              ref={inputRef}
+              size="md"
+              fontSize="16px"
+              placeholder="관심사를 입력해주세요."
+              _placeholder={{ color: 'gray.400' }}
+            />
+            <InputRightAddon onClick={handleClickAdditionalInterestOption}>
+              +
+            </InputRightAddon>
+          </InputGroup>
         </Flex>
         <Flex w="100%" gap="18px">
           <Button
@@ -115,7 +157,7 @@ export function AdditionalInformationForm({
           >
             이전
           </Button>
-          <Button flex="1" variant="primary">
+          <Button flex="1" variant="primary" type="submit">
             건너뛰기
           </Button>
         </Flex>
