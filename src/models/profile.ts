@@ -1,3 +1,4 @@
+import { Question } from '@/api/profile';
 import { z } from 'zod';
 
 export const GENDER_OPTIONS = ['남성', '여성'] as const;
@@ -18,12 +19,9 @@ export const profileBaseInformationSchema = z.object({
     .max(10, {
       message: '이름은 10자 이내로 입력해주세요.',
     }),
-  nickname: z
-    .string()
-    .max(10, {
-      message: '닉네임은 10자 이내로 입력해주세요.',
-    })
-    .optional(),
+  nickname: z.string().max(10, {
+    message: '닉네임은 10자 이내로 입력해주세요.',
+  }),
   gender: z.enum(GENDER_OPTIONS, {
     required_error: '성별을 선택해주세요.',
   }),
@@ -60,7 +58,7 @@ export function mapProfileToRequestDto(
     .map(([key, value]) => {
       if (key === 'mbti')
         return {
-          sid: 'mbti',
+          sid: 'MBTI',
           question: 'MBTI',
           questionType: 'OPEN_ENDED',
           answers: [value],
@@ -68,12 +66,12 @@ export function mapProfileToRequestDto(
 
       if (key === 'interests')
         return {
-          sid: 'interests',
+          sid: 'HOBBY',
           question: '관심사',
           questionType: 'MULTIPLE_CHOICE',
-          answers: value,
+          answers: [...(value as string[])],
         };
-    });
+    }) as Question[];
 
   return {
     name,

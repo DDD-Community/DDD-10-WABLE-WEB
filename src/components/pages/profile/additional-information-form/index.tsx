@@ -92,10 +92,6 @@ export function AdditionalInformationForm({
               </Heading>
             </FormLabel>
             <Flex flexWrap="wrap" gap="8px">
-              {/**
-               * @todo 선택된 interest이면 bg, color 변경하기
-               * @todo 다시 선택하면 bg, color 원래대로 변경하기
-               */}
               {interestOptions.map((interestOption) => (
                 <Flex
                   key={interestOption}

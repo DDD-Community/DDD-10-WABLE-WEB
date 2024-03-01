@@ -60,7 +60,7 @@ export function BaseInformation({
           <FormControl isInvalid={!!errors.nickname}>
             <FormLabel htmlFor="nickname">
               <Flex gap="12px" alignItems="flex-end">
-                <Heading size="sm">닉네임</Heading>
+                <Heading size="sm">닉네임*</Heading>
                 <FormErrorMessage m="0">
                   {errors.nickname?.message}
                 </FormErrorMessage>

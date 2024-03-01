@@ -13,7 +13,7 @@ export function ProfileInfo({ profile }: { profile: ProfileInfo }) {
             {profile.name}
           </Text>
           {profile?.gender &&
-            (profile.gender === 'male' ? <Male /> : <Female />)}
+            (profile.gender === '남성' ? <Male /> : <Female />)}
         </HStack>
       </VStack>
       <Divider />

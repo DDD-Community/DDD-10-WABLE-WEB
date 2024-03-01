@@ -25,6 +25,7 @@ export function RadioGroup({ name, control, options }: RadioGroupProps) {
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     ...field,
+    value: field.value as string,
   });
 
   return (

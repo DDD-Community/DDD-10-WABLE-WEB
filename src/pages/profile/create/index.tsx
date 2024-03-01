@@ -18,6 +18,7 @@ import {
 import { Stepper } from '@/components/pages/profile';
 import { Header } from '@/components/pages/profile';
 import LogoutIcon from '@/assets/icons/logout.svg';
+import { useCreateUserProfile } from '@/hooks/queries/profile/useCreateUserProfile';
 
 const STEPS = [
   '프로필 상세 정보 입력 - 기본 정보',
@@ -30,7 +31,7 @@ export type ProfileSteps = typeof STEPS;
 export default function CreateProfile() {
   const [Funnel, step, setStep] = useFunnel({
     steps: STEPS,
-    initialStep: '프로필 상세 정보 입력 - 기본 정보',
+    initialStep: '프로필 상세 정보 입력 - 완료',
   });
   const profileBaseInformationForm = useForm<ProfileBaseInformationSchema>({
     resolver: zodResolver(profileBaseInformationSchema),
@@ -39,12 +40,17 @@ export default function CreateProfile() {
     useForm<ProfileAdditionalInformationSchema>({
       resolver: zodResolver(profileAdditionalInformationSchema),
     });
+  const { mutate } = useCreateUserProfile({
+    onSuccess: () => {
+      setStep('프로필 상세 정보 입력 - 완료');
+    },
+  });
 
   function handleSubmitProfileBaseInformation() {
     setStep('프로필 상세 정보 입력 - MBTI 및 관심사');
   }
 
-  async function handleSubmitProfileAdditionalInformation(
+  function handleSubmitProfileAdditionalInformation(
     profileAdditionalInformation: ProfileAdditionalInformationSchema,
   ) {
     const profileBaseInformation = profileBaseInformationForm.getValues();
@@ -53,11 +59,7 @@ export default function CreateProfile() {
       ...profileAdditionalInformation,
     });
 
-    console.log('🚀 ~ CreateProfile ~ profile:', profile);
-    /**
-     * @todo API(useMutation) 연결하기
-     * @todo onSuccess: 완료 step으로 이동하기
-     */
+    mutate(profile);
   }
 
   function handleClickGoBackButton() {

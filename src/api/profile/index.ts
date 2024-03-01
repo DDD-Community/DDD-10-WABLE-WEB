@@ -1,18 +1,20 @@
 import { isAxiosError } from 'axios';
 import axiosInstance from '..';
 
+export type Question = {
+  sid: string;
+  question: string;
+  questionType: string;
+  answers: string[];
+};
+
 export type CreateUserProfileRequestDto = {
   name: string;
-  nickname?: string;
+  nickname: string;
   gender: '남성' | '여성';
   birth: string;
   profileImageUrl?: string;
-  questions: Array<{
-    sid: string;
-    question: string;
-    questionType: string;
-    answers: string[];
-  }>;
+  questions: Question[];
 };
 
 export async function createUserProfile(dto: CreateUserProfileRequestDto) {
@@ -42,4 +44,11 @@ export async function getPresignedUrl() {
     filename: response.data.filename,
     presignedUrl: response.data.signedUrl,
   };
+}
+
+export async function getUserProfile() {
+  const response =
+    await axiosInstance.get<CreateUserProfileRequestDto>('v1/profiles/me');
+
+  return response.data;
 }

@@ -35,7 +35,6 @@ export function ImageUpload() {
 
   async function uploadImage(file: File) {
     const { filename, presignedUrl } = await getPresignedUrl();
-    console.log('🚀 ~ uploadImage ~ filename:', filename);
 
     await axios.put(presignedUrl, file, {
       headers: {
