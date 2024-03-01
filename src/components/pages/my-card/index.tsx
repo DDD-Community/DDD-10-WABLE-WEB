@@ -12,6 +12,7 @@ import NextPage from '@/assets/icons/next-page.svg';
 import PrevPage from '@/assets/icons/prev-page.svg';
 import { mockCardInfoForGrid, mockCardInfoForList, mockProfile } from './data';
 import { useMyCardsQuery } from '@/hooks/queries/card/useMyCardsQuery';
+import { CardModal } from './card-modal';
 
 export default function MyCard() {
   const profiles: ProfileInfo[] = mockProfile;
@@ -68,6 +69,14 @@ export default function MyCard() {
     size,
   );
 
+  const [openedCard, setOpenedCard] = useState<CardInfo | null>(null);
+  function handleCardClose() {
+    setOpenedCard(null);
+  }
+  function handleCardOpen(card: CardInfo) {
+    setOpenedCard(card);
+  }
+
   return (
     <GNBLayout>
       <Heading fontSize="24px" px="24px" mb="27px">
@@ -91,35 +100,44 @@ export default function MyCard() {
           ))}
         </ProfileCardSection>
         <CardListSection>
-          <CardListHeader
-            cardDirection={cardDirection}
-            viewType={viewType}
-            onChangeCardDirection={setCardDirection}
-            onChangeViewType={setViewType}
-          />
-          <CardListView
-            viewType={viewType}
-            cardList={viewType === 'GRID' ? cardListForGrid : cardListForList}
-          />
-          <CardListFooter>
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel={<NextPage />}
-              previousLabel={<PrevPage />}
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              renderOnZeroPageCount={null}
-              containerClassName="pagination"
-              pageClassName="pagination__page"
-              pageLinkClassName="pagination__page-link"
-              previousClassName="pagination__page"
-              previousLinkClassName="pagination__page-link"
-              nextClassName="pagination__page"
-              nextLinkClassName="pagination__page-link"
-              activeClassName="pagination__active"
-            />
-          </CardListFooter>
+          {openedCard === null ? (
+            <>
+              <CardListHeader
+                cardDirection={cardDirection}
+                viewType={viewType}
+                onChangeCardDirection={setCardDirection}
+                onChangeViewType={setViewType}
+              />
+              <CardListView
+                viewType={viewType}
+                cardList={
+                  viewType === 'GRID' ? cardListForGrid : cardListForList
+                }
+                onClickCard={handleCardOpen}
+              />
+              <CardListFooter>
+                <ReactPaginate
+                  breakLabel="..."
+                  nextLabel={<NextPage />}
+                  previousLabel={<PrevPage />}
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={5}
+                  pageCount={pageCount}
+                  renderOnZeroPageCount={null}
+                  containerClassName="pagination"
+                  pageClassName="pagination__page"
+                  pageLinkClassName="pagination__page-link"
+                  previousClassName="pagination__page"
+                  previousLinkClassName="pagination__page-link"
+                  nextClassName="pagination__page"
+                  nextLinkClassName="pagination__page-link"
+                  activeClassName="pagination__active"
+                />
+              </CardListFooter>
+            </>
+          ) : (
+            <CardModal onCardClose={handleCardClose} card={openedCard} />
+          )}
         </CardListSection>
       </HStack>
     </GNBLayout>

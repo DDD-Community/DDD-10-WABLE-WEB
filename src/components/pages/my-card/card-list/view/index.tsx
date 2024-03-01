@@ -8,18 +8,22 @@ import {
   CardViewGridContainer,
   CardGridItem,
 } from './styles';
-import { Props } from './types';
+import { Props, ItemProps } from './types';
 import { formatDateOnToday } from '@/utils/date';
 
-function GridItem({ card }: { card: CardInfo }) {
-  return <CardGridItem type={card.sid}>{card.content}</CardGridItem>;
+function GridItem({ card, onClick }: ItemProps) {
+  return (
+    <CardGridItem type={card.sid} onClick={onClick}>
+      {card.content}
+    </CardGridItem>
+  );
 }
 
-function ListItem({ card }: { card: CardInfo }) {
+function ListItem({ card, onClick }: ItemProps) {
   const statusMessage = `${CardTypeText[card.sid]} 카드를 보냈어요!`;
 
   return (
-    <CardListItem>
+    <CardListItem onClick={onClick}>
       <Text>{card.fromUser.name}</Text>
       <Text
         flexBasis="335px"
@@ -35,19 +39,31 @@ function ListItem({ card }: { card: CardInfo }) {
   );
 }
 
-export default function CardView({ viewType, cardList }: Props) {
+export default function CardView({ viewType, cardList, onClickCard }: Props) {
+  function handleClickCard(card: CardInfo) {
+    onClickCard(card);
+  }
+
   return (
     <>
       {viewType === 'LIST' ? (
         <CardViewListContainer>
           {cardList.map((card) => (
-            <ListItem key={card.id} card={card} />
+            <ListItem
+              key={card.id}
+              card={card}
+              onClick={() => handleClickCard(card)}
+            />
           ))}
         </CardViewListContainer>
       ) : (
         <CardViewGridContainer>
           {cardList.map((card) => (
-            <GridItem key={card.id} card={card} />
+            <GridItem
+              key={card.id}
+              card={card}
+              onClick={() => handleClickCard(card)}
+            />
           ))}
         </CardViewGridContainer>
       )}
