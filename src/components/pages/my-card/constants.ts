@@ -1,10 +1,10 @@
 import { CardType } from '@/api/card/types';
 
-const CardTypeText: Record<CardType, string> = {
+const cardTypeMap: Record<CardType, string> = {
+  GREETING: '인사',
   CELEBRATION: '축하',
   ENCOURAGEMENT: '응원',
   GRATITUDE: '감사',
-  GREETING: '인사',
 };
 
-export { CardTypeText };
+export { cardTypeMap };
