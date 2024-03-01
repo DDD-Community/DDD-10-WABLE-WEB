@@ -11,7 +11,7 @@ import CardListView from './card-list/view';
 import NextPage from '@/assets/icons/next-page.svg';
 import PrevPage from '@/assets/icons/prev-page.svg';
 import { mockCardInfoForGrid, mockCardInfoForList, mockProfile } from './data';
-import { useMyCardsQuery } from '@/hooks/my-card/useMyCardsQuery';
+import { useMyCardsQuery } from '@/hooks/queries/card/useMyCardsQuery';
 
 export default function MyCard() {
   const profiles: ProfileInfo[] = mockProfile;

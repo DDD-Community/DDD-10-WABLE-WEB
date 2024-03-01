@@ -1,4 +1,4 @@
-import axiosInstance from '../../api';
+import axiosInstance from '../../../api';
 import { useQuery } from '@tanstack/react-query';
 import {
   CardDirection,
@@ -6,6 +6,7 @@ import {
   CardType,
 } from '@/components/pages/my-card/types';
 import { AxiosError } from 'axios';
+import { getMyCards } from '@/api/card';
 
 export function useMyCardsQuery(
   cardDirection: CardDirection,
@@ -14,8 +15,6 @@ export function useMyCardsQuery(
   lastId: number,
   size: number,
 ) {
-  const urlSlug = cardDirection === 'RECEIVED' ? `received` : `sent`;
-
   const {
     isLoading: isMyCardsLoading,
     isError: isMyCardsError,
@@ -24,14 +23,7 @@ export function useMyCardsQuery(
   } = useQuery<CardInfo[], AxiosError>({
     queryKey: ['myCard', groupIds, cardTypes, lastId, size],
     queryFn: async () =>
-      await axiosInstance.get(`v1/cards/${urlSlug}`, {
-        params: {
-          groupIds,
-          sid: cardTypes,
-          lastId,
-          size,
-        },
-      }),
+      getMyCards(cardDirection, groupIds, cardTypes, lastId, size),
   });
 
   return {
