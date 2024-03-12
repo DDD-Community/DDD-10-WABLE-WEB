@@ -4,7 +4,7 @@ DDD 10기 WEB 2팀 와블와블 웹 프론트엔드 레포지토리
 
 ## 기술 스택
 
-웹 기반 + PWA(구글 스토어, 앱 스토어까진 x...)
+웹 기반
 
 ![pnpm](https://img.shields.io/badge/pnpm-F69220?style=flat-square&logo=pnpm&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white)  
 ![Emotion](https://img.shields.io/badge/👩‍🎤%20Emotion-hotpink?style=flat-square&) ![Chakra UI](https://img.shields.io/badge/Chakra%20UI-319795?style=flat-square&logo=ChakraUI&logoColor=white)  
