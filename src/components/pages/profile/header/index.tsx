@@ -1,8 +1,8 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import WaggleWaggleLogo from '@/assets/images/waggle-waggle-logo.svg';
 import HomeIcon from '@/assets/icons/home.svg';
-import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 
 export function Header() {

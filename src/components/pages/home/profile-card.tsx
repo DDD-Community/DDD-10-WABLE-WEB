@@ -1,14 +1,19 @@
+import Image from 'next/image';
+import { formatDate } from 'date-fns';
 import { Box, Card, CardBody, Heading, Text } from '@chakra-ui/react';
 
 import DefaultProfileImage from '@/assets/images/default-profile-image.svg?url';
 import { ProfileInfo } from '@/components/common/profile-info/types';
-import { formatDate } from 'date-fns';
 
 function ProfileCard({ member }: { member: ProfileInfo }) {
   return (
     <Card overflow="hidden" shadow="none">
       <Box backgroundColor="#A0AEC0" px="44px" pt="32px" pb="18px">
-        <img src={DefaultProfileImage.src as string} />
+        <Image
+          src={DefaultProfileImage.src as string}
+          alt="profile image"
+          fill
+        />
       </Box>
       <CardBody px="16px" py="10px" minH="84px">
         <Heading size="sm" fontWeight="600">

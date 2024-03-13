@@ -1,9 +1,10 @@
-import DashboardItem from '@/components/common/dashboard-item';
-import { ProfileInfo } from '@/components/common/profile-info';
 import { Button, Flex, Heading } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-import SendIcon from '@/assets/icons/send.svg';
+
+import DashboardItem from '@/components/common/dashboard-item';
+import { ProfileInfo } from '@/components/common/profile-info';
 import { ProfileInfo as ProfileInfoType } from '@/components/common/profile-info/types';
+import SendIcon from '@/assets/icons/send.svg';
 
 export default function DetailSection({
   selectedMember,

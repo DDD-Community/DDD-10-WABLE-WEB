@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { InputGroup, Input, InputRightElement } from '@chakra-ui/react';
+
 import ViewIcon from '@/assets/icons/view-icon.svg';
 import ViewOffIcon from '@/assets/icons/view-off-icon.svg';
-import { useState } from 'react';
 
 interface Props {
   id: string;

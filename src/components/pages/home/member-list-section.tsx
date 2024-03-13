@@ -12,8 +12,7 @@ import {
 import { SearchIcon } from '@chakra-ui/icons';
 
 import DashboardItem from '@/components/common/dashboard-item';
-import { ProfileCard } from '@/components/pages/member/profile-card';
-import { mockProfile } from '../my-card/data';
+import { ProfileCard } from '@/components/pages/home/profile-card';
 
 export default function MemberListSection({
   isSelected,
@@ -22,12 +21,22 @@ export default function MemberListSection({
   isSelected: boolean;
   onSelect: (member: any) => void;
 }) {
+  const member = {
+    name: '조성원',
+    nickname: '원토리',
+    gender: '남',
+    birth: '2000-07-20',
+    profile_image_url: 'https://avatars.githubusercontent.com/u/77449822?v=4',
+    mbti: 'INTJ',
+    hobby: ['종이접기', '피아노연주'],
+  };
+
   return (
     <DashboardItem flexDir="column" overflow="auto" w="full" h="full">
       <Flex gap={1} align="end">
         <Heading fontSize="18px">팀원 목록</Heading>
         <Text color="waggle.gray.700" fontSize="11px" fontWeight="600">
-          (총 {mockProfile.length}명)
+          (총 n명)
         </Text>
       </Flex>
       <VStack mx="auto" w="fit-content" overflowY="auto" alignItems="end">
@@ -43,16 +52,9 @@ export default function MemberListSection({
           mx="auto"
           overflowY="scroll"
         >
-          {mockProfile.map((member, i) => (
-            <GridItem
-              key={i}
-              w="170px"
-              onClick={() => onSelect(member)}
-              cursor="pointer"
-            >
-              <ProfileCard member={member} />
-            </GridItem>
-          ))}
+          <GridItem w="170px" onClick={() => onSelect(member)} cursor="pointer">
+            <ProfileCard member={member} />
+          </GridItem>
         </Grid>
       </VStack>
     </DashboardItem>
