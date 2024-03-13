@@ -1,13 +1,13 @@
-import { Center, Flex, Input } from '@chakra-ui/react';
-
-import EditIcon from '@/assets/icons/edit.svg';
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import Image from 'next/image';
+import axios from 'axios';
+import { Center, Flex, Input } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
+
 import { ProfileBaseInformationSchema } from '@/models/profile';
 import { BASE_PROFILE_IMAGE } from '@/constants/profile/base-image';
 import { getPresignedUrl } from '@/api/profile';
-import axios from 'axios';
+import EditIcon from '@/assets/icons/edit.svg';
 
 export function ImageUpload() {
   const { setValue, watch } = useFormContext<ProfileBaseInformationSchema>();

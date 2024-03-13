@@ -1,7 +1,7 @@
+import { Fragment } from 'react';
+import { Flex, Divider, Heading } from '@chakra-ui/react';
 import { isLastIndex } from '@/utils/array';
 import { isLessOrEqual } from '@/utils/number';
-import { Flex, Divider, Heading } from '@chakra-ui/react';
-import { Fragment } from 'react';
 
 type StepperProps<T> = {
   steps: readonly T[];

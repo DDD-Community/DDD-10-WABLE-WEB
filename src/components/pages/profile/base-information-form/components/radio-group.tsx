@@ -1,4 +1,5 @@
-import { ProfileBaseInformationSchema } from '@/models/profile';
+import { ReactNode } from 'react';
+import { Control, useController } from 'react-hook-form';
 import {
   HStack,
   useRadioGroup,
@@ -8,8 +9,7 @@ import {
   Heading,
   UseRadioProps,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
-import { Control, useController } from 'react-hook-form';
+import { ProfileBaseInformationSchema } from '@/models/profile';
 
 type RadioGroupProps = {
   name: keyof ProfileBaseInformationSchema;

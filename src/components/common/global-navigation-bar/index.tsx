@@ -1,5 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import { ArrowUpDownIcon } from '@chakra-ui/icons';
 
+import { ROUTES } from '@/constants/routes';
+import { NavItemProps } from './types';
 import {
   GNBBody,
   GNBContainer,
@@ -10,6 +15,7 @@ import {
   ItemGroupHeader,
   Logout,
 } from './styles';
+
 import DividerIcon from '@/assets/icons/divider.svg';
 import LogoIcon from '@/assets/icons/logo.svg';
 import CopyIcon from '@/assets/icons/copy.svg';
@@ -17,15 +23,6 @@ import HomeIcon from '@/assets/icons/home.svg';
 import UserIcon from '@/assets/icons/user.svg';
 import SettingsIcon from '@/assets/icons/settings.svg';
 import LogoutIcon from '@/assets/icons/logout.svg';
-
-import { NavItemProps } from './types';
-import { ROUTES } from '@/constants/routes';
-import { useMyGroupsQuery } from '@/hooks/queries/group/useMyGroupsQuery';
-import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
-import { ArrowUpDownIcon } from '@chakra-ui/icons';
-import { GroupInfo } from '@/api/group/type';
-import { useCurrentGroup } from '@/hooks/common/useCurrentGroup';
-import { useRouter } from 'next/router';
 
 function NavItem({ children, href, icon, currentTab }: NavItemProps) {
   return (
@@ -38,15 +35,7 @@ function NavItem({ children, href, icon, currentTab }: NavItemProps) {
   );
 }
 
-function NavDropdown({
-  cur,
-  groups,
-  currentTab,
-}: {
-  cur: GroupInfo | undefined;
-  groups: GroupInfo[];
-  currentTab?: boolean;
-}) {
+function NavDropdown({ currentTab }: { currentTab?: boolean }) {
   return (
     <Menu>
       <MenuButton>
@@ -54,16 +43,14 @@ function NavDropdown({
           <div>
             <HomeIcon />
           </div>
-          {cur?.name || groups[0].name}
+          current-group-name
           <ArrowUpDownIcon ml="auto" />
         </ItemContainer>
       </MenuButton>
       <MenuList borderRadius="12px">
-        {groups.map((group) => (
-          <MenuItem key={group.id} as="a" href={`/${group.name}/home`}>
-            {group.name}
-          </MenuItem>
-        ))}
+        <MenuItem as="a" href={`/group-name`}>
+          group-name
+        </MenuItem>
       </MenuList>
     </Menu>
   );
@@ -82,9 +69,8 @@ function Divider() {
 }
 
 export default function GlobalNavigationBar() {
+  const haveGroup = false;
   const router = useRouter();
-  const { data } = useMyGroupsQuery();
-  const cur = useCurrentGroup();
 
   return (
     <GNBContainer>
@@ -106,12 +92,8 @@ export default function GlobalNavigationBar() {
         <Divider />
 
         <ItemGroup>
-          {data?.groups.length ? (
-            <NavDropdown
-              cur={cur}
-              groups={data.groups}
-              currentTab={router.pathname.endsWith('home')}
-            />
+          {haveGroup ? (
+            <NavDropdown />
           ) : (
             <NavItem
               href={ROUTES.GROUP.CREATE}
@@ -122,7 +104,7 @@ export default function GlobalNavigationBar() {
             </NavItem>
           )}
           <NavItem
-            href={ROUTES.GROUP.MEMBER(cur?.name || data?.groups[0].name || '')}
+            href={ROUTES.GROUP.MEMBER('current-group-name')}
             icon={<UserIcon />}
             currentTab={router.pathname.endsWith('member')}
           >
