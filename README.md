@@ -43,7 +43,7 @@ export default function Component() {
 ```
 
 - ESLint
-  Vite의 기본 ESLint 설정 사용
+  기본 ESLint 설정 사용
 
 - Prettier
 
