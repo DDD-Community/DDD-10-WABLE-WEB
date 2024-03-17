@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Controller, useForm } from 'react-hook-form';
 import {
   Button,
@@ -12,17 +14,15 @@ import {
   HStack,
   Text,
 } from '@chakra-ui/react';
-import PasswordInput from '@/components/common/input/password-input';
-import { Form } from './styles';
-import { ROUTES } from '@/constants/routes';
-import { LoginFormValues } from './types';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
+import { ROUTES } from '@/constants/routes';
+import { LoginFormValues } from '@/types/pages/login';
 import userPool from '@/lib/user-pool';
 import { useFormRootError } from '@/hooks/common/useFormRootError';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { AUTH_TOKEN_SET } from '@/api/constants';
 import { deleteCookie, getCookie, setCookie } from '@/utils/cookie';
+import PasswordInput from '@/components/common/input/password-input';
+import { Form } from './styles';
 
 const USER_NOT_CONFIRMED_EXCEPTION = 'UserNotConfirmedException';
 const NOT_AUTHORIZED_EXCEPTION = 'NotAuthorizedException';

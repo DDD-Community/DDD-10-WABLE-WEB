@@ -1,12 +1,10 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { Button, Center, HStack, Heading, VStack } from '@chakra-ui/react';
 import { DividerWithContent } from '@/components/common/divider-with-content';
 import { LoginForm } from '@/components/pages/login/login-form';
 import GoogleIcon from '@/assets/icons/google.svg';
 import LoginImage from '@/assets/images/login-image.png';
 import { LoginContainer } from './styles';
-import { ROUTES } from '@/constants/routes';
 
 export default function Login() {
   return (
