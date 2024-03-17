@@ -1,6 +1,6 @@
 import { VStack, HStack, Text, Divider } from '@chakra-ui/react';
 import { ProfileInfoGrid } from './styles';
-import { ProfileInfo } from './types';
+import { ProfileInfo } from '../../../types/common/profile';
 import Male from '@/assets/icons/male.svg';
 import Female from '@/assets/icons/female.svg';
 

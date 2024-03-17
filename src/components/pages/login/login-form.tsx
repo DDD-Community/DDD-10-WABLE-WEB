@@ -19,7 +19,7 @@ import { ROUTES } from '@/constants/routes';
 import { LoginFormValues } from '@/types/pages/login';
 import userPool from '@/lib/user-pool';
 import { useFormRootError } from '@/hooks/common/useFormRootError';
-import { AUTH_TOKEN_SET } from '@/api/constants';
+import { AUTH_TOKEN_SET } from '@/constants/auth/auth-token-set';
 import { deleteCookie, getCookie, setCookie } from '@/utils/cookie';
 import PasswordInput from '@/components/common/input/password-input';
 import { Form } from './styles';

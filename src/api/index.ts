@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { AUTH_TOKEN_SET } from './constants';
-import { AuthTokenSet } from './types';
+import { AUTH_TOKEN_SET } from '../constants/auth/auth-token-set';
+import { AuthTokenSet } from '../types/common/auth';
 import { getCookie } from '@/utils/cookie';
 
 const axiosInstance = axios.create({

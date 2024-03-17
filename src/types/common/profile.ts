@@ -1,4 +1,4 @@
-export interface ProfileInfo {
+interface ProfileInfo {
   name: string;
   nickname: string;
   gender?: string;
@@ -7,3 +7,5 @@ export interface ProfileInfo {
   mbti: string;
   hobby: string[];
 }
+
+export type { ProfileInfo };

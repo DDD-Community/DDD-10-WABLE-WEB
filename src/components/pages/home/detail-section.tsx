@@ -3,7 +3,7 @@ import { CloseIcon } from '@chakra-ui/icons';
 
 import DashboardItem from '@/components/common/dashboard-item';
 import { ProfileInfo } from '@/components/common/profile-info';
-import { ProfileInfo as ProfileInfoType } from '@/components/common/profile-info/types';
+import { ProfileInfo as ProfileInfoType } from '@/types/common/profile';
 import SendIcon from '@/assets/icons/send.svg';
 
 export default function DetailSection({

@@ -3,7 +3,7 @@ import { Flex, Heading } from '@chakra-ui/react';
 import GNBLayout from '@/layouts/gnb-layout';
 // import MemberListSection from '@/components/pages/member/member-list-section';
 // import DetailSection from '@/components/pages/member/detail-section';
-import { ProfileInfo } from '@/components/common/profile-info/types';
+import { ProfileInfo } from '@/types/common/profile';
 // import CardSendSection from '@/components/pages/member/card-send-section';
 
 export default function Member() {

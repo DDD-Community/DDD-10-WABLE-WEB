@@ -3,7 +3,7 @@ import { formatDate } from 'date-fns';
 import { Box, Card, CardBody, Heading, Text } from '@chakra-ui/react';
 
 import DefaultProfileImage from '@/assets/images/default-profile-image.svg?url';
-import { ProfileInfo } from '@/components/common/profile-info/types';
+import { ProfileInfo } from '@/types/common/profile';
 
 function ProfileCard({ member }: { member: ProfileInfo }) {
   return (
