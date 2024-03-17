@@ -12,8 +12,8 @@ import {
   Text,
 } from '@chakra-ui/react';
 import PasswordInput from '@/components/common/input/password-input';
+import { SignUpFormValues } from '@/types/pages/sign-up';
 import { Form } from './styles';
-import { SignUpFormValues } from './types';
 import userPool from '@/lib/user-pool';
 import { ROUTES } from '@/constants/routes';
 import { useFormRootError } from '@/hooks/common/useFormRootError';
